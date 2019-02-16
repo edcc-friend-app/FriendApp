@@ -24,7 +24,7 @@ import android.widget.TextView;
  * please work
  * anthony pushes estefano
  * @version 1.0
- * it's 2:53 am
+ * estefano
  */
 
 public class MainActivity extends AppCompatActivity
