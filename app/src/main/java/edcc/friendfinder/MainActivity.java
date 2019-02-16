@@ -20,7 +20,7 @@ import android.widget.TextView;
  * @author Anthony Luong
  * @author Estefano Felipa
  * @author Jonathan Young
- * hola
+ * hola perros
  * @version 1.0
  *
  */
