@@ -1,0 +1,85 @@
+Ethnicity
+Age
+Location
+Gpa
+Major
+Height
+Weight
+Interests/Hobbies
+Favorite memes(s)
+Classes taken
+Current Classes
+
+
+
+
+Classes:
+Business
+	Accounting
+	Business Information Technology
+	Business Management
+	Culinary Arts
+	Construction Management
+	Event Planning
+	Horticulture
+	Hospitality and Tourism
+	Job Development
+	
+Humanities
+	Art
+	Communication Studies
+	Dance
+	English
+	Humanities
+	Journalism
+	Modern Languages
+	Music
+	Photography
+	Visual Communications
+	
+Science, Technology, Engineering, and Mathematics (STEM)
+	Astronomy
+	Biology
+	Chemistry
+	Computers, Electronics, and Networks (See Engineering Technology)
+	Computer Information Systems
+	Computer Science
+	Engineering
+	Engineering Technology
+	Environmental Science
+	Geology
+	Mathematics
+	Materials Science Technology (See Engineering Technology) 
+	Physics
+	
+Health and Human Services
+	Allied Health Education
+	Child, Youth, and Family Studies
+	Early Childhood Education
+	Emergency Management and Business Continuity
+	Family Life Education
+	Family Support Studies
+	Health
+	Nursing
+	Occupational Safety and Health
+	Paralegal
+	Physical Education
+	Social and Human Services
+	
+Social Sciences
+	Anthropology
+	Diversity Studies
+	Economics
+	Geography
+	History
+	Philosophy
+	Political Science
+	Psychology
+	Sociology
+
+Pre-College Education
+	Bridge
+	Career, College and Life Success
+	Counseling Psychology
+	GED Classes
+	

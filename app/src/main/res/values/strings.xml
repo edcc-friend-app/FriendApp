@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Friend Finder</string>
+    <string name="title_activity_nav">NavActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Edit</string>
+    <string name="descEdcc">EDCC</string>
+    <string name="title_activity_user_profile">UserProfile</string>
+    <string name="title_activity_edit_user">EditUser</string>
+    <string name="Intro">Welcome to the EDCC Friend App!</string>
+    <string name="profile_nav">Profile</string>
+    <string name="find_friends_nav">Find Friends</string>
+    <string name="friends_nav">Friends</string>
+    <string name="interest_user">Interest</string>
+    <string name="last_name_user">Last Name</string>
+    <string name="major_user">Major</string>
+    <string name="first_name_user">First Name</string>
+    <string name="search">Search</string>
+    <string name="title_activity_friend_details">FriendDetails</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
