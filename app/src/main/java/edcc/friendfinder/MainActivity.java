@@ -20,12 +20,7 @@ import android.widget.TextView;
  * @author Anthony Luong
  * @author Estefano Felipa
  * @author Jonathan Young
- * hola perros
- * please work
- * anthony pushes estefano
  * @version 1.0
- * it's now 2:56 am
- * anthony is the best
  */
 
 public class MainActivity extends AppCompatActivity
