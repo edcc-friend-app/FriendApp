@@ -80,7 +80,6 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:onClick="lblInterestOnClick"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -108,7 +107,6 @@
             android:layout_marginStart="8dp"
 
             android:layout_marginTop="4dp"
-            android:onClick="lblAvailabilityOnClick"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"

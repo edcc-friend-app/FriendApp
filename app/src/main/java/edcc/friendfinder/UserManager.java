@@ -57,12 +57,9 @@ public class UserManager {
                 index = i;
             }
         }
-        users.get(index).setDateOfBirth(user.getDateOfBirth());
-        users.get(index).setEdmail(user.getEdmail());
         users.get(index).setFriends(user.getFriends());
         users.get(index).setInterests(user.getInterests());
         users.get(index).setMajor(user.getMajor());
-        users.get(index).setPhoneNumber(user.getPhoneNumber());
         users.get(index).setFirstName(user.getFirstName());
         users.get(index).setLastName(user.getLastName());
     }
