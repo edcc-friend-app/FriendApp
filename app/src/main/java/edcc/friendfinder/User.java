@@ -9,7 +9,7 @@ public class User implements Comparable<User>{
     private String edmail;
     private String phoneNumber;
     private String major;
-    private String interests;
+    private String bio;
     private ArrayList<User> friends;
     private String dateOfBirth;
     private int age;
@@ -21,13 +21,13 @@ public class User implements Comparable<User>{
     public User() {}
 
     public User(String firstName, String lastName, String edmail, String phoneNumber, String major,
-                String interests, ArrayList<User> friends, String dateOfBirth, int id, int age) {
+                String bio, ArrayList<User> friends, String dateOfBirth, int id, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.edmail = edmail;
         this.phoneNumber = phoneNumber;
         this.major = major;
-        this.interests = interests;
+        this.bio = bio;
         this.friends = friends;
         this.dateOfBirth = dateOfBirth;
         this.id = id;
@@ -73,12 +73,12 @@ public class User implements Comparable<User>{
         this.major = major;
     }
 
-    public String getInterests() {
-        return interests;
+    public String getBio() {
+        return bio;
     }
 
-    public void setInterests(String interests) {
-        this.interests = interests;
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
     public ArrayList<User> getFriends() {
@@ -137,13 +137,13 @@ public class User implements Comparable<User>{
                 Objects.equals(edmail, profile.edmail) &&
                 Objects.equals(phoneNumber, profile.phoneNumber) &&
                 Objects.equals(major, profile.major) &&
-                Objects.equals(interests, profile.interests) &&
+                Objects.equals(bio, profile.bio) &&
                 Objects.equals(friends, profile.friends);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, edmail, phoneNumber, major, interests, friends);
+        return Objects.hash(firstName, lastName, edmail, phoneNumber, major, bio, friends);
     }
 
     @Override
