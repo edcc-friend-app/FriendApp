@@ -59,7 +59,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ibtnUserPhoto" />
 
-        <EditText
+        <TextView
             android:id="@+id/lblFirstName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
             app:layout_constraintStart_toEndOf="@+id/lblFirstNamePrompt"
             app:layout_constraintTop_toTopOf="@+id/lblFirstNamePrompt" />
 
-        <EditText
+        <TextView
             android:id="@+id/lblLastName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
             app:layout_constraintStart_toEndOf="@+id/lblLastNamePrompt"
             app:layout_constraintTop_toTopOf="@+id/lblLastNamePrompt" />
 
-        <EditText
+        <TextView
             android:id="@+id/lblMajor"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -114,7 +114,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblMajorPrompt" />
 
-        <EditText
+        <TextView
             android:id="@+id/lblAge"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -129,7 +129,7 @@
             app:layout_constraintTop_toTopOf="@+id/lblAgePrompt" />
 
         <TextView
-            android:id="@+id/lblClassesPrompt"
+            android:id="@+id/lblClass1Prompt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -139,7 +139,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblAgePrompt" />
 
-        <EditText
+        <TextView
             android:id="@+id/lblClasses"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -147,11 +147,11 @@
             android:layout_marginEnd="8dp"
             android:inputType="number|text"
             android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/lblClassesPrompt"
+            app:layout_constraintBottom_toBottomOf="@+id/lblClass1Prompt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/lblClassesPrompt"
-            app:layout_constraintTop_toTopOf="@+id/lblClassesPrompt" />
+            app:layout_constraintStart_toEndOf="@+id/lblClass1Prompt"
+            app:layout_constraintTop_toTopOf="@+id/lblClass1Prompt" />
 
         <TextView
             android:id="@+id/lblBioPrompt"
@@ -162,21 +162,20 @@
             android:text="@string/bio"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblClassesPrompt" />
+            app:layout_constraintTop_toBottomOf="@+id/lblClass1Prompt" />
 
-        <EditText
+        <TextView
             android:id="@+id/lblBio"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             android:inputType="textMultiLine|textCapWords"
             android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/lblBioPrompt"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/lblBioPrompt"
-            app:layout_constraintTop_toTopOf="@+id/lblBioPrompt" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblBioPrompt" />
     </android.support.constraint.ConstraintLayout>
 
 </ScrollView>

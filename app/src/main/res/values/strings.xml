@@ -30,4 +30,8 @@
     <string name="last_name">Last Name:</string>
     <string name="first_name">First Name:</string>
     <string name="userimage">UserImage</string>
+    <string name="class_1">Class 1:</string>
+    <string name="class_3">Class 3:</string>
+    <string name="class_2">Class 2:</string>
+    <string name="title_activity_potential_friend">Potential Friend</string>
 </resources>
