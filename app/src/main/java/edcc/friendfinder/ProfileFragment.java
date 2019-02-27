@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
@@ -13,6 +14,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -30,6 +32,7 @@ import android.widget.TextView;
 public class ProfileFragment extends Fragment {
 
     private View rootView;
+    private User thisUser;
     private ProfileListener listener;
     private UserManager um;
     private TextView lblName;
@@ -70,7 +73,20 @@ public class ProfileFragment extends Fragment {
         lblMajor = rootView.findViewById(R.id.lblMajor);
         lblClasses = rootView.findViewById(R.id.lblClasses);
         lblBio = rootView.findViewById(R.id.lblBio);
-        //imgUser = rootView.findViewById(R.id.imgUserPhoto);
+        imgUser = rootView.findViewById(R.id.imgUserPhoto);
+        lblName.setText(um.getUsers().get(0).toString());
+        lblMajor.setText(um.getUsers().get(0).getMajor());
+        lblClasses.setText(um.getUsers().get(0).printClasses());
+        lblBio.setText(um.getUsers().get(0).getInterests());
+        imgUser.setImageDrawable(rootView.getResources().getDrawable(R.drawable.edcc_logo));
+        String photoStr = thisUser.getPhoto();
+        if (photoStr != null) {
+            byte[] photo = Base64.decode(photoStr, Base64.DEFAULT);
+            imgUser.setImageBitmap(BitmapFactory.decodeByteArray(photo, 0, photo.length));
+            imgUser.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        } else {
+            imgUser.setImageBitmap(null);
+        }
         return rootView;
     }
 
@@ -132,4 +148,100 @@ public class ProfileFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_edit, menu);
     }
+
+//    /**
+//     * Connects up the data listeners once authentication is completed in the BaseActivity.
+//     * The pet listener is listening for changes in this particular pet entry.
+//     */
+//    @Override
+//    public void setUpDataListeners() {
+//        dm = DataManager.getDataManager(getApplicationContext(), userId);
+//        //pet listener
+//        final DocumentReference petRef = db.collection("users").document(userId).
+//                collection("pets").document(String.valueOf(petId));
+//        petDataListener = new EventListener<DocumentSnapshot>() {
+//            @Override
+//            public void onEvent(DocumentSnapshot snapshot, FirebaseFirestoreException e) {
+//                if (e != null) {
+//                    Log.w("MYLOG", "Pet listener failed.", e);
+//                    return;
+//                }
+//                if (snapshot != null && snapshot.exists()) {
+//                    thisPet = snapshot.toObject(Pet.class);
+//                    dm.setPet(thisPet);
+//                    lblName.setText(thisPet.getName());
+//                    lblBirthYear.setText(String.valueOf(thisPet.getBirthYear()));
+//                    String[] genderArray = getResources().getStringArray(R.array.arrGenders);
+//                    lblGender.setText(genderArray[thisPet.getGender()]);
+//                    lblSpeciesBreed.setText(thisPet.getType());
+//                    lblCare.setText(thisPet.getCare());
+//                    if (thisPet.getClientId() > -1 && dm.getClientList().size() > 0 &&
+//                            dm.getClient(thisPet.getClientId()) != null) {
+//                        lblClient.setText(dm.getClient(thisPet.getClientId()).toString());
+//                    }
+//                    if (thisPet.getVetId() > -1 && dm.getVetList().size() > 0 &&
+//                            dm.getVet(thisPet.getVetId()) != null) {
+//                        lblVet.setText(dm.getVet(thisPet.getVetId()).toString());
+//                    }
+//                    String photoStr = thisPet.getPhoto();
+//                    imgPet = findViewById(R.id.imgPet);
+//                    if (photoStr != null) {
+//                        byte[] photo = Base64.decode(photoStr, Base64.DEFAULT);
+//                        imgPet.setImageBitmap(BitmapFactory.decodeByteArray(photo, 0, photo.length));
+//                        imgPet.setScaleType(ImageView.ScaleType.FIT_CENTER);
+//                    } else {
+//                        imgPet.setImageBitmap(null);
+//                    }
+//                }
+//            }
+//        };
+//        petReg = petRef.addSnapshotListener(petDataListener);
+//        //vet listener
+//        final CollectionReference vetRef = db.collection("users").document(userId)
+//                .collection("vets");
+//        vetDataListener = new EventListener<QuerySnapshot>() {
+//            @Override
+//            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+//                if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
+//                    ArrayList<Vet> list = new ArrayList<>();
+//                    for (int i = 0; i < documentSnapshots.size(); i++) {
+//                        DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
+//                        Vet vet = snapshot.toObject(Vet.class);
+//                        list.add(vet);
+//                    }
+//                    dm.setVetList(list);
+//                    if (thisPet != null && thisPet.getVetId() >= 0) {
+//                        lblVet.setText(dm.getVet(thisPet.getVetId()).toString());
+//                    }
+//                }
+//            }
+//        };
+//        vetReg = vetRef.addSnapshotListener(vetDataListener);
+//        //client listener
+//        final CollectionReference clientRef = db.collection("users").document(userId)
+//                .collection("clients");
+//        clientDataListener = new EventListener<QuerySnapshot>() {
+//            @Override
+//            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+//                if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
+//                    ArrayList<Client> list = new ArrayList<>();
+//                    for (int i = 0; i < documentSnapshots.size(); i++) {
+//                        DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
+//                        Client client = snapshot.toObject(Client.class);
+//                        list.add(client);
+//                    }
+//                    dm.setClientList(list);
+//                    if (thisPet != null && thisPet.getClientId() >= 0) {
+//                        Client client;
+//                        client = dm.getClient(thisPet.getClientId());
+//                        if (client != null) {
+//                            lblClient.setText(client.toString());
+//                        }
+//                    }
+//                }
+//            }
+//        };
+//        clientReg = clientRef.addSnapshotListener(clientDataListener);
+//    }
+
 }

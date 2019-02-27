@@ -1,5 +1,7 @@
 package edcc.friendfinder;
 
+import android.widget.ArrayAdapter;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -7,10 +9,10 @@ public class User implements Comparable<User>{
     private String firstName;
     private String lastName;
     //private String edmail;
-    //private String phoneNumber;
     private String major;
     private String interests;
     private ArrayList<User> friends;
+    private ArrayList<Course> classes;
     private int age;
     private int id;
     //added from Linda's code
@@ -20,15 +22,16 @@ public class User implements Comparable<User>{
     public User() {}
 
     public User(String firstName, String lastName, String major,
-                String interests, ArrayList<User> friends, int id, int age) {
+                String interests, ArrayList<User> friends, ArrayList<Course> classes, int id, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
 //        this.edmail = edmail;
-//        this.phoneNumber = phoneNumber;
         this.major = major;
         this.interests = interests;
         this.friends = friends;
+        this.classes = classes;
         this.id = id;
+        this.age = age;
     }
 
     public String getFirstName() {
@@ -53,14 +56,6 @@ public class User implements Comparable<User>{
 //
 //    public void setEdmail(String edmail) {
 //        this.edmail = edmail;
-//    }
-//
-//    public String getPhoneNumber() {
-//        return phoneNumber;
-//    }
-//
-//    public void setPhoneNumber(String phoneNumber) {
-//        this.phoneNumber = phoneNumber;
 //    }
 
     public String getMajor() {
@@ -111,6 +106,22 @@ public class User implements Comparable<User>{
         this.photo = photo;
     }
 
+    public ArrayList<Course> getClasses() {
+        return classes;
+    }
+
+    public void setClasses(ArrayList<Course> classes) {
+        this.classes = classes;
+    }
+
+    public String printClasses() {
+        String strClasses = "";
+        for (Course cs: classes) {
+            strClasses += cs + "\n";
+        }
+        return strClasses;
+    }
+
     @Override
     public String toString() {
         return firstName + " " + lastName ;
@@ -143,5 +154,4 @@ public class User implements Comparable<User>{
         String anotherName = another.lastName.toLowerCase() + another.firstName.toLowerCase();
         return thisName.compareTo(anotherName);
     }
-
 }
