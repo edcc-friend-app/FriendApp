@@ -24,12 +24,16 @@ import android.widget.TextView;
  */
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, FriendsFragment.FriendListener {
+        implements NavigationView.OnNavigationItemSelectedListener, FriendsFragment.FriendListener,
+        ProfileFragment.ProfileListener {
 
+    private PreferencesManager pm;
+    private String currentFragment;
     private Fragment fragment;
     private UserManager um;
     private int type;
     public static final String ITEM_ID = "itemId";
+    public static final String USER_ID = "userId";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +50,26 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
+        //set up fragment
+        pm = PreferencesManager.getInstance(this);
+        currentFragment = pm.getCurrentFragment();
+        switch (currentFragment) {
+            case "profile":
+                fragment = new ProfileFragment();
+                //actionBar.setTitle(R.string.titlePetList);
+                navigationView.getMenu().getItem(0).setChecked(true);
+                break;
+            case "find":
+                fragment = new FindFriendsFragment();
+                //actionBar.setTitle(R.string.titleClientList);
+                navigationView.getMenu().getItem(1).setChecked(true);
+                break;
+            case "friends":
+                fragment = new FriendsFragment();
+                //actionBar.setTitle(R.string.titleVetList);
+                navigationView.getMenu().getItem(2).setChecked(true);
+                break;
+        }
         fragment = new ProfileFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frmFragment, fragment);
@@ -94,10 +117,13 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_profile) {
             fragment = new ProfileFragment();
+            currentFragment = "profile";
         } else if (id == R.id.nav_find) {
-
+            fragment = new FindFriendsFragment();
+            currentFragment = "find";
         } else if (id == R.id.nav_friends) {
             fragment = new FriendsFragment();
+            currentFragment = "friends";
         }
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -107,6 +133,13 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void editUser(User current) {
+        Intent intent = new Intent(MainActivity.this, EditUserActivity.class);
+        intent.putExtra(USER_ID, current.getId());
+        startActivity(intent);
     }
 
     @Override

@@ -31,6 +31,7 @@ public class FriendsFragment extends Fragment {
 
     interface FriendListener {
         void viewFriendRequested(User friend);
+
     }
 
     @Override

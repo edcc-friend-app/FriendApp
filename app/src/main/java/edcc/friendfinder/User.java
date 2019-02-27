@@ -12,10 +12,16 @@ public class User implements Comparable<User>{
     private String interests;
     private ArrayList<User> friends;
     private String dateOfBirth;
+    private int age;
     private int id;
+    //added from Linda's code
+    static boolean listType;
+    private String photo; //base64 encoded byte array
+
+    public User() {}
 
     public User(String firstName, String lastName, String edmail, String phoneNumber, String major,
-                String interests, ArrayList<User> friends, String dateOfBirth, int id) {
+                String interests, ArrayList<User> friends, String dateOfBirth, int id, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.edmail = edmail;
@@ -97,6 +103,22 @@ public class User implements Comparable<User>{
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     @Override
