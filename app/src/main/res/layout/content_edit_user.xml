@@ -92,10 +92,10 @@
             android:text="@string/last_name"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblFirstNamePrompt" />
+            app:layout_constraintTop_toBottomOf="@+id/lblNamePrompt" />
 
         <TextView
-            android:id="@+id/lblFirstNamePrompt"
+            android:id="@+id/lblNamePrompt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -115,10 +115,10 @@
             android:importantForAutofill="no"
             android:inputType="text|textCapWords"
             android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/lblFirstNamePrompt"
+            app:layout_constraintBottom_toBottomOf="@+id/lblNamePrompt"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/lblFirstNamePrompt"
-            app:layout_constraintTop_toTopOf="@+id/lblFirstNamePrompt" />
+            app:layout_constraintStart_toEndOf="@+id/lblNamePrompt"
+            app:layout_constraintTop_toTopOf="@+id/lblNamePrompt" />
 
         <EditText
             android:id="@+id/lblLastName"
