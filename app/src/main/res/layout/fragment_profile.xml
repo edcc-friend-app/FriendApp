@@ -13,6 +13,20 @@
 
 
         <TextView
+            android:id="@+id/lblAvailable"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:inputType="date|textMultiLine|time"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblAvailablePrompt" />
+
+        <TextView
             android:id="@+id/lblMajorPrompt"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
@@ -89,7 +103,7 @@
             app:layout_constraintTop_toTopOf="@+id/lblAgePrompt" />
 
         <TextView
-            android:id="@+id/lblClass1Prompt"
+            android:id="@+id/lblClassPrompt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -100,18 +114,28 @@
             app:layout_constraintTop_toBottomOf="@+id/lblAgePrompt" />
 
         <TextView
+            android:id="@+id/lblAvailablePrompt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Availability: "
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblClasses" />
+
+        <TextView
             android:id="@+id/lblClasses"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:inputType="number|text"
+            android:inputType="textMultiLine|number|text"
             android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/lblClass1Prompt"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/lblClass1Prompt"
-            app:layout_constraintTop_toTopOf="@+id/lblClass1Prompt" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblClassPrompt" />
 
         <TextView
             android:id="@+id/lblBioPrompt"
@@ -122,7 +146,7 @@
             android:text="@string/bio"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblClass1Prompt" />
+            app:layout_constraintTop_toBottomOf="@+id/lblAvailable" />
 
         <TextView
             android:id="@+id/lblBio"
