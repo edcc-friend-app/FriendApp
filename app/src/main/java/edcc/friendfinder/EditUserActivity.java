@@ -96,7 +96,7 @@ public class EditUserActivity extends AppCompatActivity {
 
 
     /**
-     * Save the current pet.
+     * Save the current user.
      */
     private void saveUser() {
         //make sure important fields are filled
@@ -109,33 +109,25 @@ public class EditUserActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(entryLast)) {
             txtLastName.setError("Last name is required.");
         }
-        String language = spnLanguage.getSelectedItem().toString();
-        if (language == null) {
-            txtAge.setError("");
-            return;
-        }
-        String major = spnMajor.getSelectedItem().toString();
-        if (TextUtils.isEmpty(entry)) {
-            txtMajor.setError("");
-            return;
-        }
+//        String language = spnLanguage.getSelectedItem().toString();
+//        if (spnLanguage != null && spnLanguage.getSelectedItem() !=null) {
+//            spnLanguage.setTooltipText("Please selected a prefered language.");
+//            return;
+//        }
+//        String major = spnMajor.getSelectedItem().toString();
+//        if (spnMajor != null && spnMajor.getSelectedItem() !=null) {
+//            spnMajor.setTooltipText("Please select a desired major.");
+//            return;
+//        }
         //set up user object
         User p = new User();
         //set user fields
         p.setFirstName(txtFirstName.getText().toString());
         p.setLastName(txtLastName.getText().toString());
-        p.setAge(Integer.valueOf(txtAge.getText().toString()));
-        p.setMajor(txtMajor.getText().toString());
+        p.setLanguage(spnLanguage.getSelectedItem().toString());
+        p.setMajor(spnMajor.getSelectedItem().toString());
 
-//        if (rbtnIntactMale.isChecked()) {
-//            p.setGender(Pet.INTACT_MALE);
-//        } else if (rbtnNeuteredMale.isChecked()) {
-//            p.setGender(Pet.NEUTERED_MALE);
-//        } else if (rbtnIntactFemale.isChecked()) {
-//            p.setGender(Pet.INTACT_FEMALE);
-//        } else if (rbtnSpayedFemale.isChecked()) {
-//            p.setGender(Pet.SPAYED_FEMALE);
-//        }
+
         if (photoChanged && newPhoto != null) {
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             newPhoto.compress(Bitmap.CompressFormat.PNG, 100, bos);
@@ -173,19 +165,19 @@ public class EditUserActivity extends AppCompatActivity {
      *
      * @param view the photo button
      */
-//    public void ibtnUserPhotoOnClick(View view) {
-//        dispatchTakePictureIntent();
-//    }
-//
-//    /**
-//     * Sends control to a camera app to get a thumbnail.
-//     */
-//    private void dispatchTakePictureIntent() {
-//        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-//            startActivityForResult(takePictureIntent, Extras.REQUEST_IMAGE_CAPTURE);
-//        }
-//    }
+    public void ibtnUserPhotoOnClick(View view) {
+        dispatchTakePictureIntent();
+    }
+
+    /**
+     * Sends control to a camera app to get a thumbnail.
+     */
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, Extras.REQUEST_IMAGE_CAPTURE);
+        }
+    }
 
 }
 

@@ -99,7 +99,7 @@ public class User implements Comparable<User> {
         return language;
     }
 
-    public void setAge(String age) {
+    public void setLanguage(String language) {
         this.language = language;
     }
 
