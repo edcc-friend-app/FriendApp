@@ -154,11 +154,11 @@ public class User implements Comparable<User> {
                 matchCount += 50;
                 break;
             case "class":
-                matchCount += 10;
+                matchCount += 60;
                 break;
-            case "bio":
-                matchCount += 20;
-                break;
+//            case "bio":
+//                matchCount += 20;
+//                break;
             case "language":
                 matchCount += 30;
                 break;

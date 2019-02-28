@@ -34,9 +34,9 @@
     <string name="class_3">Class 3:</string>
     <string name="class_2">Class 2:</string>
     <string name="title_activity_potential_friend">Potential Friend</string>
-    <string name="major">Major:</string>
-    <string name="classes">Classes:</string>
-    <string name="bio">Bio:</string>
+    <!--<string name="major">Major:</string>-->
+    <!--<string name="classes">Classes:</string>-->
+    <!--<string name="bio">Bio:</string>-->
     <string name="availability">Availability:</string>
     <string name="your_friends_profile_picuture">Your friends Profile Picuture</string>
     <string name="remove_this_friend">Remove This Friend</string>

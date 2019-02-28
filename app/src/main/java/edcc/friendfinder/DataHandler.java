@@ -29,7 +29,7 @@ public class DataHandler {
             "Engineering and Science", "Engineering Technology", "Event Planning", "Family Support Studies",
             "General Studies", "Horticulture", "Hospitality and Tourism", "Music", "Nursing",
             "Occupational Safety and Health", "Paralegal", "Social and Human Services",
-            "Transfer (General)", "Visual Communications"};;
+            "Transfer (General)", "Visual Communications"};
 
     private String[] language = {"Arabic", "Chinese (Cantonese)", "Chinese (Mandarin)", "English",
             "French", "German", "Indonesian (Malay)", "Hindustani", "Japanese", "Korean", "Russian",

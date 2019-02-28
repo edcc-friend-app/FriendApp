@@ -2,18 +2,10 @@ package edcc.friendfinder;
 
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,7 +13,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -49,8 +40,6 @@ public class ProfileFragment extends Fragment {
 //    private ListenerRegistration petReg;
 //    private ListenerRegistration vetReg;
 //    private ListenerRegistration clientReg;
-    private int userId;
-    static final int REQUEST_IMAGE_CAPTURE = 1;
 
 
     public ProfileFragment() {
@@ -72,14 +61,14 @@ public class ProfileFragment extends Fragment {
         lblName = rootView.findViewById(R.id.lblName);
         lblMajor = rootView.findViewById(R.id.lblMajor);
         lblClasses = rootView.findViewById(R.id.lblClasses);
-        lblBio = rootView.findViewById(R.id.lblBio);
+        lblBio = rootView.findViewById(R.id.txtBio);
         imgUser = rootView.findViewById(R.id.imgUserPhoto);
         //set UI components
         thisUser = um.getThisUser();
         lblName.setText(thisUser.toString());
         lblMajor.setText(thisUser.getMajor());
         lblClasses.setText(thisUser.printClasses());
-        lblBio.setText(thisUser.getInterests());
+        lblBio.setText(thisUser.getBio());
         String photoStr = thisUser.getPhoto();
         if (photoStr != null) {
             byte[] photo = Base64.decode(photoStr, Base64.DEFAULT);

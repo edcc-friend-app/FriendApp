@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity
     private ArrayAdapter<User> listUser;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,15 +63,15 @@ public class MainActivity extends AppCompatActivity
         //ListView lstUser = findViewById(R.id.User);
         //listUser = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
 
-db.collection("users").addSnapshotListener(this, new EventListener<QuerySnapshot>() {
-    @Override
-    public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
-    if (!documentSnapshots.isEmpty()) {
-        list.clear();
+        db.collection("users").addSnapshotListener(this, new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+                if (!documentSnapshots.isEmpty()) {
+                    list.clear();
 
-    }
-    }
-})
+                }
+            }
+        });
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
