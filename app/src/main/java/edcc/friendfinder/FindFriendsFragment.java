@@ -21,7 +21,7 @@ public class FindFriendsFragment extends Fragment {
     private ListView lstFriends;
     private View rootView;
     private ArrayAdapter<User> listAdapter;
-    private FriendsFragment.FriendListener listener;
+    private FindFriendsFragment.FriendListener listener;
 
     public FindFriendsFragment() {
         // Required empty public constructor
@@ -29,7 +29,7 @@ public class FindFriendsFragment extends Fragment {
 
 
     interface FriendListener {
-        void viewFriendRequested(User friend);
+        void viewPotFriendRequested(User friend);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class FindFriendsFragment extends Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         User thisFriend = (User) lstFriends.getItemAtPosition(position);
-                        listener.viewFriendRequested(thisFriend);
+                        listener.viewPotFriendRequested(thisFriend);
                         //clearFilter();
                         //isFiltered = false;
                     }
@@ -69,8 +69,8 @@ public class FindFriendsFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof FriendsFragment.FriendListener) {
-            this.listener = (FriendsFragment.FriendListener) context;
+        if (context instanceof FindFriendsFragment.FriendListener) {
+            this.listener = (FindFriendsFragment.FriendListener) context;
         }
     }
 

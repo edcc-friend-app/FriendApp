@@ -18,15 +18,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
+//import com.google.firebase.firestore.EventListener;
+//import com.google.firebase.firestore.FirebaseFirestore;
+//import com.google.firebase.firestore.FirebaseFirestoreException;
+//import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Nullable;
+//import javax.annotation.Nullable;
 
 /**
  * @author Anthony Luong
@@ -37,7 +37,7 @@ import javax.annotation.Nullable;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, FriendsFragment.FriendListener,
-        ProfileFragment.ProfileListener {
+        ProfileFragment.ProfileListener, FindFriendsFragment.FriendListener {
 
     private PreferencesManager pm;
     private String currentFragment;
@@ -48,10 +48,10 @@ public class MainActivity extends AppCompatActivity
     public static final String USER_ID = "userId";
 
     //anthony's attempt
-    private List<User> list;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private final int MAX_USERS = 1000;
-    private ArrayAdapter<User> listUser;
+//    private List<User> list;
+//    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+//    private final int MAX_USERS = 1000;
+//    private ArrayAdapter<User> listUser;
 
 
     @Override
@@ -63,15 +63,15 @@ public class MainActivity extends AppCompatActivity
         //ListView lstUser = findViewById(R.id.User);
         //listUser = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
 
-        db.collection("users").addSnapshotListener(this, new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
-                if (!documentSnapshots.isEmpty()) {
-                    list.clear();
-
-                }
-            }
-        });
+//        db.collection("users").addSnapshotListener(this, new EventListener<QuerySnapshot>() {
+//            @Override
+//            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+//                if (!documentSnapshots.isEmpty()) {
+//                    list.clear();
+//
+//                }
+//            }
+//        });
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -179,6 +179,13 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void viewFriendRequested(User friend) {
         Intent intent = new Intent(MainActivity.this, FriendDetailsActivity.class);
+        intent.putExtra(ITEM_ID, friend.getId());
+        startActivity(intent);
+    }
+
+    @Override
+    public void viewPotFriendRequested(User friend) {
+        Intent intent = new Intent(MainActivity.this, PotentialFriendActivity.class);
         intent.putExtra(ITEM_ID, friend.getId());
         startActivity(intent);
     }

@@ -15,7 +15,7 @@ public class UserManager {
 
     private UserManager() {
         dh = new DataHandler();
-        users = dh.getUsers();
+        users = dh.getFriends();
         classes = new ArrayList<>();
         classes.add(new Course("CS 240", "Linda Zuvich"));
         classes.add(new Course("MATH 272", "Wayne Neidhardt"));
@@ -24,8 +24,9 @@ public class UserManager {
                 users, classes, 958024838, "Spanish");
         currClasses = new int[25];
         currClasses[0] = 1;
-        currClasses[1] = 1;
-        currClasses[2] = 1;
+        currClasses[6] = 1;
+        currClasses[15] = 1;
+        thisUser.setArrMatch(currClasses);
     }
 
 
@@ -56,12 +57,12 @@ public class UserManager {
 
     public void addUser(User user) {
         users.add(user);
-        dh.addUsers(users);
+        dh.addFriends(users);
     }
 
     public void deleteUser(User user) {
         users.remove(user);
-        dh.addUsers(users);
+        dh.addFriends(users);
     }
 
     public void updateUser(User user) {
