@@ -14,7 +14,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Nullable;
 
 /**
  * @author Anthony Luong
@@ -35,10 +47,33 @@ public class MainActivity extends AppCompatActivity
     public static final String ITEM_ID = "itemId";
     public static final String USER_ID = "userId";
 
+    //anthony's attempt
+    private List<User> list;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private final int MAX_USERS = 1000;
+    private ArrayAdapter<User> listUser;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //anthony cont.
+        //list = new ArrayList<>();
+        //ListView lstUser = findViewById(R.id.User);
+        //listUser = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
+
+db.collection("users").addSnapshotListener(this, new EventListener<QuerySnapshot>() {
+    @Override
+    public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+    if (!documentSnapshots.isEmpty()) {
+        list.clear();
+
+    }
+    }
+})
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
