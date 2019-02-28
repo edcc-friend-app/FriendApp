@@ -49,26 +49,26 @@ public class DataHandler {
         friend3 = new User("Jonathan", "Young", "Mathematics", "Football",
                 friends, classes, 955008130, "Chinese");
         list.add(friend3);
-        friend4 = new User("Susy", "Lincoln", "English", "Football",
-                friends, classes, 955008130, "Chinese");
+        friend4 = new User("Susy", "Lincoln", "English", "Dancing",
+                friends, classes, 955062330, "Spanish");
         list.add(friend4);
-        friend5 = new User("Jared", "Kuddes", "English", "Football",
-                friends, classes, 955008130, "Chinese");
+        friend5 = new User("Jared", "Kuddes", "English", "Memes",
+                friends, classes, 955025430, "French");
         list.add(friend5);
-        friend6 = new User("Sora", "Fung", "Biology", "Football",
-                friends, classes, 955008130, "Chinese");
+        friend6 = new User("Sora", "Fung", "Biology", "Dancing",
+                friends, classes, 955073430, "Chinese");
         list.add(friend6);
-        friend7 = new User("Roxas", "Pham", "Mathematics", "Football",
-                friends, classes, 955008130, "Chinese");
+        friend7 = new User("Roxas", "Pham", "Mathematics", "Guitar",
+                friends, classes, 955013230, "Vietnamese");
         list.add(friend7);
-        friend8 = new User("Vivian", "Nguyen", "Biology", "Football",
-                friends, classes, 955008130, "Chinese");
+        friend8 = new User("Vivian", "Nguyen", "Biology", "Swimming",
+                friends, classes, 955008430, "Vietnamese");
         list.add(friend8);
-        friend9 = new User("Henry", "Zokkins", "Art", "Football",
-                friends, classes, 955008130, "Chinese");
+        friend9 = new User("Henry", "Zokkins", "Art", "Tennis",
+                friends, classes, 955073530, "English");
         list.add(friend9);
-        friend10 = new User("Vy", "Bui", "Art", "Football",
-                friends, classes, 955008130, "Chinese");
+        friend10 = new User("Vy", "Bui", "Art", "Swimming",
+                friends, classes, 955029630, "Chinese");
         list.add(friend10);
     }
 
