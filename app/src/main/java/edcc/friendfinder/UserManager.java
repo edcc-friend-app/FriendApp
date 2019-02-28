@@ -58,7 +58,7 @@ public class UserManager {
             }
         }
         users.get(index).setFriends(user.getFriends());
-        users.get(index).setInterests(user.getInterests());
+        users.get(index).setBio(user.getBio());
         users.get(index).setMajor(user.getMajor());
         users.get(index).setFirstName(user.getFirstName());
         users.get(index).setLastName(user.getLastName());

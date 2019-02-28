@@ -22,6 +22,7 @@ public class User implements Comparable<User> {
     //tests for match
     private int matchCount;
 
+
     public User() {}
 
     public User(String firstName, String lastName, String major,

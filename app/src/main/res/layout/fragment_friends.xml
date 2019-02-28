@@ -8,6 +8,39 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".FriendsFragment">
 
+<!--
+    <EditText
+        android:id="@+id/txtFilter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginEnd="@dimen/space_sm"
+        android:layout_marginStart="@dimen/space_sm"
+        android:layout_marginTop="@dimen/space_sm"
+        android:layout_weight="1"
+        android:enabled="true"
+        android:hint="@android:string/search_go"
+        android:inputType="text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        app:layout_constraintEnd_toStartOf="@+id/ibtnFilter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ibtnFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/space_sm"
+        android:layout_marginTop="@dimen/space_sm"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/descFind"
+        android:src="@drawable/find"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+-->
 
         <ListView
             android:id="@+id/lstFriends"
