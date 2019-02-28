@@ -11,7 +11,7 @@ public class DataHandler {
     Course english = new Course("ENG 101", "Kumar P");
 
     //String array of courses
-    private String[] courses;
+
     private String[] major;
     private String[] language;
 
@@ -31,10 +31,6 @@ public class DataHandler {
 
     public ArrayList<User> getUsers() {
         return list;
-    }
-
-    public String[] getCourses(){
-        return courses;
     }
 
     public String[] getMajor(){
