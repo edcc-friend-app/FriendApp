@@ -74,11 +74,12 @@ public class ProfileFragment extends Fragment {
         lblClasses = rootView.findViewById(R.id.lblClasses);
         lblBio = rootView.findViewById(R.id.lblBio);
         imgUser = rootView.findViewById(R.id.imgUserPhoto);
-        lblName.setText(um.getUsers().get(0).toString());
-        lblMajor.setText(um.getUsers().get(0).getMajor());
-        lblClasses.setText(um.getUsers().get(0).printClasses());
-        lblBio.setText(um.getUsers().get(0).getInterests());
-        imgUser.setImageDrawable(rootView.getResources().getDrawable(R.drawable.edcc_logo));
+        //set UI components
+        thisUser = um.getUsers().get(0);
+        lblName.setText(thisUser.toString());
+        lblMajor.setText(thisUser.getMajor());
+        lblClasses.setText(thisUser.printClasses());
+        lblBio.setText(thisUser.getInterests());
         String photoStr = thisUser.getPhoto();
         if (photoStr != null) {
             byte[] photo = Base64.decode(photoStr, Base64.DEFAULT);
@@ -87,6 +88,8 @@ public class ProfileFragment extends Fragment {
         } else {
             imgUser.setImageBitmap(null);
         }
+        //added for mock-up user
+        //imgUser.setImageDrawable(rootView.getResources().getDrawable(R.drawable.user_icon));
         return rootView;
     }
 
@@ -148,6 +151,7 @@ public class ProfileFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_edit, menu);
     }
+
 
 //    /**
 //     * Connects up the data listeners once authentication is completed in the BaseActivity.
