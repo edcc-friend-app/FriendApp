@@ -29,16 +29,19 @@ public class Match {
 
     public void compareClasses() {
         for (User f: friends) {
-            for (Course c: thisUser.getClasses()) {
-
+            if(compareClassesHelper(thisUser.getArrMatch(), f.getArrMatch())) {
+                f.incrementCount("classes");
             }
         }
     }
 
-    public void compareClassesHelper( int[] arr1, int arr2[]) {
+    public boolean compareClassesHelper( int[] arr1, int arr2[]) {
         for (int i = 0; i < arr1.length; i++) {
-            
+            if(arr1[i] == 1 && arr2[i] == 1) {
+                return true;
+            }
         }
+        return false;
     }
 
 
