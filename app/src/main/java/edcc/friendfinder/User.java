@@ -21,8 +21,10 @@ public class User implements Comparable<User> {
     //tests for match
     private int matchCount;
     private int[] arrMatch;
+    private String[] courses;
 
-    public User() {}
+    public User() {
+    }
 
     public User(String firstName, String lastName, String major,
                 String interests, ArrayList<User> friends, ArrayList<Course> classes, int id, String language) {
@@ -36,6 +38,13 @@ public class User implements Comparable<User> {
         this.language = language;
         matchCount = 0;
         arrMatch = new int[25];
+        courses = new String[]{"Accounting", "Allied Health Education", "Biology", "Business",
+                "Business Information Technology", "Business Management", "Business Training Center",
+                "Child, Youth, and Family Studies", "Computer Information Systems", "Computer Science",
+                "Construction Management", "Culinary Arts", "Early Childhood Education", "Emergency Management",
+                "Engineering and Science", "Engineering Technology", "Event Planning", "Family Support Studies",
+                "General Studies", "Horticulture", "Hospitality and Tourism", "Music", "Nursing",
+                "Occupational Safety and Health", "Paralegal", "Social and Human Services", "Transfer (General)", "Visual Communications"};
     }
 
     public String getFirstName() {
@@ -120,7 +129,7 @@ public class User implements Comparable<User> {
 
     public String printClasses() {
         String strClasses = "";
-        for (Course cs: classes) {
+        for (Course cs : classes) {
             strClasses += cs + "\n";
         }
         return strClasses;
@@ -128,7 +137,7 @@ public class User implements Comparable<User> {
 
     @Override
     public String toString() {
-        return firstName + " " + lastName ;
+        return firstName + " " + lastName;
     }
 
     @Override
