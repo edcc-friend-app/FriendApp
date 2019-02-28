@@ -145,4 +145,9 @@ public class DataHandler {
         friends = Users;
         return true;
     }
+
+    public boolean addPotFriends(ArrayList<User> Users) {
+        potFriends = Users;
+        return true;
+    }
 }

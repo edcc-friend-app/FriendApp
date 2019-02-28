@@ -312,7 +312,7 @@ public class EditUserActivity extends AppCompatActivity {
 //        }
         //if new, add to pet list
         if (studentId < 0) {
-            um.addUser(p);
+            um.addFriend(p);
         } else {
             p.setId(studentId);
             //um.replaceUser(p);

@@ -8,14 +8,17 @@ public class UserManager {
 
     private static UserManager um;
     private ArrayList<User> users;
+    private ArrayList<User> potFriends;
     private DataHandler dh;
     private User thisUser;
     private ArrayList<Course> classes;
     private int[] currClasses;
+    private Match match;
 
     private UserManager() {
         dh = new DataHandler();
         users = dh.getFriends();
+        potFriends = dh.getPotFriends();
         classes = new ArrayList<>();
         classes.add(new Course("CS 240", "Linda Zuvich"));
         classes.add(new Course("MATH 272", "Wayne Neidhardt"));
@@ -27,6 +30,7 @@ public class UserManager {
         currClasses[6] = 1;
         currClasses[15] = 1;
         thisUser.setArrMatch(currClasses);
+        match = new Match(thisUser, potFriends);
     }
 
 
@@ -42,6 +46,10 @@ public class UserManager {
         return users;
     }
 
+    public List<User> getPotentialFriends() {
+        return match.getPotFriends();
+    }
+
 //    public String[] getNames() {
 //
 //    }
@@ -55,9 +63,20 @@ public class UserManager {
         return null;
     }
 
-    public void addUser(User user) {
+    public User getPotFriend(int id) {
+        for (int i = 0; i < potFriends.size(); i++) {
+            if (potFriends.get(i).getId() == id) {
+                return potFriends.get(i);
+            }
+        }
+        return null;
+    }
+
+    public void addFriend(User user) {
         users.add(user);
         dh.addFriends(users);
+        potFriends.remove(user);
+        dh.addPotFriends(potFriends);
     }
 
     public void deleteUser(User user) {

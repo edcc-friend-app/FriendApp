@@ -19,6 +19,7 @@ public class PotentialFriendActivity extends AppCompatActivity {
     private User thisUser;
     private TextView lblName;
     private TextView lblMajor;
+    private TextView lblClasses;
     private TextView lblBio;
 
     @Override
@@ -37,16 +38,18 @@ public class PotentialFriendActivity extends AppCompatActivity {
         //get current friend
         Intent intent = getIntent();
         id = intent.getIntExtra("itemId", -1);
-        thisUser = um.getUser(id);
+        thisUser = um.getPotFriend(id);
         if (id < 0) {
             finish();
         }
         //find UI components
         lblName = findViewById(R.id.lblName);
         lblMajor = findViewById(R.id.lblMajor);
+        lblClasses = findViewById(R.id.lblClasses);
         lblBio = findViewById(R.id.lblBio);
         lblName.setText(thisUser.toString());
         lblMajor.setText(thisUser.getMajor());
+        lblClasses.setText(thisUser.printClasses());
         lblBio.setText(thisUser.getBio());
 
     }
@@ -87,12 +90,14 @@ public class PotentialFriendActivity extends AppCompatActivity {
             case R.id.action_add:
                 //Add this friend
                 addFriend();
+                finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void addFriend() {
+        um.addFriend(thisUser);
     }
 
 
