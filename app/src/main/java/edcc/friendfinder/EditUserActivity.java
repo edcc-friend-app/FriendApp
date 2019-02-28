@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.io.ByteArrayOutputStream;
@@ -28,9 +29,9 @@ public class EditUserActivity extends AppCompatActivity {
     private ImageButton ibtnUserPhoto;
     private EditText txtFirstName;
     private EditText txtLastName;
-    private EditText txtMajor;
-    private EditText txtAge;
-    private EditText txtClasses;
+    private Spinner spnMajor;
+    private Spinner spnLanguage;
+    private Spinner spnClasses;
     private EditText txtBio;
     private boolean photoChanged;
     private Bitmap newPhoto;
@@ -104,22 +105,23 @@ public class EditUserActivity extends AppCompatActivity {
             txtFirstName.setError("Name is required.");
             return;
         }
-        entry = txtAge.getText().toString();
-        if (TextUtils.isEmpty(entry)) {
-            txtAge.setError("Birth year is required.");
-            return;
-        } else if (!TextUtils.isDigitsOnly(entry)) {
-            txtAge.setError("Birth year must contain only digits.");
+        String entryLast = txtLastName.getText().toString();
+        if (TextUtils.isEmpty(entryLast)) {
+            txtLastName.setError("Last name is required.");
+        }
+        String language = spnLanguage.getSelectedItem().toString();
+        if (language == null) {
+            txtAge.setError("");
             return;
         }
-        entry = txtMajor.getText().toString();
+        String major = spnMajor.getSelectedItem().toString();
         if (TextUtils.isEmpty(entry)) {
-            txtMajor.setError("Species/breed is required.");
+            txtMajor.setError("");
             return;
         }
-        //set up pet object
+        //set up user object
         User p = new User();
-        //set pet fields
+        //set user fields
         p.setFirstName(txtFirstName.getText().toString());
         p.setLastName(txtLastName.getText().toString());
         p.setAge(Integer.valueOf(txtAge.getText().toString()));
