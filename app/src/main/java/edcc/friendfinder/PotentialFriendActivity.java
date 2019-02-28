@@ -17,7 +17,7 @@ public class PotentialFriendActivity extends AppCompatActivity {
     private User thisUser;
     private TextView lblName;
     private TextView lblMajor;
-    private TextView lblInterests;
+    private TextView lblBio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +42,10 @@ public class PotentialFriendActivity extends AppCompatActivity {
         //find UI components
         lblName = findViewById(R.id.lblName);
         lblMajor = findViewById(R.id.lblMajor);
-        lblInterests = findViewById(R.id.lblInterest);
+        lblBio = findViewById(R.id.lblBio);
         lblName.setText(thisUser.toString());
         lblMajor.setText(thisUser.getMajor());
-        lblInterests.setText(thisUser.getInterests());
+        lblBio.setText(thisUser.getBio());
 
     }
 

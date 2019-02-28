@@ -39,7 +39,7 @@ public class FriendDetailsActivity extends AppCompatActivity {
         //find UI components
         lblName = findViewById(R.id.lblName);
         lblMajor = findViewById(R.id.lblMajor);
-        lblBio = findViewById(R.id.txtBio);
+        lblBio = findViewById(R.id.lblBio);
         lblName.setText(thisUser.toString());
         lblMajor.setText(thisUser.getMajor());
         lblBio.setText(thisUser.getBio());

@@ -178,7 +178,7 @@
             app:layout_constraintTop_toBottomOf="@+id/lblClass3Prompt" />
 
         <EditText
-            android:id="@+id/txtBio"
+            android:id="@+id/lblBio"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -22,11 +20,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 public class EditUserActivity extends AppCompatActivity {
 
@@ -108,7 +103,7 @@ public class EditUserActivity extends AppCompatActivity {
         }
         txtLastName = findViewById(R.id.txtLastName);
         txtFirstName = findViewById(R.id.txtFirstName);
-        txtBio = findViewById(R.id.txtBio);
+        txtBio = findViewById(R.id.lblBio);
         txtAvailability = findViewById(R.id.txtAvailable);
 //        spnLanguage = findViewById(R.id.spnLanguage);
 //        spnMajor = findViewById(R.id.spnMajor);
