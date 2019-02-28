@@ -82,4 +82,31 @@ Pre-College Education
 	Career, College and Life Success
 	Counseling Psychology
 	GED Classes
-	
+Classes
+0   "ACCT& 201"
+1   "ACCT& 202"
+2   "ACCT& 203"
+3   "ASL& 121"
+4   "ASL& 122"
+5   "ASL& 123"
+6   "ANTH 201"
+7   "ANTH 202"
+8   "ANTH 203"
+9   "ARAB 121"
+10  "ARAB 122"
+11  "ARAB 123"
+12  "ART 101"
+13  "ART 102"
+14  "ART 103"
+15  "BIOL& 211"
+16  "BIOL& 212"
+17  "BIOL& 213"
+18  "CHEM& 141"
+19  "CHEM& 142"
+20  "CHEM& 143"
+21  "CHEM& 241"
+22  "CHEM& 242"
+23  "CHEM& 243"
+24  "CHIN& 121"
+25  "CHIN& 122"
+26  "CHIN& 123"

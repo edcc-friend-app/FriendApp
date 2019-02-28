@@ -44,7 +44,7 @@ import java.util.List;
  * @version 1.0
  */
 
-public class MainActivity extends BaseActivity
+public class MainActivity extends AppCompatActivity //needs to be extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, FriendsFragment.FriendListener,
         ProfileFragment.ProfileListener, FindFriendsFragment.FriendListener {
 
@@ -129,7 +129,6 @@ public class MainActivity extends BaseActivity
         navigationView.getMenu().getItem(0).setChecked(true);
     }
 
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -203,34 +202,22 @@ public class MainActivity extends BaseActivity
         startActivity(intent);
     }
 
-    //@Override
+    @Override
     public void viewPotFriendRequested(User friend) {
         Intent intent = new Intent(MainActivity.this, PotentialFriendActivity.class);
         intent.putExtra(ITEM_ID, friend.getId());
         startActivity(intent);
     }
 
-    /**
-     * Stops all data listeners.
-     */
-    private void stopDataListeners() {
-        if (userReg != null && userDataListener != null) {
-            userReg.remove();
-        }
-        if (clientReg != null && clientDataListener != null) {
-            clientReg.remove();
-        }
-        if (vetReg != null && vetDataListener != null) {
-            vetReg.remove();
-        }
-    }
 
-    /**
-     * Connects up the data listener once authentication is completed in the BaseActivity.
-     */
-    @Override
-    protected void setUpDataListeners() {
-        stopDataListeners();
+}
+
+//    /**
+//     * Connects up the data listener once authentication is completed in the BaseActivity.
+//     */
+//    @Override
+//    protected void setUpDataListeners() {
+//        stopDataListeners();
 //        if (fragment instanceof ProfileFragment) {
 //            //set up user
 //            um = UserManager.getUserManager(this, userId);
@@ -254,48 +241,48 @@ public class MainActivity extends BaseActivity
 //            };
 //            petReg = ref.addSnapshotListener(petDataListener);
 //        }
-         if (fragment instanceof ClientListFragment) {
-            //set up client list
-            um = UserManager.getUserManager(this, userId);
-            final CollectionReference ref = db.collection("users").document(userId)
-                    .collection("clients");
-            clientDataListener = new EventListener<QuerySnapshot>() {
-                @Override
-                public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
-                    if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
-                        ArrayList<> potFriList = new ArrayList<>();
-                        for (int i = 0; i < documentSnapshots.size(); i++) {
-                            DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
-                            User user = snapshot.toObject(User.class);
-                            potFriList.add(user);
-                        }
-                        dm.setClientList(potFriList);
-                        ((FindFriendsFragment)fragment).updateData();
-                    }
-                }
-            };
-            clientReg = ref.addSnapshotListener(clientDataListener);
-        } else if (fragment instanceof VetListFragment) {
-            //set up vet list
-            dm = DataManager.getDataManager(this, userId);
-            final CollectionReference ref = db.collection("users").document(userId)
-                    .collection("vets");
-            vetDataListener = new EventListener<QuerySnapshot>() {
-                @Override
-                public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
-                    if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
-                        ArrayList<Vet> vetList = new ArrayList<>();
-                        for (int i = 0; i < documentSnapshots.size(); i++) {
-                            DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
-                            Vet vet = snapshot.toObject(Vet.class);
-                            vetList.add(vet);
-                        }
-                        dm.setVetList(vetList);
-                        ((VetListFragment)fragment).updateData();
-                    }
-                }
-            };
-            vetReg = ref.addSnapshotListener(vetDataListener);
-        }
-    }
-}
+//         if (fragment instanceof ClientListFragment) {
+//            //set up client list
+//            um = UserManager.getUserManager(this, userId);
+//            final CollectionReference ref = db.collection("users").document(userId)
+//                    .collection("clients");
+//            clientDataListener = new EventListener<QuerySnapshot>() {
+//                @Override
+//                public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+//                    if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
+//                        ArrayList<> potFriList = new ArrayList<>();
+//                        for (int i = 0; i < documentSnapshots.size(); i++) {
+//                            DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
+//                            User user = snapshot.toObject(User.class);
+//                            potFriList.add(user);
+//                        }
+//                        dm.setClientList(potFriList);
+//                        ((FindFriendsFragment)fragment).updateData();
+//                    }
+//                }
+//            };
+//            clientReg = ref.addSnapshotListener(clientDataListener);
+//        } else if (fragment instanceof VetListFragment) {
+//            //set up vet list
+//            dm = DataManager.getDataManager(this, userId);
+//            final CollectionReference ref = db.collection("users").document(userId)
+//                    .collection("vets");
+//            vetDataListener = new EventListener<QuerySnapshot>() {
+//                @Override
+//                public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+//                    if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
+//                        ArrayList<Vet> vetList = new ArrayList<>();
+//                        for (int i = 0; i < documentSnapshots.size(); i++) {
+//                            DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
+//                            Vet vet = snapshot.toObject(Vet.class);
+//                            vetList.add(vet);
+//                        }
+//                        dm.setVetList(vetList);
+//                        ((VetListFragment)fragment).updateData();
+//                    }
+//                }
+//            };
+//            vetReg = ref.addSnapshotListener(vetDataListener);
+//        }
+//    }
+//}
