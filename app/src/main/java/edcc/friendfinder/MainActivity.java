@@ -23,6 +23,12 @@ import android.widget.TextView;
 //import com.google.firebase.firestore.FirebaseFirestoreException;
 //import com.google.firebase.firestore.QuerySnapshot;
 
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,6 +103,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = new FindFriendsFragment();
                 //actionBar.setTitle(R.string.titleClientList);
                 navigationView.getMenu().getItem(1).setChecked(true);
+                //((FindFriendsFragment)fragment).updateData();
                 break;
             case "friends":
                 fragment = new FriendsFragment();
@@ -155,6 +162,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_find) {
             fragment = new FindFriendsFragment();
             currentFragment = "find";
+            //((FindFriendsFragment)fragment).updateData();
         } else if (id == R.id.nav_friends) {
             fragment = new FriendsFragment();
             currentFragment = "friends";
@@ -189,4 +197,76 @@ public class MainActivity extends AppCompatActivity
         intent.putExtra(ITEM_ID, friend.getId());
         startActivity(intent);
     }
+
+//    /**
+//     * Connects up the data listener once authentication is completed in the BaseActivity.
+//     */
+//    @Override
+//    protected void setUpDataListeners() {
+//        stopDataListeners();
+//        if (fragment instanceof ProfileFragment) {
+//            //set up pet list
+//            dm = DataManager.getDataManager(this, userId);
+//            final CollectionReference ref = db.collection("users").document(userId)
+//                    .collection("pets");
+//            petDataListener = new EventListener<QuerySnapshot>() {
+//                @Override
+//                public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+//                    if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
+//                        ArrayList<Pet> petList = new ArrayList<>();
+//                        for (int i = 0; i < documentSnapshots.size(); i++) {
+//                            DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
+//                            Pet pet = snapshot.toObject(Pet.class);
+//                            petList.add(pet);
+//                        }
+//                        dm.setPetList(petList);
+//                        ((PetListFragment)fragment).updateData();
+//                    }
+//                }
+//            };
+//            petReg = ref.addSnapshotListener(petDataListener);
+//        } else if (fragment instanceof ClientListFragment) {
+//            //set up client list
+//            dm = DataManager.getDataManager(this, userId);
+//            final CollectionReference ref = db.collection("users").document(userId)
+//                    .collection("clients");
+//            clientDataListener = new EventListener<QuerySnapshot>() {
+//                @Override
+//                public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+//                    if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
+//                        ArrayList<Client> clientList = new ArrayList<>();
+//                        for (int i = 0; i < documentSnapshots.size(); i++) {
+//                            DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
+//                            Client client = snapshot.toObject(Client.class);
+//                            clientList.add(client);
+//                        }
+//                        dm.setClientList(clientList);
+//                        ((ClientListFragment)fragment).updateData();
+//                    }
+//                }
+//            };
+//            clientReg = ref.addSnapshotListener(clientDataListener);
+//        } else if (fragment instanceof VetListFragment) {
+//            //set up vet list
+//            dm = DataManager.getDataManager(this, userId);
+//            final CollectionReference ref = db.collection("users").document(userId)
+//                    .collection("vets");
+//            vetDataListener = new EventListener<QuerySnapshot>() {
+//                @Override
+//                public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+//                    if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
+//                        ArrayList<Vet> vetList = new ArrayList<>();
+//                        for (int i = 0; i < documentSnapshots.size(); i++) {
+//                            DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
+//                            Vet vet = snapshot.toObject(Vet.class);
+//                            vetList.add(vet);
+//                        }
+//                        dm.setVetList(vetList);
+//                        ((VetListFragment)fragment).updateData();
+//                    }
+//                }
+//            };
+//            vetReg = ref.addSnapshotListener(vetDataListener);
+//        }
+//    }
 }

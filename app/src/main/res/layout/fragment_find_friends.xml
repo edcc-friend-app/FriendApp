@@ -30,8 +30,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
+        android:hint="Search"
         android:inputType="textPersonName"
-        android:text="Search"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
         app:layout_constraintEnd_toStartOf="@+id/ibtnFilter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
