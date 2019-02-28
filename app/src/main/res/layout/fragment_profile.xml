@@ -76,29 +76,29 @@
             app:layout_constraintTop_toTopOf="@+id/lblMajorPrompt" />
 
         <TextView
-            android:id="@+id/lblAgePrompt"
+            android:id="@+id/lblLanguagePrompt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="@string/age"
+            android:text="Language: "
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblMajorPrompt" />
 
         <TextView
-            android:id="@+id/lblAge"
+            android:id="@+id/lblLanguage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:inputType="number"
             android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/lblAgePrompt"
+            app:layout_constraintBottom_toBottomOf="@+id/lblLanguagePrompt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/lblAgePrompt"
-            app:layout_constraintTop_toTopOf="@+id/lblAgePrompt" />
+            app:layout_constraintStart_toEndOf="@+id/lblLanguagePrompt"
+            app:layout_constraintTop_toTopOf="@+id/lblLanguagePrompt" />
 
         <TextView
             android:id="@+id/lblClassPrompt"
@@ -109,7 +109,7 @@
             android:text="@string/classes"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblAgePrompt" />
+            app:layout_constraintTop_toBottomOf="@+id/lblLanguagePrompt" />
 
         <TextView
             android:id="@+id/lblAvailablePrompt"
@@ -165,6 +165,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/avatars" />
