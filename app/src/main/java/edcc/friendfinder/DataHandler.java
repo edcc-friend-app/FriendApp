@@ -12,8 +12,18 @@ public class DataHandler {
 
     //String array of courses
 
-    private String[] major;
-    private String[] language;
+    private String[] major = {"Accounting", "Allied Health Education", "Biology", "Business",
+            "Business Information Technology", "Business Management", "Business Training Center",
+            "Child, Youth, and Family Studies", "Computer Information Systems", "Computer Science",
+            "Construction Management", "Culinary Arts", "Early Childhood Education", "Emergency Management",
+            "Engineering and Science", "Engineering Technology", "Event Planning", "Family Support Studies",
+            "General Studies", "Horticulture", "Hospitality and Tourism", "Music", "Nursing",
+            "Occupational Safety and Health", "Paralegal", "Social and Human Services",
+            "Transfer (General)", "Visual Communications"};;
+
+    private String[] language = {"Arabic", "Chinese (Cantonese)", "Chinese (Mandarin)", "English",
+            "French", "German", "Indonesian (Malay)", "Hindustani", "Japanese", "Korean", "Russian",
+            "Spanish", "Vietnamese"};
 
     public DataHandler() {
         ArrayList<User> friends = new ArrayList<>();
