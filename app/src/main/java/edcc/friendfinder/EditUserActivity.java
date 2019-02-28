@@ -144,7 +144,7 @@ public class EditUserActivity extends AppCompatActivity {
         } else {
             p.setPhoto(null);
         }
-        p.setInterests(txtBio.getText().toString());
+        p.setBio(txtBio.getText().toString());
 //        if (spnClient.getAdapter().getCount() > 0) {
 //            p.setClientId(((Client) spnClient.getSelectedItem()).getClientId());
 //        } else {

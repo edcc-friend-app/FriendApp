@@ -11,33 +11,31 @@ public class User implements Comparable<User> {
     private String lastName;
     //private String edmail;
     private String major;
-    private String bio;
+    private String interests;
     private ArrayList<User> friends;
     private ArrayList<Course> classes;
-    private String language;
+    private int age;
     private int id;
     //added from Linda's code
     static boolean listType;
     private String photo; //base64 encoded byte array
     //tests for match
     private int matchCount;
-    private int[] arrMatch;
 
     public User() {}
 
     public User(String firstName, String lastName, String major,
-                String bio, ArrayList<User> friends, ArrayList<Course> classes, int id, String language) {
+                String interests, ArrayList<User> friends, ArrayList<Course> classes, int id, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
 //        this.edmail = edmail;
         this.major = major;
-        this.bio = bio;
+        this.interests = interests;
         this.friends = friends;
         this.classes = classes;
         this.id = id;
-        this.language = language;
+        this.age = age;
         matchCount = 0;
-        arrMatch = new int[25];
     }
 
     public String getFirstName() {
@@ -72,12 +70,12 @@ public class User implements Comparable<User> {
         this.major = major;
     }
 
-    public String getBio() {
-        return bio;
+    public String getInterests() {
+        return interests;
     }
 
-    public void setBio(String bio) {
-        this.bio = bio;
+    public void setInterests(String interests) {
+        this.interests = interests;
     }
 
     public ArrayList<User> getFriends() {
@@ -96,15 +94,13 @@ public class User implements Comparable<User> {
         this.id = id;
     }
 
-    public String getLanguage() {
-        return language;
+    public int getAge() {
+        return age;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
+    public void setAge(int age) {
+        this.age = age;
     }
-
-
 
     public String getPhoto() {
         return photo;
@@ -136,6 +132,27 @@ public class User implements Comparable<User> {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return age == user.age &&
+                id == user.id &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(major, user.major) &&
+                Objects.equals(interests, user.interests) &&
+                Objects.equals(friends, user.friends) &&
+                Objects.equals(photo, user.photo);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(firstName, lastName, major, interests, friends, age, id, photo);
+    }
+
+    @Override
     public int compareTo(User another) {
         String thisName = lastName.toLowerCase() + firstName.toLowerCase();
         String anotherName = another.lastName.toLowerCase() + another.firstName.toLowerCase();
@@ -149,16 +166,21 @@ public class User implements Comparable<User> {
     public void incrementCount(String type) {
         switch (type) {
             case "major":
-                matchCount += 60;
-                break;
-            case "class":
                 matchCount += 50;
                 break;
-            case "language":
-                matchCount += 30;
+            case "class":
+                matchCount += 10;
+                break;
+            case "interest":
+                matchCount += 20;
+                break;
+            case "age":
+                matchCount += 5;
                 break;
 
         }
 
     }
+
+
 }

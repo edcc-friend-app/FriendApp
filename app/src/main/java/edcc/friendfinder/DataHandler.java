@@ -8,7 +8,12 @@ public class DataHandler {
     private ArrayList<Course> classes = new ArrayList<>();
     Course math = new Course("MATH 151", "Richard D");
     Course cs = new Course("CS 141", "Linda Z");
-    Course english = new Course("ENG 101", "Pornhub");
+    Course english = new Course("ENG 101", "Kumar P");
+
+    //String array of courses
+    private String[] courses;
+    private String[] major;
+    private String[] language;
 
     public DataHandler() {
         ArrayList<User> friends = new ArrayList<>();
@@ -26,6 +31,18 @@ public class DataHandler {
 
     public ArrayList<User> getUsers() {
         return list;
+    }
+
+    public String[] getCourses(){
+        return courses;
+    }
+
+    public String[] getMajor(){
+        return major;
+    }
+
+    public String[] getLanguage(){
+        return language;
     }
 
     public boolean addUsers(ArrayList<User> Users) {
