@@ -44,7 +44,8 @@ public class User implements Comparable<User> {
                 "Construction Management", "Culinary Arts", "Early Childhood Education", "Emergency Management",
                 "Engineering and Science", "Engineering Technology", "Event Planning", "Family Support Studies",
                 "General Studies", "Horticulture", "Hospitality and Tourism", "Music", "Nursing",
-                "Occupational Safety and Health", "Paralegal", "Social and Human Services", "Transfer (General)", "Visual Communications"};
+                "Occupational Safety and Health", "Paralegal", "Social and Human Services", "Transfer (General)",
+                "Visual Communications"};
     }
 
     public String getFirstName() {
