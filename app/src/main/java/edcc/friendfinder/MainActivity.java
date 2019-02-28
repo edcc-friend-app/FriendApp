@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,15 +19,23 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+//import com.google.firebase.firestore.EventListener;
+//import com.google.firebase.firestore.FirebaseFirestore;
+//import com.google.firebase.firestore.FirebaseFirestoreException;
+//import com.google.firebase.firestore.QuerySnapshot;
+
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Nullable;
+//import javax.annotation.Nullable;
 
 /**
  * @author Anthony Luong
@@ -35,9 +44,9 @@ import javax.annotation.Nullable;
  * @version 1.0
  */
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, FriendsFragment.FriendListener,
-        ProfileFragment.ProfileListener {
+        ProfileFragment.ProfileListener, FindFriendsFragment.FriendListener {
 
     private PreferencesManager pm;
     private String currentFragment;
@@ -46,12 +55,20 @@ public class MainActivity extends AppCompatActivity
     private int type;
     public static final String ITEM_ID = "itemId";
     public static final String USER_ID = "userId";
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private EventListener<QuerySnapshot> userDataListener;
+    private ListenerRegistration userReg;
+    private EventListener<QuerySnapshot> clientDataListener;
+    private ListenerRegistration clientReg;
+    private EventListener<QuerySnapshot> vetDataListener;
+    private ListenerRegistration vetReg;
+    private ActionBar actionBar;
 
     //anthony's attempt
-    private List<User> list;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private final int MAX_USERS = 1000;
-    private ArrayAdapter<User> listUser;
+//    private List<User> list;
+//    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+//    private final int MAX_USERS = 1000;
+//    private ArrayAdapter<User> listUser;
 
 
     @Override
@@ -63,15 +80,15 @@ public class MainActivity extends AppCompatActivity
         //ListView lstUser = findViewById(R.id.User);
         //listUser = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
 
-        db.collection("users").addSnapshotListener(this, new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
-                if (!documentSnapshots.isEmpty()) {
-                    list.clear();
-
-                }
-            }
-        });
+//        db.collection("users").addSnapshotListener(this, new EventListener<QuerySnapshot>() {
+//            @Override
+//            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+//                if (!documentSnapshots.isEmpty()) {
+//                    list.clear();
+//
+//                }
+//            }
+//        });
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -97,6 +114,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = new FindFriendsFragment();
                 //actionBar.setTitle(R.string.titleClientList);
                 navigationView.getMenu().getItem(1).setChecked(true);
+                //((FindFriendsFragment)fragment).updateData();
                 break;
             case "friends":
                 fragment = new FriendsFragment();
@@ -110,6 +128,7 @@ public class MainActivity extends AppCompatActivity
         ft.commit();
         navigationView.getMenu().getItem(0).setChecked(true);
     }
+
 
     @Override
     public void onBackPressed() {
@@ -155,6 +174,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_find) {
             fragment = new FindFriendsFragment();
             currentFragment = "find";
+            //((FindFriendsFragment)fragment).updateData();
         } else if (id == R.id.nav_friends) {
             fragment = new FriendsFragment();
             currentFragment = "friends";
@@ -181,5 +201,101 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(MainActivity.this, FriendDetailsActivity.class);
         intent.putExtra(ITEM_ID, friend.getId());
         startActivity(intent);
+    }
+
+    //@Override
+    public void viewPotFriendRequested(User friend) {
+        Intent intent = new Intent(MainActivity.this, PotentialFriendActivity.class);
+        intent.putExtra(ITEM_ID, friend.getId());
+        startActivity(intent);
+    }
+
+    /**
+     * Stops all data listeners.
+     */
+    private void stopDataListeners() {
+        if (userReg != null && userDataListener != null) {
+            userReg.remove();
+        }
+        if (clientReg != null && clientDataListener != null) {
+            clientReg.remove();
+        }
+        if (vetReg != null && vetDataListener != null) {
+            vetReg.remove();
+        }
+    }
+
+    /**
+     * Connects up the data listener once authentication is completed in the BaseActivity.
+     */
+    @Override
+    protected void setUpDataListeners() {
+        stopDataListeners();
+//        if (fragment instanceof ProfileFragment) {
+//            //set up user
+//            um = UserManager.getUserManager(this, userId);
+//            final CollectionReference ref = db.collection("users").document(userId)
+//                    .collection("user");
+//            userDataListener = new EventListener<QuerySnapshot>() {
+//                @Override
+//                public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+//                    if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
+//                        ArrayList<User> userList = new ArrayList<>();
+//                        for (int i = 0; i < documentSnapshots.size(); i++) {
+//                            DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
+//                            User user = snapshot.toObject(User.class);
+//                            userList.add(user);
+//                        }
+//
+//                        um.setThisUser();
+//                        ((ProfileFragment)fragment).updateData();
+//                    }
+//                }
+//            };
+//            petReg = ref.addSnapshotListener(petDataListener);
+//        }
+         if (fragment instanceof ClientListFragment) {
+            //set up client list
+            um = UserManager.getUserManager(this, userId);
+            final CollectionReference ref = db.collection("users").document(userId)
+                    .collection("clients");
+            clientDataListener = new EventListener<QuerySnapshot>() {
+                @Override
+                public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+                    if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
+                        ArrayList<> potFriList = new ArrayList<>();
+                        for (int i = 0; i < documentSnapshots.size(); i++) {
+                            DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
+                            User user = snapshot.toObject(User.class);
+                            potFriList.add(user);
+                        }
+                        dm.setClientList(potFriList);
+                        ((FindFriendsFragment)fragment).updateData();
+                    }
+                }
+            };
+            clientReg = ref.addSnapshotListener(clientDataListener);
+        } else if (fragment instanceof VetListFragment) {
+            //set up vet list
+            dm = DataManager.getDataManager(this, userId);
+            final CollectionReference ref = db.collection("users").document(userId)
+                    .collection("vets");
+            vetDataListener = new EventListener<QuerySnapshot>() {
+                @Override
+                public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+                    if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
+                        ArrayList<Vet> vetList = new ArrayList<>();
+                        for (int i = 0; i < documentSnapshots.size(); i++) {
+                            DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
+                            Vet vet = snapshot.toObject(Vet.class);
+                            vetList.add(vet);
+                        }
+                        dm.setVetList(vetList);
+                        ((VetListFragment)fragment).updateData();
+                    }
+                }
+            };
+            vetReg = ref.addSnapshotListener(vetDataListener);
+        }
     }
 }

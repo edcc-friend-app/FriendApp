@@ -3,6 +3,7 @@ package edcc.friendfinder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import android.content.Context;
 
 public class UserManager {
 
@@ -11,8 +12,9 @@ public class UserManager {
     private DataHandler dh;
     private User thisUser;
     private ArrayList<Course> classes;
+    private static String userId;
 
-    private UserManager() {
+    private UserManager(Context contxt) {
         dh = new DataHandler();
         users = dh.getUsers();
         classes = new ArrayList<>();
@@ -23,9 +25,10 @@ public class UserManager {
                 users, classes, 958024838, "Spanish" );
     }
 
-    public static UserManager getUserManager() {
+    public static UserManager getUserManager(Context contxt, String userId) {
+        UserManager.userId = userId;
         if (um == null) {
-            um = new UserManager();
+            um = new UserManager(contxt);
         }
         return um;
     }
