@@ -1,6 +1,6 @@
 package edcc.friendfinder;
 
-public class Course {
+public class Course implements Comparable<Course>{
     private String name;
     private String instructor;
 
@@ -29,5 +29,10 @@ public class Course {
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public int compareTo(Course other) {
+        return this.name.compareTo(other.name);
     }
 }

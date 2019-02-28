@@ -75,7 +75,7 @@ public class ProfileFragment extends Fragment {
         lblBio = rootView.findViewById(R.id.lblBio);
         imgUser = rootView.findViewById(R.id.imgUserPhoto);
         //set UI components
-        thisUser = um.getUsers().get(0);
+        thisUser = um.getThisUser();
         lblName.setText(thisUser.toString());
         lblMajor.setText(thisUser.getMajor());
         lblClasses.setText(thisUser.printClasses());

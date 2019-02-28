@@ -9,10 +9,18 @@ public class UserManager {
     private static UserManager um;
     private ArrayList<User> users;
     private DataHandler dh;
+    private User thisUser;
+    private ArrayList<Course> classes;
 
     private UserManager() {
         dh = new DataHandler();
         users = dh.getUsers();
+        classes = new ArrayList<>();
+        classes.add(new Course("CS 240", "Linda Zuvich"));
+        classes.add(new Course("MATH 272", "Wayne Neidhardt"));
+        classes.add(new Course("PHYS 222", "Tom Flemming"));
+        thisUser = new User("Estefano", "Felipa", "CS", "Soccer",
+                users, classes, 958024838, "Spanish" );
     }
 
     public static UserManager getUserManager() {
@@ -58,7 +66,7 @@ public class UserManager {
             }
         }
         users.get(index).setFriends(user.getFriends());
-        users.get(index).setInterests(user.getInterests());
+        users.get(index).setBio(user.getBio());
         users.get(index).setMajor(user.getMajor());
         users.get(index).setFirstName(user.getFirstName());
         users.get(index).setLastName(user.getLastName());
@@ -77,6 +85,14 @@ public class UserManager {
 //        FirebaseFirestore db = FirebaseFirestore.getInstance();
 //        db.collection("users").document(userId).collection("pets")
 //                .document(String.valueOf(pet.getPetId())).set(pet);
+    }
+
+    public User getThisUser() {
+        return thisUser;
+    }
+
+    public void setThisUser(User thisUser) {
+        this.thisUser = thisUser;
     }
 }
 ///**

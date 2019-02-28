@@ -28,24 +28,31 @@ public class Match {
     }
 
     public void compareClasses() {
-//        for (User f: friends) {
-//            if(thisUser.getMajor().equalsIgnoreCase(f.getMajor())) {
-//                f.incrementCount("major");
-//            }
-//        }
+        for (User f: friends) {
+            for (Course c: thisUser.getClasses()) {
+
+            }
+        }
     }
 
-    public void compareBio() {
-//        for (User f: friends) {
-//            if(thisUser.getMajor().equalsIgnoreCase(f.getMajor())) {
-//                f.incrementCount("major");
-//            }
-//        }
+    public void compareClassesHelper( int[] arr1, int arr2[]) {
+        for (int i = 0; i < arr1.length; i++) {
+            
+        }
     }
-    public void compareAge() {
+
+
+    public void compareBio() {
         for (User f: friends) {
-            if(thisUser.getAge() == f.getAge()) {
-                f.incrementCount("age");
+            if(thisUser.getBio().equalsIgnoreCase(f.getBio())) {
+                f.incrementCount("major");
+            }
+        }
+    }
+    public void compareLanguage() {
+        for (User f: friends) {
+            if(thisUser.getLanguage().equalsIgnoreCase(f.getLanguage())) {
+                f.incrementCount("language");
             }
         }
     }

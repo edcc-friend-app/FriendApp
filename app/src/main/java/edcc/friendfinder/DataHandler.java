@@ -16,9 +16,12 @@ public class DataHandler {
         classes.add(cs);
         classes.add(english);
 
-        list.add(new User("Estefano", "Felipa","CS", "Soccer", friends, classes, 955123123, 18));
-        list.add(new User("Anthony", "Luong", "CS", "Memes", friends, classes, 955111321, 21));
-        list.add(new User("Jonathan", "Young", "CS", "Football", friends, classes, 955008130, 37));
+        list.add(new User("Franshesco", "Coello","CS", "Soccer",
+                friends, classes, 955123123, "English"));
+        list.add(new User("Anthony", "Luong", "CS", "Memes",
+                friends, classes, 955111321, "Vietnamese"));
+        list.add(new User("Jonathan", "Young", "CS", "Football",
+                friends, classes, 955008130, "Chinese"));
     }
 
     public ArrayList<User> getUsers() {
