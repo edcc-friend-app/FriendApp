@@ -1,17 +1,18 @@
 package edcc.friendfinder;
 
+import android.widget.ArrayAdapter;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class User implements Comparable<User>{
     private String firstName;
     private String lastName;
-    private String edmail;
-    private String phoneNumber;
+    //private String edmail;
     private String major;
     private String bio;
     private ArrayList<User> friends;
-    private String dateOfBirth;
+    private ArrayList<Course> classes;
     private int age;
     private int id;
     //added from Linda's code
@@ -20,17 +21,17 @@ public class User implements Comparable<User>{
 
     public User() {}
 
-    public User(String firstName, String lastName, String edmail, String phoneNumber, String major,
-                String bio, ArrayList<User> friends, String dateOfBirth, int id, int age) {
+    public User(String firstName, String lastName, String major,
+                String bio, ArrayList<User> friends, ArrayList<Course> classes, int id, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.edmail = edmail;
-        this.phoneNumber = phoneNumber;
+//        this.edmail = edmail;
         this.major = major;
         this.bio = bio;
         this.friends = friends;
-        this.dateOfBirth = dateOfBirth;
+        this.classes = classes;
         this.id = id;
+        this.age = age;
     }
 
     public String getFirstName() {
@@ -49,21 +50,13 @@ public class User implements Comparable<User>{
         this.lastName = lastName;
     }
 
-    public String getEdmail() {
-        return edmail;
-    }
-
-    public void setEdmail(String edmail) {
-        this.edmail = edmail;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+//    public String getEdmail() {
+//        return edmail;
+//    }
+//
+//    public void setEdmail(String edmail) {
+//        this.edmail = edmail;
+//    }
 
     public String getMajor() {
         return major;
@@ -87,14 +80,6 @@ public class User implements Comparable<User>{
 
     public void setFriends(ArrayList<User> friends) {
         this.friends = friends;
-    }
-
-    public String getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
     }
 
     public int getId() {
@@ -121,6 +106,22 @@ public class User implements Comparable<User>{
         this.photo = photo;
     }
 
+    public ArrayList<Course> getClasses() {
+        return classes;
+    }
+
+    public void setClasses(ArrayList<Course> classes) {
+        this.classes = classes;
+    }
+
+    public String printClasses() {
+        String strClasses = "";
+        for (Course cs: classes) {
+            strClasses += cs + "\n";
+        }
+        return strClasses;
+    }
+
     @Override
     public String toString() {
         return firstName + " " + lastName ;
@@ -130,20 +131,21 @@ public class User implements Comparable<User>{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User profile = (User) o;
-        return dateOfBirth == profile.dateOfBirth &&
-                Objects.equals(firstName, profile.firstName) &&
-                Objects.equals(lastName, profile.lastName) &&
-                Objects.equals(edmail, profile.edmail) &&
-                Objects.equals(phoneNumber, profile.phoneNumber) &&
-                Objects.equals(major, profile.major) &&
-                Objects.equals(bio, profile.bio) &&
-                Objects.equals(friends, profile.friends);
+        User user = (User) o;
+        return age == user.age &&
+                id == user.id &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(major, user.major) &&
+                Objects.equals(bio, user.bio) &&
+                Objects.equals(friends, user.friends) &&
+                Objects.equals(photo, user.photo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, edmail, phoneNumber, major, bio, friends);
+
+        return Objects.hash(firstName, lastName, major, bio, friends, age, id, photo);
     }
 
     @Override
@@ -152,5 +154,4 @@ public class User implements Comparable<User>{
         String anotherName = another.lastName.toLowerCase() + another.firstName.toLowerCase();
         return thisName.compareTo(anotherName);
     }
-
 }

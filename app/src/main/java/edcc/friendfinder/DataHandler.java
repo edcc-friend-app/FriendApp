@@ -5,15 +5,20 @@ import java.util.ArrayList;
 public class DataHandler {
 
     private ArrayList<User> list = new ArrayList<>();
+    private ArrayList<Course> classes = new ArrayList<>();
+    Course math = new Course("MATH 151", "Richard D");
+    Course cs = new Course("CS 141", "Linda Z");
+    Course english = new Course("ENG 101", "Pornhub");
 
     public DataHandler() {
         ArrayList<User> friends = new ArrayList<>();
-        list.add(new User("Estefano", "Felipa", "e.felipa8865@edmail.edcc.edu",
-                "2065551234", "CS", "Soccer", friends, "07/08/2000", 955123123, 18));
-        list.add(new User("Anthony", "Luong", "a.luong1997@edmail.edcc.edu",
-                "4259995512", "CS", "Memes", friends, "08/22/1999", 955111321, 21));
-        list.add(new User("Jonathan", "Young", "j.young0214@edmail.edcc.edu",
-                "4257771234", "CS", "Football", friends, "02/14/1982", 955008130, 37));
+        classes.add(math);
+        classes.add(cs);
+        classes.add(english);
+
+        list.add(new User("Estefano", "Felipa","CS", "Soccer", friends, classes, 955123123, 18));
+        list.add(new User("Anthony", "Luong", "CS", "Memes", friends, classes, 955111321, 21));
+        list.add(new User("Jonathan", "Young", "CS", "Football", friends, classes, 955008130, 37));
     }
 
     public ArrayList<User> getUsers() {
