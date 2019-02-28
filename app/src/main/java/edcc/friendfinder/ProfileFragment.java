@@ -79,7 +79,7 @@ public class ProfileFragment extends Fragment {
         lblName.setText(thisUser.toString());
         lblMajor.setText(thisUser.getMajor());
         lblClasses.setText(thisUser.printClasses());
-        lblBio.setText(thisUser.getInterests());
+        lblBio.setText(thisUser.getBio());
         String photoStr = thisUser.getPhoto();
         if (photoStr != null) {
             byte[] photo = Base64.decode(photoStr, Base64.DEFAULT);

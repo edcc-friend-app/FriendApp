@@ -11,6 +11,7 @@ public class UserManager {
     private DataHandler dh;
     private User thisUser;
     private ArrayList<Course> classes;
+    private int[] currClasses;
 
     private UserManager() {
         dh = new DataHandler();
@@ -20,8 +21,13 @@ public class UserManager {
         classes.add(new Course("MATH 272", "Wayne Neidhardt"));
         classes.add(new Course("PHYS 222", "Tom Flemming"));
         thisUser = new User("Estefano", "Felipa", "CS", "Soccer",
-                users, classes, 958024838, "Spanish" );
+                users, classes, 958024838, "Spanish");
+        currClasses = new int[25];
+        currClasses[0] = 1;
+        currClasses[1] = 1;
+        currClasses[2] = 1;
     }
+
 
     public static UserManager getUserManager() {
         if (um == null) {

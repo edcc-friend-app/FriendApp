@@ -15,6 +15,9 @@ public class Match {
 
     public ArrayList<User> getPotFriends() {
         //friends;
+        compareMajor();
+        compareClasses();
+        compareLanguage();
         sort();
         return friends;
     }
