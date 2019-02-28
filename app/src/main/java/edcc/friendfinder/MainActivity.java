@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -26,7 +27,9 @@ import android.widget.TextView;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -41,7 +44,7 @@ import java.util.List;
  * @version 1.0
  */
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity //needs to be extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, FriendsFragment.FriendListener,
         ProfileFragment.ProfileListener, FindFriendsFragment.FriendListener {
 
@@ -52,6 +55,14 @@ public class MainActivity extends AppCompatActivity
     private int type;
     public static final String ITEM_ID = "itemId";
     public static final String USER_ID = "userId";
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private EventListener<QuerySnapshot> userDataListener;
+    private ListenerRegistration userReg;
+    private EventListener<QuerySnapshot> clientDataListener;
+    private ListenerRegistration clientReg;
+    private EventListener<QuerySnapshot> vetDataListener;
+    private ListenerRegistration vetReg;
+    private ActionBar actionBar;
 
     //anthony's attempt
 //    private List<User> list;
@@ -198,6 +209,9 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+
+}
+
 //    /**
 //     * Connects up the data listener once authentication is completed in the BaseActivity.
 //     */
@@ -205,43 +219,45 @@ public class MainActivity extends AppCompatActivity
 //    protected void setUpDataListeners() {
 //        stopDataListeners();
 //        if (fragment instanceof ProfileFragment) {
-//            //set up pet list
-//            dm = DataManager.getDataManager(this, userId);
+//            //set up user
+//            um = UserManager.getUserManager(this, userId);
 //            final CollectionReference ref = db.collection("users").document(userId)
-//                    .collection("pets");
-//            petDataListener = new EventListener<QuerySnapshot>() {
+//                    .collection("user");
+//            userDataListener = new EventListener<QuerySnapshot>() {
 //                @Override
 //                public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
 //                    if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
-//                        ArrayList<Pet> petList = new ArrayList<>();
+//                        ArrayList<User> userList = new ArrayList<>();
 //                        for (int i = 0; i < documentSnapshots.size(); i++) {
 //                            DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
-//                            Pet pet = snapshot.toObject(Pet.class);
-//                            petList.add(pet);
+//                            User user = snapshot.toObject(User.class);
+//                            userList.add(user);
 //                        }
-//                        dm.setPetList(petList);
-//                        ((PetListFragment)fragment).updateData();
+//
+//                        um.setThisUser();
+//                        ((ProfileFragment)fragment).updateData();
 //                    }
 //                }
 //            };
 //            petReg = ref.addSnapshotListener(petDataListener);
-//        } else if (fragment instanceof ClientListFragment) {
+//        }
+//         if (fragment instanceof ClientListFragment) {
 //            //set up client list
-//            dm = DataManager.getDataManager(this, userId);
+//            um = UserManager.getUserManager(this, userId);
 //            final CollectionReference ref = db.collection("users").document(userId)
 //                    .collection("clients");
 //            clientDataListener = new EventListener<QuerySnapshot>() {
 //                @Override
 //                public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
 //                    if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
-//                        ArrayList<Client> clientList = new ArrayList<>();
+//                        ArrayList<> potFriList = new ArrayList<>();
 //                        for (int i = 0; i < documentSnapshots.size(); i++) {
 //                            DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
-//                            Client client = snapshot.toObject(Client.class);
-//                            clientList.add(client);
+//                            User user = snapshot.toObject(User.class);
+//                            potFriList.add(user);
 //                        }
-//                        dm.setClientList(clientList);
-//                        ((ClientListFragment)fragment).updateData();
+//                        dm.setClientList(potFriList);
+//                        ((FindFriendsFragment)fragment).updateData();
 //                    }
 //                }
 //            };
@@ -269,4 +285,4 @@ public class MainActivity extends AppCompatActivity
 //            vetReg = ref.addSnapshotListener(vetDataListener);
 //        }
 //    }
-}
+//}
