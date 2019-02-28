@@ -3,9 +3,10 @@ package edcc.friendfinder;
 import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Objects;
 
-public class User implements Comparable<User>{
+public class User implements Comparable<User> {
     private String firstName;
     private String lastName;
     //private String edmail;
@@ -18,6 +19,8 @@ public class User implements Comparable<User>{
     //added from Linda's code
     static boolean listType;
     private String photo; //base64 encoded byte array
+    //tests for match
+    private int matchCount;
 
     public User() {}
 
@@ -32,6 +35,7 @@ public class User implements Comparable<User>{
         this.classes = classes;
         this.id = id;
         this.age = age;
+        matchCount = 0;
     }
 
     public String getFirstName() {
@@ -154,4 +158,29 @@ public class User implements Comparable<User>{
         String anotherName = another.lastName.toLowerCase() + another.firstName.toLowerCase();
         return thisName.compareTo(anotherName);
     }
+
+    public int matchCompare(User other) {
+        return this.matchCount - other.matchCount;
+    }
+
+    public void incrementCount(String type) {
+        switch (type) {
+            case "major":
+                matchCount += 50;
+                break;
+            case "class":
+                matchCount += 10;
+                break;
+            case "interest":
+                matchCount += 20;
+                break;
+            case "age":
+                matchCount += 5;
+                break;
+
+        }
+
+    }
+
+
 }
