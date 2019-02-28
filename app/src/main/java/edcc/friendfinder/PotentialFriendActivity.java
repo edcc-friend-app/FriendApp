@@ -45,7 +45,7 @@ public class PotentialFriendActivity extends AppCompatActivity {
         lblInterests = findViewById(R.id.lblInterest);
         lblName.setText(thisUser.toString());
         lblMajor.setText(thisUser.getMajor());
-        lblInterests.setText(thisUser.getInterests());
+        lblInterests.setText(thisUser.getBio());
 
     }
 

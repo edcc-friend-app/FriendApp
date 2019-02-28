@@ -129,8 +129,10 @@ public class User implements Comparable<User> {
 
     public String printClasses() {
         String strClasses = "";
-        for (Course cs : classes) {
-            strClasses += cs + "\n";
+        for (int i = 0; i < courses.length; i++) {
+            if (arrMatch[i] == 1) {
+                strClasses += courses[i] + '\n';
+            }
         }
         return strClasses;
     }
