@@ -6,6 +6,7 @@ public class DataHandler {
 
     private ArrayList<User> list = new ArrayList<>();
     private ArrayList<Course> classes = new ArrayList<>();
+    private ArrayList<User> friends = new ArrayList<>();
     Course math = new Course("MATH 151", "Richard D");
     Course cs = new Course("CS 141", "Linda Z");
     Course english = new Course("ENG 101", "Kumar P");
@@ -30,9 +31,9 @@ public class DataHandler {
         classes.add(math);
         classes.add(cs);
         classes.add(english);
-
-        list.add(new User("Franshesco", "Coello","CS", "Soccer",
-                friends, classes, 955123123, "English"));
+        User friend1 = new User("Franshesco", "Coello","CS", "Soccer",
+                friends, classes, 955123123, "English");
+        list.add(friend1);
         list.add(new User("Anthony", "Luong", "CS", "Memes",
                 friends, classes, 955111321, "Vietnamese"));
         list.add(new User("Jonathan", "Young", "CS", "Football",
