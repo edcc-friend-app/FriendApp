@@ -104,43 +104,6 @@ public class PreferencesManager {
         PREFS.edit().putBoolean("warnBeforeDeletingPet", warnBeforeDeletingFriend).apply();
     }
 
-//    /**
-//     * Provides access to the preference to warn before deleting a vet.
-//     *
-//     * @return true if a warning should be given, false if not
-//     */
-//    boolean isWarnBeforeDeletingVet() {
-//        return warnBeforeDeletingVet;
-//    }
-//
-//    /**
-//     * Allows the preference to warn before deleting a vet to be changed.
-//     *
-//     * @param warnBeforeDeletingVet true if a a warning should be given, false if not
-//     */
-//    void setWarnBeforeDeletingVet(boolean warnBeforeDeletingVet) {
-//        this.warnBeforeDeletingVet = warnBeforeDeletingVet;
-//        PREFS.edit().putBoolean("warnBeforeDeletingVet", warnBeforeDeletingVet).apply();
-//    }
-//
-//    /**
-//     * Provides access to the preference to warn before deleting a client.
-//     *
-//     * @return true if a warning should be given, false if not
-//     */
-//    boolean isWarnBeforeDeletingClient() {
-//        return warnBeforeDeletingClient;
-//    }
-//
-//    /**
-//     * Allows the preference to warn before deleting a client to be changed.
-//     *
-//     * @param warnBeforeDeletingClient true if a a warning should be given, false if not
-//     */
-//    void setWarnBeforeDeletingClient(boolean warnBeforeDeletingClient) {
-//        this.warnBeforeDeletingClient = warnBeforeDeletingClient;
-//        PREFS.edit().putBoolean("warnBeforeDeletingClient", warnBeforeDeletingClient).apply();
-//    }
 
     /**
      * Provides access to the current fragment showing in the NavActivity. This allows the app

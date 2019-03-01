@@ -15,6 +15,10 @@ public class User implements Comparable<User> {
     //private ArrayList<User> friends;
     private ArrayList<Course> classes;
     private String language;
+    private String availability;
+    private String class1;
+    private String class2;
+    private String class3;
     private int id;
     static boolean listType;
     private String photo; //base64 encoded byte array
@@ -74,6 +78,38 @@ public class User implements Comparable<User> {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public void setAvailability(String availability) {
+        this.availability = availability;
+    }
+
+    public void setClass1(String class1) {
+        this.class1 = class1;
+    }
+
+    public void setClass2(String class2) {
+        this.class2 = class2;
+    }
+
+    public void setClass3(String class3) {
+        this.class3 = class3;
+    }
+
+    public String getAvailability() {
+        return availability;
+    }
+
+    public String getClass1() {
+        return class1;
+    }
+
+    public String getClass2() {
+        return class2;
+    }
+
+    public String getClass3() {
+        return class3;
     }
 
     public String getMajor() {

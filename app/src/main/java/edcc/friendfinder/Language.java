@@ -7,6 +7,7 @@ class Language implements Comparable<Language>{
             "Spanish", "Vietnamese"};
 
     private String language;
+    private int languageId;
 
     public Language(){
 
@@ -22,6 +23,14 @@ class Language implements Comparable<Language>{
 
     String[] getLanguageList(){
         return languages;
+    }
+
+    public int getLanguageId() {
+        return languageId;
+    }
+
+    public void setLanguageId(int languageId) {
+        this.languageId = languageId;
     }
 
     @Override

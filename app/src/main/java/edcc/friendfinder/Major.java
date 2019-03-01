@@ -18,6 +18,7 @@ class Major implements Comparable<Major> {
             "Occupational Safety and Health", "Paralegal", "Social and Human Services",
             "Transfer (General)", "Visual Communications"};
     private String major;
+    private int majorId;
 
     public Major() {
 
@@ -34,6 +35,14 @@ class Major implements Comparable<Major> {
 
     String[] getMajorList(){
         return majors;
+    }
+
+    public int getMajorId() {
+        return majorId;
+    }
+
+    public void setMajorId(int majorId) {
+        this.majorId = majorId;
     }
 
     @Override

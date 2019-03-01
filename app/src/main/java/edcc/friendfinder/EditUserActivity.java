@@ -22,8 +22,10 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
-public class EditUserActivity extends AppCompatActivity {
+public class EditUserActivity extends BaseActivity {
 
     private UserManager um;
     private ImageButton ibtnUserPhoto;
@@ -53,17 +55,17 @@ public class EditUserActivity extends AppCompatActivity {
     private Bitmap newPhoto;
     private User thisUser;
     private int studentId;
-    private int userId;
+    private int userIdNum;
 //    private List<User> friendList = new ArrayList<>();
 //    private ArrayAdapter<User> classAdapter;
 
-//    private List<Language> languageList = new ArrayList<>();
+    //    private List<Language> languageList = new ArrayList<>();
     private Classes classes;
     private ArrayAdapter<String> classesAdapter;
     //    private List<Classes> classesList = new ArrayList<>();
     private Major majors = new Major();
     private ArrayAdapter<String> majorAdapter;
-//    private List<Major> majorList = new ArrayList<>();
+    //    private List<Major> majorList = new ArrayList<>();
     private Language languages = new Language();
     private ArrayAdapter<String> languageAdapter;
     //    private List<Language> languageList = new ArrayList<>();
@@ -110,8 +112,8 @@ public class EditUserActivity extends AppCompatActivity {
 
         //get user info
         Intent intent = getIntent();
-        userId = intent.getIntExtra(Extras.USER_ID, -1);
-        if (userId >= 0) {
+        userIdNum = intent.getIntExtra(Extras.USER_ID, -1);
+        if (userIdNum >= 0) {
             getSupportActionBar().setTitle("Edit Profile");
         } else {
             getSupportActionBar().setTitle("Create Profile");
@@ -145,6 +147,7 @@ public class EditUserActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 class1Changed = true;
+                //class1Id = ((Classes) spn1Classes.getItemAtPosition(position)).getClassId();
                 //Id = ((Classes) spn1Classes.getItemAtPosition(position)).getVetId();
             }
 
@@ -160,6 +163,7 @@ public class EditUserActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 class2Changed = true;
+                //class2Id = ((Classes) spn2Classes.getItemAtPosition(position)).getClassId();
                 //Id = ((Classes) spn1Classes.getItemAtPosition(position)).getVetId();
             }
 
@@ -175,6 +179,7 @@ public class EditUserActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 class3Changed = true;
+                //class3Id = ((Classes) spn3Classes.getItemAtPosition(position)).getClassId();
                 //Id = ((Classes) spn1Classes.getItemAtPosition(position)).getVetId();
             }
 
@@ -190,6 +195,7 @@ public class EditUserActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 languageChanged = true;
+                //languageId = ((Language) spnLanguage.getItemAtPosition(position)).getLanguageId();
                 //Id = ((Classes) spn1Classes.getItemAtPosition(position)).getVetId();
             }
 
@@ -205,6 +211,7 @@ public class EditUserActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 majorChanged = true;
+                //majorId = ((Major) spnMajor.getItemAtPosition(position)).getMajorId();
                 //Id = ((Classes) spn1Classes.getItemAtPosition(position)).getVetId();
             }
 
@@ -213,6 +220,40 @@ public class EditUserActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    /**
+     * Saves the class state.
+     *
+     * @param outState the class state
+     */
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("photoChanged", photoChanged);
+        if (photoChanged) {
+            outState.putParcelable("newPhoto", newPhoto);
+        }
+        outState.putBoolean("majorChanged", majorChanged);
+        if (majorChanged) {
+            outState.putInt("majorId", majorId);
+        }
+        outState.putBoolean("languageChanged", languageChanged);
+        if (languageChanged) {
+            outState.putInt("languageId", languageId);
+        }
+        outState.putBoolean("class1Changed", class1Changed);
+        if (class1Changed) {
+            outState.putInt("class1Id", class1Id);
+        }
+        outState.putBoolean("class2Changed", class2Changed);
+        if (languageChanged) {
+            outState.putInt("class2Id", class2Id);
+        }
+        outState.putBoolean("class3Changed", class3Changed);
+        if (languageChanged) {
+            outState.putInt("class3Id", class3Id);
+        }
     }
 
     /**
@@ -269,6 +310,7 @@ public class EditUserActivity extends AppCompatActivity {
         String entryLast = txtLastName.getText().toString();
         if (TextUtils.isEmpty(entryLast)) {
             txtLastName.setError("Last name is required.");
+            return;
         }
 //        String language = spnLanguage.getSelectedItem().toString();
 //        if (spnLanguage != null && spnLanguage.getSelectedItem() !=null) {
@@ -287,36 +329,65 @@ public class EditUserActivity extends AppCompatActivity {
         p.setLastName(txtLastName.getText().toString());
         p.setLanguage(spnLanguage.getSelectedItem().toString());
         p.setMajor(spnMajor.getSelectedItem().toString());
+        p.setAvailability((txtAvailability.getText().toString()));
+        p.setBio(txtBio.getText().toString());
+        p.setClass1(spn1Classes.getSelectedItem().toString());
+        p.setClass2(spn2Classes.getSelectedItem().toString());
+        p.setClass3(spn3Classes.getSelectedItem().toString());
 
-
+        int class1 = 0;
+        int class2 = 0;
+        int class3 = 0;
+        um = UserManager.getUserManager(getApplicationContext(), userId);
+        List<Integer> classes = new ArrayList<>();
         if (photoChanged && newPhoto != null) {
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             newPhoto.compress(Bitmap.CompressFormat.PNG, 100, bos);
             byte[] photo = bos.toByteArray();
             p.setPhoto(Base64.encodeToString(photo, Base64.DEFAULT));
         } else if (!photoChanged) {  //!photoChanged && petId >= 0
-            p.setPhoto(um.getUser(studentId).getPhoto());
+            //p.setPhoto(um.getUser(studentId).getPhoto());
         } else {
             p.setPhoto(null);
         }
         p.setBio(txtBio.getText().toString());
-//        if (spnClient.getAdapter().getCount() > 0) {
-//            p.setClientId(((Client) spnClient.getSelectedItem()).getClientId());
-//        } else {
-//            p.setClientId(-1);
-//        }
-//        if (spnVet.getAdapter().getCount() > 0) {
-//            p.setVetId(((Vet) spnVet.getSelectedItem()).getVetId());
-//        } else {
-//            p.setVetId(-1);
-//        }
+        p.setAvailability(txtAvailability.getText().toString());
+        if (spnLanguage.getAdapter().getCount() > 0) {
+            p.setLanguage(spnLanguage.getSelectedItem().toString());
+        } else {
+            p.setLanguage(null);
+        }
+        if (spnMajor.getAdapter().getCount() > 0) {
+            p.setMajor(spnMajor.getSelectedItem().toString());
+        } else {
+            p.setMajor(null);
+        }
+        if (spn1Classes.getAdapter().getCount() > 0) {
+            class1 = spn1Classes.getSelectedItemPosition();
+        } else {
+            p.setClass1(null);
+        }
+        if (spn2Classes.getAdapter().getCount() > 0) {
+            class2 = spn2Classes.getSelectedItemPosition();
+        } else {
+            p.setClass2(null);
+        }
+        if (spn3Classes.getAdapter().getCount() > 0) {
+            class3 = spn3Classes.getSelectedItemPosition();
+        } else {
+            p.setClass3(null);
+        }
         //if new, add to list
         if (studentId < 0) {
-            um.addFriend(p);
+            um.addUser(p);
         } else {
             p.setId(studentId);
             //um.replaceUser(p);
         }
+        classes.add(class1);
+        classes.add(class2);
+        classes.add(class3);
+        um.setThisUser(p);
         //close
         finish();
     }
@@ -340,4 +411,37 @@ public class EditUserActivity extends AppCompatActivity {
         }
     }
 
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Extras.REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            if (extras != null) {
+                newPhoto = (Bitmap) extras.get("data");
+                photoChanged = true;
+                ibtnUserPhoto.setImageBitmap(newPhoto);
+                ibtnUserPhoto.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            }
+        } else if (requestCode == Extras.REQUEST_MAJOR && resultCode == RESULT_OK) {
+            majorId = data.getIntExtra(Extras.MAJOR_ID, -1);
+            majorChanged = true;
+        } else if (requestCode == Extras.REQUEST_LANGUAGE && resultCode == RESULT_OK) {
+            languageId = data.getIntExtra(Extras.LANGUAGE_ID, -1);
+            languageChanged = true;
+        } else if (requestCode == Extras.REQUEST_CLASS1 && resultCode == RESULT_OK) {
+            class1Id = data.getIntExtra(Extras.CLASS1_ID, -1);
+            class1Changed = true;
+        } else if (requestCode == Extras.REQUEST_CLASS2 && resultCode == RESULT_OK) {
+            class2Id = data.getIntExtra(Extras.CLASS2_ID, -1);
+            class2Changed = true;
+        } else if (requestCode == Extras.REQUEST_CLASS3 && resultCode == RESULT_OK) {
+            class3Id = data.getIntExtra(Extras.CLASS3_ID, -1);
+            class3Changed = true;
+        }
+    }
+
+    @Override
+    protected void setUpDataListeners() {
+
+    }
 }
+
