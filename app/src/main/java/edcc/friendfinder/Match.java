@@ -24,22 +24,22 @@ public class Match {
     }
 
     public void compareMajor() {
-        for (User f: friends) {
-            if(thisUser.getMajor().equalsIgnoreCase(f.getMajor())) {
+        for (User f : friends) {
+            if (thisUser.getMajor().equalsIgnoreCase(f.getMajor())) {
                 f.incrementCount("major");
             }
         }
     }
 
     public void compareClasses() {
-        for (User f: friends) {
-            if(compareClassesHelper(thisUser.getArrMatch(), f.getArrMatch())) {
+        for (User f : friends) {
+            if (compareClassesHelper(thisUser.getArrMatch(), f.getArrMatch())) {
                 f.incrementCount("classes");
             }
         }
     }
 
-    public boolean compareClassesHelper( List<Integer> arr1, List<Integer> arr2) {
+    public boolean compareClassesHelper(List<Integer> arr1, List<Integer> arr2) {
         Collections.sort(arr1);
         Collections.sort(arr2);
 //        for (Integer i: arr1) {
@@ -55,15 +55,16 @@ public class Match {
 
 
     public void compareBio() {
-        for (User f: friends) {
-            if(thisUser.getBio().equalsIgnoreCase(f.getBio())) {
+        for (User f : friends) {
+            if (thisUser.getBio().equalsIgnoreCase(f.getBio())) {
                 f.incrementCount("major");
             }
         }
     }
+
     public void compareLanguage() {
-        for (User f: friends) {
-            if(thisUser.getLanguage().equalsIgnoreCase(f.getLanguage())) {
+        for (User f : friends) {
+            if (thisUser.getLanguage().equalsIgnoreCase(f.getLanguage())) {
                 f.incrementCount("language");
             }
         }

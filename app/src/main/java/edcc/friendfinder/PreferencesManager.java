@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 
 /**
  * Manages the user preferences for the app.
- *
  */
 public class PreferencesManager {
     static final String CURRENT_FRAGMENT = "currentFragment";
@@ -15,7 +14,7 @@ public class PreferencesManager {
     //private boolean listBreed;
     private boolean sortAZ;
     private boolean warnBeforeDeletingFriend;
-//    private boolean warnBeforeDeletingVet;
+    //    private boolean warnBeforeDeletingVet;
 //    private boolean warnBeforeDeletingClient;
     private String currentFragment;
     private final SharedPreferences PREFS;

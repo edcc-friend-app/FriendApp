@@ -44,7 +44,7 @@ public class DataHandler {
         classes.add(cs);
         classes.add(english);
 
-        friend1 = new User("Franshesco", "Coello","CS", "Soccer",
+        friend1 = new User("Franshesco", "Coello", "CS", "Soccer",
                 classes, "English");
         List<Integer> classes1 = new ArrayList<>();
         classes1.add(0);
@@ -145,11 +145,11 @@ public class DataHandler {
         return potFriends;
     }
 
-    public String[] getMajor(){
+    public String[] getMajor() {
         return major;
     }
 
-    public String[] getLanguage(){
+    public String[] getLanguage() {
         return language;
     }
 

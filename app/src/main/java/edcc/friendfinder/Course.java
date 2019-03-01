@@ -1,6 +1,6 @@
 package edcc.friendfinder;
 
-public class Course implements Comparable<Course>{
+public class Course implements Comparable<Course> {
     private String name;
     private String instructor;
 
@@ -9,7 +9,8 @@ public class Course implements Comparable<Course>{
         this.instructor = instructor;
     }
 
-    public Course() {}
+    public Course() {
+    }
 
 
     public String getName() {

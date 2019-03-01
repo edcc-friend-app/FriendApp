@@ -1,6 +1,6 @@
 package edcc.friendfinder;
 
-class Language implements Comparable<Language>{
+class Language implements Comparable<Language> {
 
     private String[] languages = {"Arabic", "Chinese (Cantonese)", "Chinese (Mandarin)", "English",
             "French", "German", "Indonesian (Malay)", "Hindustani", "Japanese", "Korean", "Russian",
@@ -9,19 +9,19 @@ class Language implements Comparable<Language>{
     private String language;
     private int languageId;
 
-    public Language(){
+    public Language() {
 
     }
 
-    public Language(int incLanguage){
+    public Language(int incLanguage) {
         language = languages[incLanguage];
     }
 
-    String getLanguage(){
+    String getLanguage() {
         return language;
     }
 
-    String[] getLanguageList(){
+    String[] getLanguageList() {
         return languages;
     }
 

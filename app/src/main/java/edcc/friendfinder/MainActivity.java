@@ -146,7 +146,7 @@ public class MainActivity extends BaseActivity
                             userList.add(user);
                         }
                         //um.setUserList(userList);
-                        ((FindFriendsFragment)fragment).updateData();
+                        ((FindFriendsFragment) fragment).updateData();
                     }
                 }
             };
@@ -168,7 +168,7 @@ public class MainActivity extends BaseActivity
                             friendList.add(friend);
                         }
                         um.setFriendList(friendList);
-                        ((FriendsFragment)fragment).updateData();
+                        ((FriendsFragment) fragment).updateData();
                     }
                 }
             };
@@ -190,6 +190,7 @@ public class MainActivity extends BaseActivity
             friendReg.remove();
         }
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -229,10 +230,10 @@ public class MainActivity extends BaseActivity
         }
 
 
-            if (id == R.id.action_sign_out) {
-                signOut();
-                return true;
-            }
+        if (id == R.id.action_sign_out) {
+            signOut();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 

@@ -3,6 +3,7 @@ package edcc.friendfinder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 import android.content.Context;
 
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -280,6 +281,7 @@ public class UserManager {
                     .document(String.valueOf(id)).delete();
         }
     }
+
     public User getThisUser() {
         return thisUser;
     }

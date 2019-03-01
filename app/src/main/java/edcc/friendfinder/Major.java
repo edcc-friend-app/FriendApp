@@ -29,11 +29,11 @@ class Major implements Comparable<Major> {
         major = majors[incMajors];
     }
 
-    String getMajor(){
+    String getMajor() {
         return major;
     }
 
-    String[] getMajorList(){
+    String[] getMajorList() {
         return majors;
     }
 

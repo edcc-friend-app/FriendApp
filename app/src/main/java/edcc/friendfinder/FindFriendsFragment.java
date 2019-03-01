@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -179,7 +180,7 @@ public class FindFriendsFragment extends Fragment {
         for (User u : potFriendList) {
             if ((u.getFirstName().toLowerCase().contains(filter))
                     || (u.getMajor().toLowerCase().contains(filter))
-                    || (u.getLanguage().toLowerCase().contains(filter))){
+                    || (u.getLanguage().toLowerCase().contains(filter))) {
                 filteredList.add(u);
             }
         }
