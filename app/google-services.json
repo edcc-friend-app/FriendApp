@@ -31,6 +31,14 @@
           }
         },
         {
+          "client_id": "93592286190-nsv5vftq0u7rvlja43vebvm3cutpo7ik.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edcc.friendfinder",
+            "certificate_hash": "f33097c6769f4869ac7b197139efd55d48bf215d"
+          }
+        },
+        {
           "client_id": "93592286190-61ffj4en7pscrert6p9nbk5jlmt37vo7.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -17,7 +17,7 @@ public class UserManager {
     private int[] currClasses;
     private Match match;
 
-    private UserManager(Context contxt) {
+    private UserManager() {
         dh = new DataHandler();
         users = dh.getFriends();
         potFriends = dh.getPotFriends();
@@ -36,10 +36,10 @@ public class UserManager {
     }
 
 
-    public static UserManager getUserManager(Context contxt, String userId) {
+    public static UserManager getUserManager() {
         UserManager.userId = userId;
         if (um == null) {
-            um = new UserManager(contxt);
+            um = new UserManager();
         }
         return um;
     }
@@ -53,9 +53,6 @@ public class UserManager {
         return match.getPotFriends();
     }
 
-//    public String[] getNames() {
-//
-//    }
 
     public User getUser(int id) {
         for (int i = 0; i < users.size(); i++) {
