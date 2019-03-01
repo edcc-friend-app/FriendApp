@@ -37,11 +37,20 @@
     <!--<string name="major">Major:</string>-->
     <!--<string name="classes">Classes:</string>-->
     <!--<string name="bio">Bio:</string>-->
-    <string name="availability">Availability:</string>
-    <string name="your_friends_profile_picuture">Your friends Profile Picuture</string>
+    <string name="language_preferred">Language Preferred:</string>
+    <string name="your_friends_profile_picture">Your friends Profile Picture</string>
     <string name="remove_this_friend">Remove This Friend</string>
     <string name="block_this_person">Block This Person</string>
-
+    <string name="profile_picture">Profile Picture</string>
+    <string name="search_button">Search Button</string>
+    <string name="language">Language:</string>
+    <string name="availability">Availability:</string>
+    <string name="potential_friend_picture">Potential Friend Picture</string>
+    <string name="name">Name:</string>
+    <string name="search_friends">Search Friends</string>
+    <string name="find">Find</string>
+    <string name="search_name">Search Name:</string>
+    <string name="friends_picture">Friends Picture</string>
 
 
 </resources>
