@@ -68,6 +68,7 @@ public class FriendsFragment extends Fragment {
                 handleFilterClick();
             }
         });
+        updateData();
         return rootView;
     }
 

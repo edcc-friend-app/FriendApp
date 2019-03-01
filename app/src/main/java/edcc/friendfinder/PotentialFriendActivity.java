@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class PotentialFriendActivity extends BaseActivity {
 
-    private int thisUserId;
+    private String thisUserName;
     private UserManager um;
     private User thisUser;
     private TextView lblName;
@@ -54,10 +54,10 @@ public class PotentialFriendActivity extends BaseActivity {
         }
         //get current user
         Intent intent = getIntent();
-        thisUserId = intent.getIntExtra(Extras.USER_ID, -1);
-        if (thisUserId < 0) {
-            finish();
-        }
+        thisUserName = intent.getStringExtra(Extras.USER_ID);
+//        if (thisUserId < 0) {
+//            finish();
+//        }
         //find UI components
         lblName = findViewById(R.id.lblName);
         lblMajor = findViewById(R.id.lblMajor);
@@ -148,7 +148,7 @@ public class PotentialFriendActivity extends BaseActivity {
     @Override
     public void setUpDataListeners() {
         um = UserManager.getUserManager(getApplicationContext(), userId);
-        thisUser = um.getUser(thisUserId);
+        thisUser = um.getUser(thisUserName);
         um.setUser(thisUser);
         lblName.setText(thisUser.toString());
         lblMajor.setText(thisUser.getMajor());

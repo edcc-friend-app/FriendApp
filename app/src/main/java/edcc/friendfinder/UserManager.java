@@ -25,7 +25,7 @@ public class UserManager {
     private UserManager(Context ctx) {
         dh = new DataHandler();
         pm = PreferencesManager.getInstance(ctx);
-        friendList = dh.getFriends();
+        friendList = new ArrayList<>();
         userList = dh.getPotFriends();
         classes = new ArrayList<>();
         classes.add(new Course("CS 240", "Linda Zuvich"));
@@ -239,7 +239,7 @@ public class UserManager {
             }
         }
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("users").document(userId).collection("vets")
+        db.collection("users").document(userId).collection("friends")
                 .document(String.valueOf(friend.getId())).set(friend);
 
     }
@@ -276,7 +276,7 @@ public class UserManager {
             //delete
             friendList.remove(index);
             FirebaseFirestore db = FirebaseFirestore.getInstance();
-            db.collection("users").document(userId).collection("vets")
+            db.collection("users").document(userId).collection("friends")
                     .document(String.valueOf(id)).delete();
         }
     }

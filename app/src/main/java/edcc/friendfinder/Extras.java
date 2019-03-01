@@ -22,6 +22,6 @@ class Extras {
     private Fragment fragment;
     private UserManager um;
     static final String ITEM_ID = "itemId";
-    static final String USER_ID = "firstName";
+    static final String USER_ID = "userId";
 
 }
