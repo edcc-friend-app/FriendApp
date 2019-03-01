@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -28,6 +29,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -47,10 +49,18 @@ public class MainActivity extends BaseActivity
         ProfileFragment.ProfileListener, FindFriendsFragment.FriendListener {
     //fields
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private PreferencesManager pm;
-    private String currentFragment;
+    private EventListener<QuerySnapshot> profileDataListener;
+    private ListenerRegistration profileReg;
+    private EventListener<QuerySnapshot> friendDataListener;
+    private ListenerRegistration friendReg;
+    private EventListener<QuerySnapshot> userDataListener;
+    private ListenerRegistration userReg;
     private Fragment fragment;
     private UserManager um;
+    private ActionBar actionBar;
+    private String currentFragment;
+    private PreferencesManager pm;
+
     private int type;
     public static final String ITEM_ID = "itemId";
     public static final String USER_ID = "userId";
@@ -62,13 +72,13 @@ public class MainActivity extends BaseActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        actionBar = getSupportActionBar();
+        //set up navigation drawer
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         //set up fragment
@@ -77,33 +87,109 @@ public class MainActivity extends BaseActivity
         switch (currentFragment) {
             case "profile":
                 fragment = new ProfileFragment();
-                //actionBar.setTitle(R.string.titlePetList);
+                actionBar.setTitle("Profile");
                 navigationView.getMenu().getItem(0).setChecked(true);
                 break;
             case "find":
                 fragment = new FindFriendsFragment();
-                //actionBar.setTitle(R.string.titleClientList);
+                actionBar.setTitle("Find Friends");
                 navigationView.getMenu().getItem(1).setChecked(true);
-                //((FindFriendsFragment)fragment).updateData();
                 break;
             case "friends":
                 fragment = new FriendsFragment();
-                //actionBar.setTitle(R.string.titleVetList);
+                actionBar.setTitle("Friends");
                 navigationView.getMenu().getItem(2).setChecked(true);
                 break;
         }
-        fragment = new ProfileFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frmFragment, fragment);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         ft.commit();
-        navigationView.getMenu().getItem(0).setChecked(true);
     }
 
     @Override
     protected void setUpDataListeners() {
-
+        stopDataListeners();
+        if (fragment instanceof ProfileFragment) {
+            //set up pet list
+            um = UserManager.getUserManager(this, userId);
+            final CollectionReference ref = db.collection("users").document(userId)
+                    .collection("pets");
+            profileDataListener = new EventListener<QuerySnapshot>() {
+                @Override
+                public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+                    if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
+                        ArrayList<User> userList = new ArrayList<>();
+                        for (int i = 0; i < documentSnapshots.size(); i++) {
+                            DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
+                            User user = snapshot.toObject(User.class);
+                            userList.add(user);
+                        }
+                        um.setThisUser(userList.get(0));
+                        //((FriendsFragment)fragment).updateData();
+                    }
+                }
+            };
+            profileReg = ref.addSnapshotListener(profileDataListener);
+        } else if (fragment instanceof FindFriendsFragment) {
+            //set up client list
+            um = UserManager.getUserManager(this, userId);
+            final CollectionReference ref = db.collection("users").document(userId)
+                    .collection("clients");
+            userDataListener = new EventListener<QuerySnapshot>() {
+                @Override
+                public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+                    if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
+                        ArrayList<User> userList = new ArrayList<>();
+                        for (int i = 0; i < documentSnapshots.size(); i++) {
+                            DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
+                            User user = snapshot.toObject(User.class);
+                            userList.add(user);
+                        }
+                        um.setUserList(userList);
+                        ((FindFriendsFragment)fragment).updateData();
+                    }
+                }
+            };
+            userReg = ref.addSnapshotListener(userDataListener);
+        } else if (fragment instanceof FriendsFragment) {
+            //set up vet list
+            um = UserManager.getUserManager(this, userId);
+            final CollectionReference ref = db.collection("users").document(userId)
+                    .collection("vets");
+            friendDataListener = new EventListener<QuerySnapshot>() {
+                @Override
+                public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+                    if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
+                        ArrayList<User> friendList = new ArrayList<>();
+                        for (int i = 0; i < documentSnapshots.size(); i++) {
+                            DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
+                            User friend = snapshot.toObject(User.class);
+                            friendList.add(friend);
+                        }
+                        um.setFriendList(friendList);
+                        ((FriendsFragment)fragment).updateData();
+                    }
+                }
+            };
+            friendReg = ref.addSnapshotListener(friendDataListener);
+        }
     }
 
+    /**
+     * Stops all data listeners.
+     */
+    private void stopDataListeners() {
+        if (profileReg != null && profileDataListener != null) {
+            profileReg.remove();
+        }
+        if (userReg != null && userDataListener != null) {
+            userReg.remove();
+        }
+        if (friendReg != null && friendDataListener != null) {
+            friendReg.remove();
+        }
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -112,6 +198,15 @@ public class MainActivity extends BaseActivity
         } else {
             super.onBackPressed();
         }
+    }
+
+    /**
+     * On pause, data listeners are stopped.
+     */
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopDataListeners();
     }
 
     @Override
@@ -143,21 +238,23 @@ public class MainActivity extends BaseActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_profile) {
+            actionBar.setTitle("Profile");
             fragment = new ProfileFragment();
             currentFragment = "profile";
         } else if (id == R.id.nav_find) {
+            actionBar.setTitle("Find Friends");
             fragment = new FindFriendsFragment();
             currentFragment = "find";
-            //((FindFriendsFragment)fragment).updateData();
         } else if (id == R.id.nav_friends) {
+            actionBar.setTitle("Friends");
             fragment = new FriendsFragment();
             currentFragment = "friends";
         }
-
+        pm.setCurrentFragment(currentFragment);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frmFragment, fragment);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         ft.commit();
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -173,14 +270,14 @@ public class MainActivity extends BaseActivity
     @Override
     public void viewFriendRequested(User friend) {
         Intent intent = new Intent(MainActivity.this, FriendDetailsActivity.class);
-        intent.putExtra(ITEM_ID, friend.getId());
+        intent.putExtra(Extras.FRIEND_ID, friend.getId());
         startActivity(intent);
     }
 
     @Override
     public void viewPotFriendRequested(User friend) {
         Intent intent = new Intent(MainActivity.this, PotentialFriendActivity.class);
-        intent.putExtra(ITEM_ID, friend.getId());
+        intent.putExtra(Extras.USER_ID, friend.getId());
         startActivity(intent);
     }
 

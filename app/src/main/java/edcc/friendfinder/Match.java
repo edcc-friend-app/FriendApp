@@ -1,19 +1,18 @@
 package edcc.friendfinder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Match {
-    private int count;
     private User thisUser;
-    private ArrayList<User> friends;
+    private List<User> friends;
 
-    public Match(User thisUser, ArrayList<User> friends) {
+    public Match(User thisUser, List<User> friends) {
         this.thisUser = thisUser;
         this.friends = friends;
-        count = 0;
     }
 
-    public ArrayList<User> getPotFriends() {
+    public List<User> getPotFriends() {
         //friends;
         compareMajor();
         compareClasses();
@@ -63,7 +62,7 @@ public class Match {
         }
     }
 
-    public ArrayList<User> getFriends() {
+    public List<User> getFriends() {
         return friends;
     }
 

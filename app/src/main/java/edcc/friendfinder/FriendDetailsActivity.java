@@ -9,7 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class FriendDetailsActivity extends AppCompatActivity {
+import static java.security.AccessController.getContext;
+
+public class FriendDetailsActivity extends BaseActivity {
 
     private int id;
     private UserManager um;
@@ -31,7 +33,7 @@ public class FriendDetailsActivity extends AppCompatActivity {
         if (actionBar != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        um = UserManager.getUserManager();
+        um = UserManager.getUserManager(getApplicationContext(), userId);
         //get current pet
         Intent intent = getIntent();
         id = intent.getIntExtra("itemId", -1);
@@ -48,6 +50,11 @@ public class FriendDetailsActivity extends AppCompatActivity {
         lblMajor.setText(thisUser.getMajor());
         lblClasses.setText(thisUser.printClasses());
         lblBio.setText(thisUser.getBio());
+
+    }
+
+    @Override
+    protected void setUpDataListeners() {
 
     }
 

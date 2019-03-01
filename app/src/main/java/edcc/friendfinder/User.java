@@ -18,6 +18,7 @@ public class User implements Comparable<User> {
     //added from Linda's code
     static boolean listType;
     private String photo; //base64 encoded byte array
+    private int friendId = -1;
     //tests for match
     private int matchCount;
     private int[] arrMatch;
@@ -122,6 +123,14 @@ public class User implements Comparable<User> {
 
     public void setArrMatch(int[] arrMatch) {
         this.arrMatch = arrMatch;
+    }
+
+    public int getFriendId() {
+        return friendId;
+    }
+
+    public void setFriendId(int friendId) {
+        this.friendId = friendId;
     }
 
     public String printClasses() {

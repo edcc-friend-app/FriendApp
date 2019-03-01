@@ -16,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,7 +49,7 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_profile, container, false);
-        um = UserManager.getUserManager();
+        um = UserManager.getUserManager(getContext(), FirebaseAuth.getInstance().getUid());
         pm = PreferencesManager.getInstance(getActivity().getApplicationContext());
         //find UI components
         lblName = rootView.findViewById(R.id.lblName);
@@ -91,7 +93,7 @@ public class ProfileFragment extends Fragment {
                 //signOut();
                 return true;
             case R.id.action_edit:
-                listener.editUser(um.getUsers().get(0));
+                listener.editUser(um.getThisUser());
                 return true;
             case R.id.action_settings:
                 //Intent intent = new Intent(this, PreferencesActivity.class);

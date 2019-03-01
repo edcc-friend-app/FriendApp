@@ -47,7 +47,7 @@ public class FindFriendsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        um = UserManager.getUserManager();
+        um = UserManager.getUserManager(getContext(), FirebaseAuth.getInstance().getUid());
         rootView = inflater.inflate(R.layout.fragment_find_friends, container, false);
         lstFriends = rootView.findViewById(R.id.lstFriends);
         txtFilter = rootView.findViewById(R.id.txtFilter);
@@ -177,7 +177,6 @@ public class FindFriendsFragment extends Fragment {
         List<User> filteredList = new ArrayList<>();
         for (User u : potFriendList) {
             if ((u.getFirstName().toLowerCase().contains(filter))
-                    || (u.getId() > -1 && um.getPotFriend(u.getId()).toString().toLowerCase().contains(filter))
                     || (u.getMajor().toLowerCase().contains(filter))
                     || (u.getLanguage().toLowerCase().contains(filter))){
                 filteredList.add(u);

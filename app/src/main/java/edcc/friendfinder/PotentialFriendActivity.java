@@ -1,31 +1,56 @@
 package edcc.friendfinder;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-public class PotentialFriendActivity extends AppCompatActivity {
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.QuerySnapshot;
 
-    private int id;
+import java.util.ArrayList;
+
+public class PotentialFriendActivity extends BaseActivity {
+
+    private int thisUserId;
     private UserManager um;
     private User thisUser;
     private TextView lblName;
     private TextView lblMajor;
     private TextView lblClasses;
+    private TextView lblLanguage;
     private TextView lblBio;
+    private ImageView imgUser;
+    private PreferencesManager pm;
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private EventListener<QuerySnapshot> profileDataListener;
+    private ListenerRegistration profileReg;
+    private EventListener<QuerySnapshot> friendDataListener;
+    private ListenerRegistration friendReg;
+    private EventListener<DocumentSnapshot> userDataListener;
+    private ListenerRegistration userReg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //um = PreferencesManager.getInstance(getApplicationContext());
+        pm = PreferencesManager.getInstance(getApplicationContext());
         setContentView(R.layout.activity_potential_friend);
         //create action bar and back arrow
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -34,24 +59,97 @@ public class PotentialFriendActivity extends AppCompatActivity {
         if (actionBar != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        um = UserManager.getUserManager();
-        //get current friend
+        //get current user
         Intent intent = getIntent();
-        id = intent.getIntExtra("itemId", -1);
-        thisUser = um.getPotFriend(id);
-        if (id < 0) {
+        thisUserId = intent.getIntExtra(Extras.USER_ID, -1);
+        if (thisUserId < 0) {
             finish();
         }
         //find UI components
         lblName = findViewById(R.id.lblName);
         lblMajor = findViewById(R.id.lblMajor);
         lblClasses = findViewById(R.id.lblClasses);
+        lblLanguage = findViewById(R.id.lblLanguage);
         lblBio = findViewById(R.id.lblBio);
-        lblName.setText(thisUser.toString());
-        lblMajor.setText(thisUser.getMajor());
-        lblClasses.setText(thisUser.printClasses());
-        lblBio.setText(thisUser.getBio());
+        imgUser = findViewById(R.id.imgFriendPicture);
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (profileReg != null && profileDataListener != null) {
+            profileReg.remove();
+        }
+        if (userReg != null && userDataListener != null) {
+            userReg.remove();
+        }
+        if (friendReg != null && friendDataListener != null) {
+            friendReg.remove();
+        }
+    }
+
+    @Override
+    public void setUpDataListeners() {
+        um = UserManager.getUserManager(getApplicationContext(), userId);
+        //pet listener
+        final DocumentReference petRef = db.collection("users").document(userId).
+                collection("pets").document(String.valueOf(thisUserId));
+        userDataListener = new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(DocumentSnapshot snapshot, FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.w("MYLOG", "User listener failed.", e);
+                    return;
+                }
+                if (snapshot != null && snapshot.exists()) {
+                    thisUser = snapshot.toObject(User.class);
+                    um.setUser(thisUser);
+                    lblName.setText(thisUser.toString());
+                    lblMajor.setText(thisUser.getMajor());
+                    //String[] genderArray = getResources().getStringArray(R.array.arrGenders);
+                    //lblGender.setText(genderArray[thisPet.getGender()]);
+                    lblClasses.setText(thisUser.printClasses());
+                    lblLanguage.setText(thisUser.getLanguage());
+                    lblBio.setText(thisUser.getBio());
+//                    if (thisUser.getFriendId() > -1 && um.getFriendList().size() > 0 &&
+//                            um.getFriend(thisUser.getFriendId()) != null) {
+//                        lblClient.setText(dm.getClient(thisPet.getClientId()).toString());
+//                    }
+                    String photoStr = thisUser.getPhoto();
+                    imgUser = findViewById(R.id.imgFriendPicture);
+                    if (photoStr != null) {
+                        byte[] photo = Base64.decode(photoStr, Base64.DEFAULT);
+                        imgUser.setImageBitmap(BitmapFactory.decodeByteArray(photo, 0, photo.length));
+                        imgUser.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                    } else {
+                        imgUser.setImageBitmap(null);
+                    }
+                }
+            }
+        };
+        userReg = petRef.addSnapshotListener(userDataListener);
+        //vet listener
+        final CollectionReference vetRef = db.collection("users").document(userId)
+                .collection("vets");
+        friendDataListener = new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+                if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
+                    ArrayList<User> list = new ArrayList<>();
+                    for (int i = 0; i < documentSnapshots.size(); i++) {
+                        DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
+                        User friend = snapshot.toObject(User.class);
+                        list.add(friend);
+                    }
+                    um.setFriendList(list);
+//                    if (thisUser != null && thisUser.getFriendId() >= 0) {
+//                        lbl.setText(dm.getVet(thisPet.getVetId()).toString());
+//                    }
+                }
+            }
+        };
+        friendReg = vetRef.addSnapshotListener(friendDataListener);
     }
 
     /**
@@ -76,7 +174,7 @@ public class PotentialFriendActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_sign_out:
-                //signOut();
+                signOut();
                 return true;
             case android.R.id.home:
                 //back arrow
