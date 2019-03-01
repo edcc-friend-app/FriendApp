@@ -18,7 +18,6 @@
         android:ems="10"
         android:hint="@string/search_friends"
         android:inputType="textPersonName"
-        android:text="@string/search_name"
         app:layout_constraintEnd_toStartOf="@+id/ibtnFilter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
