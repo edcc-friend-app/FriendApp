@@ -19,10 +19,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:textColor="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="@+id/lblClass3Prompt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/lblClass3Prompt"
-            app:layout_constraintTop_toTopOf="@+id/lblClass3Prompt" />
+            app:layout_constraintTop_toTopOf="@+id/lblClass3Prompt"
+            tools:text="A class you are taking" />
 
         <Spinner
             android:id="@+id/spnClass2"
@@ -30,10 +32,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:textColor="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="@+id/lblClass2Prompt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/lblClass2Prompt"
-            app:layout_constraintTop_toTopOf="@+id/lblClass2Prompt" />
+            app:layout_constraintTop_toTopOf="@+id/lblClass2Prompt"
+            tools:text="A class you are taking" />
 
         <TextView
             android:id="@+id/lblClass2Prompt"
@@ -112,13 +116,16 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:contentDescription="Your First Name"
             android:importantForAutofill="no"
             android:inputType="text|textCapWords"
+            android:textColor="@color/colorPrimary"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/lblNamePrompt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/lblNamePrompt"
-            app:layout_constraintTop_toTopOf="@+id/lblNamePrompt" />
+            app:layout_constraintTop_toTopOf="@+id/lblNamePrompt"
+            tools:text="Your first name" />
 
         <EditText
             android:id="@+id/txtLastName"
@@ -127,12 +134,14 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:inputType="text|textCapWords"
+            android:textColor="@color/colorPrimary"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/lblLastNamePrompt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/lblLastNamePrompt"
-            app:layout_constraintTop_toTopOf="@+id/lblLastNamePrompt" />
+            app:layout_constraintTop_toTopOf="@+id/lblLastNamePrompt"
+            tools:text="Your family name" />
 
         <TextView
             android:id="@+id/lblLanguagePrompt"
@@ -140,7 +149,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Language: "
+            android:text="@string/language"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblMajorPrompt" />
@@ -172,7 +181,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Availability: "
+            android:text="@string/availability"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblClass3Prompt" />
@@ -184,10 +193,12 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:inputType="textMultiLine"
+            android:textColor="@color/colorAccent"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblBioPrompt" />
+            app:layout_constraintTop_toBottomOf="@+id/lblBioPrompt"
+            tools:text="Tell us about yourself" />
 
         <EditText
             android:id="@+id/txtAvailable"
@@ -196,21 +207,25 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:inputType="date|textMultiLine|time"
+            android:textColor="@color/colorAccent"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblAvailablePrompt" />
+            app:layout_constraintTop_toBottomOf="@+id/lblAvailablePrompt"
+            tools:text="Enter your availability" />
 
         <Spinner
             android:id="@+id/spnMajor"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="@+id/lblMajorPrompt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/lblMajorPrompt"
-            app:layout_constraintTop_toTopOf="@+id/lblMajorPrompt" />
+            app:layout_constraintTop_toTopOf="@+id/lblMajorPrompt"
+            tools:text="Your desired major" />
 
         <Spinner
             android:id="@+id/spnLanguage"
@@ -218,10 +233,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:textColor="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="@+id/lblLanguagePrompt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/lblLanguagePrompt"
-            app:layout_constraintTop_toTopOf="@+id/lblLanguagePrompt" />
+            app:layout_constraintTop_toTopOf="@+id/lblLanguagePrompt"
+            tools:text="Select your preferred language" />
 
         <Spinner
             android:id="@+id/spnClass1"
@@ -229,11 +246,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:textColor="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="@+id/lblClassPrompt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/lblClassPrompt"
-            app:layout_constraintTop_toTopOf="@+id/lblClassPrompt" />
+            app:layout_constraintTop_toTopOf="@+id/lblClassPrompt"
+            tools:text="A class you are taking" />
     </android.support.constraint.ConstraintLayout>
 
 </ScrollView>

@@ -20,11 +20,13 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:inputType="date|textMultiLine|time"
+            android:textColor="@color/colorAccent"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblAvailablePrompt" />
+            app:layout_constraintTop_toBottomOf="@+id/lblAvailablePrompt"
+            tools:text="When you are available" />
 
         <TextView
             android:id="@+id/lblMajorPrompt"
@@ -43,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:text="Name: "
+            android:text="@string/name"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgUserPhoto" />
@@ -55,11 +57,13 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:inputType="text|textCapWords"
+            android:textColor="@color/colorPrimary"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/lblNamePrompt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/lblNamePrompt"
-            app:layout_constraintTop_toTopOf="@+id/lblNamePrompt" />
+            app:layout_constraintTop_toTopOf="@+id/lblNamePrompt"
+            tools:text="Your Name" />
 
         <TextView
             android:id="@+id/lblMajor"
@@ -68,12 +72,14 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:inputType="text|textCapWords"
+            android:textColor="@color/colorPrimary"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/lblMajorPrompt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/lblMajorPrompt"
-            app:layout_constraintTop_toTopOf="@+id/lblMajorPrompt" />
+            app:layout_constraintTop_toTopOf="@+id/lblMajorPrompt"
+            tools:text="Your Major" />
 
         <TextView
             android:id="@+id/lblLanguagePrompt"
@@ -81,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Language: "
+            android:text="@string/language"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblMajorPrompt" />
@@ -93,12 +99,14 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:inputType="number"
+            android:textColor="@color/colorAccent"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/lblLanguagePrompt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/lblLanguagePrompt"
-            app:layout_constraintTop_toTopOf="@+id/lblLanguagePrompt" />
+            app:layout_constraintTop_toTopOf="@+id/lblLanguagePrompt"
+            tools:text="Your preferred language" />
 
         <TextView
             android:id="@+id/lblClassPrompt"
@@ -117,7 +125,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Availability: "
+            android:text="@string/availability"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblClasses" />
@@ -130,10 +138,12 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:inputType="textMultiLine|number|text"
+            android:textColor="@color/colorAccent"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblClassPrompt" />
+            app:layout_constraintTop_toBottomOf="@+id/lblClassPrompt"
+            tools:text="Classes you are currently taking" />
 
         <TextView
             android:id="@+id/lblBioPrompt"
@@ -154,10 +164,12 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:inputType="textMultiLine|textCapWords"
+            android:textColor="@color/colorAccent"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblBioPrompt" />
+            app:layout_constraintTop_toBottomOf="@+id/lblBioPrompt"
+            tools:text="Tell us about yourself" />
 
         <ImageView
             android:id="@+id/imgUserPhoto"
@@ -166,6 +178,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:contentDescription="@string/profile_picture"
             android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
