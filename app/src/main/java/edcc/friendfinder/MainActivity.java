@@ -228,6 +228,11 @@ public class MainActivity extends BaseActivity
             return true;
         }
 
+
+            if (id == R.id.action_sign_out) {
+                signOut();
+                return true;
+            }
         return super.onOptionsItemSelected(item);
     }
 
