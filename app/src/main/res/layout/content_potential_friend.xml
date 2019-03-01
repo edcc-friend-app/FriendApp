@@ -41,13 +41,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@+id/lblClassesPrompt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/lblClassesPrompt"
-        app:layout_constraintTop_toTopOf="@+id/lblClassesPrompt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblClassesPrompt"
         tools:text="Your Potential Friend's Classes" />
 
 
@@ -123,7 +123,7 @@
         android:text="@string/availability"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblClassesPrompt" />
+        app:layout_constraintTop_toBottomOf="@+id/lblClasses" />
 
     <TextView
         android:id="@+id/lblAvailability"
