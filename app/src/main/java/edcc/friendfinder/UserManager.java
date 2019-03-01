@@ -24,6 +24,7 @@ public class UserManager {
 
     private UserManager(Context ctx) {
         dh = new DataHandler();
+        pm = PreferencesManager.getInstance(ctx);
         friendList = dh.getFriends();
         userList = dh.getPotFriends();
         classes = new ArrayList<>();
@@ -31,11 +32,11 @@ public class UserManager {
         classes.add(new Course("MATH 272", "Wayne Neidhardt"));
         classes.add(new Course("PHYS 222", "Tom Flemming"));
         thisUser = new User("Estefano", "Felipa", "CS", "Soccer",
-                (ArrayList)friendList, classes, 958024838, "Spanish");
-        currClasses = new int[25];
-        currClasses[0] = 1;
-        currClasses[6] = 1;
-        currClasses[15] = 1;
+                classes, "Spanish");
+        List<Integer> currClasses = new ArrayList<>();
+        currClasses.add(0);
+        currClasses.add(1);
+        currClasses.add(2);
         thisUser.setArrMatch(currClasses);
         match = new Match(thisUser, userList);
     }
@@ -108,7 +109,7 @@ public class UserManager {
             }
         }
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("users").document(userId).collection("pets")
+        db.collection("users").document(userId).collection("friends")
                 .document(String.valueOf(user.getId())).set(user);
     }
 
@@ -124,7 +125,7 @@ public class UserManager {
             Collections.reverse(userList);
         }
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("users").document(userId).collection("pets")
+        db.collection("users").document(userId).collection("friends")
                 .document(String.valueOf(newUser.getId())).set(newUser);
     }
 
@@ -143,7 +144,7 @@ public class UserManager {
             //delete
             userList.remove(index);
             FirebaseFirestore db = FirebaseFirestore.getInstance();
-            db.collection("users").document(userId).collection("pets")
+            db.collection("users").document(userId).collection("friends")
                     .document(String.valueOf(id)).delete();
         }
     }
@@ -237,9 +238,8 @@ public class UserManager {
             Collections.reverse(friendList);
         }
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("users").document(userId).collection("vets")
+        db.collection("users").document(userId).collection("friends")
                 .document(String.valueOf(newFriend.getId())).set(newFriend);
-
         return newFriend.getId();
     }
 

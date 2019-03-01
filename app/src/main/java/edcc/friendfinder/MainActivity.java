@@ -156,7 +156,7 @@ public class MainActivity extends BaseActivity
             //set up vet list
             um = UserManager.getUserManager(this, userId);
             final CollectionReference ref = db.collection("users").document(userId)
-                    .collection("vets");
+                    .collection("friends");
             friendDataListener = new EventListener<QuerySnapshot>() {
                 @Override
                 public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {

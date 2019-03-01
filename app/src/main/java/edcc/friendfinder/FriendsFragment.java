@@ -57,12 +57,12 @@ public class FriendsFragment extends Fragment {
         lstFriends = rootView.findViewById(R.id.lstFriends);
         txtFilter = rootView.findViewById(R.id.txtFilter);
         //get saved state
-        if(savedInstanceState != null) {
+        if (savedInstanceState != null) {
             isFiltered = savedInstanceState.getBoolean("isFiltered");
         }
         //set up filter button
         ImageButton btnFilter = rootView.findViewById(R.id.ibtnFilter);
-        btnFilter .setOnClickListener(new View.OnClickListener() {
+        btnFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 handleFilterClick();
@@ -131,27 +131,27 @@ public class FriendsFragment extends Fragment {
         }
     }
 
-        private void handleFilterClick() {
-            //hide keyboard
-            if (getActivity() != null) {
-                InputMethodManager inputManager = (InputMethodManager)
-                        rootView.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                if (inputManager != null) {
-                    inputManager.hideSoftInputFromWindow(
-                            (null == getActivity().getCurrentFocus()) ? null :
-                                    getActivity().getCurrentFocus().getWindowToken(),
-                            InputMethodManager.HIDE_NOT_ALWAYS);
-                }
-            }
-            //handle filter request
-            if (txtFilter.getText().toString().isEmpty()) {
-                clearFilter();
-                isFiltered = false;
-            } else {
-                isFiltered = true;
-                filterList();
+    private void handleFilterClick() {
+        //hide keyboard
+        if (getActivity() != null) {
+            InputMethodManager inputManager = (InputMethodManager)
+                    rootView.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (inputManager != null) {
+                inputManager.hideSoftInputFromWindow(
+                        (null == getActivity().getCurrentFocus()) ? null :
+                                getActivity().getCurrentFocus().getWindowToken(),
+                        InputMethodManager.HIDE_NOT_ALWAYS);
             }
         }
+        //handle filter request
+        if (txtFilter.getText().toString().isEmpty()) {
+            clearFilter();
+            isFiltered = false;
+        } else {
+            isFiltered = true;
+            filterList();
+        }
+    }
 
     private void filterList() {
         if (um == null) {
@@ -163,7 +163,7 @@ public class FriendsFragment extends Fragment {
         for (User f : friendList) {
             if ((f.getFirstName().toLowerCase().contains(filter))
                     || (f.getMajor().toLowerCase().contains(filter))
-                    || (f.getLanguage().toLowerCase().contains(filter))){
+                    || (f.getLanguage().toLowerCase().contains(filter))) {
                 filteredList.add(f);
             }
         }

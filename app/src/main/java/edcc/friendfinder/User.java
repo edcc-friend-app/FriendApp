@@ -4,6 +4,7 @@ import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Objects;
 
 public class User implements Comparable<User> {
@@ -11,7 +12,7 @@ public class User implements Comparable<User> {
     private String lastName;
     private String major;
     private String bio;
-    private ArrayList<User> friends;
+    //private ArrayList<User> friends;
     private ArrayList<Course> classes;
     private String language;
     private int id;
@@ -20,28 +21,43 @@ public class User implements Comparable<User> {
     private int friendId = -1;
     //tests for match
     private int matchCount;
-    private int[] arrMatch;
-    private String[] courses;
+    private List<Integer> arrMatch;
+    //private String[] courses;
 
     public User() {
     }
 
+//    public User(String firstName, String lastName, String major,
+//                String interests, ArrayList<User> friends, ArrayList<Course> classes, String language) {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.major = major;
+//        this.bio = interests;
+//        this.friends = friends;
+//        this.classes = classes;
+//        this.language = language;
+//        matchCount = 0;
+////        courses = new String[] {"ACCT& 201", "ACCT& 202", "ACCT& 203", "ASL& 121", "ASL& 122", "ASL& 123",
+////                "ANTH 201", "ANTH 202", "ANTH 203", "ARAB 121", "ARAB 122", "ARAB 123", "ART 101", "ART 102",
+////                "ART 103", "BIOL& 211", "BIOL& 212", "BIOL& 213", "CHEM& 141", "CHEM& 142", "CHEM& 143",
+////                "CHEM& 241", "CHEM& 242", "CHEM& 243", "CHIN& 121", "CHIN& 122", "CHIN& 123"};
+//        arrMatch = new ArrayList<>();
+//    }
+
     public User(String firstName, String lastName, String major,
-                String interests, ArrayList<User> friends, ArrayList<Course> classes, int id, String language) {
+                String interests, ArrayList<Course> classes, String language) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.major = major;
         this.bio = interests;
-        this.friends = friends;
         this.classes = classes;
-        this.id = id;
         this.language = language;
         matchCount = 0;
-        courses = new String[] {"ACCT& 201", "ACCT& 202", "ACCT& 203", "ASL& 121", "ASL& 122", "ASL& 123",
-                "ANTH 201", "ANTH 202", "ANTH 203", "ARAB 121", "ARAB 122", "ARAB 123", "ART 101", "ART 102",
-                "ART 103", "BIOL& 211", "BIOL& 212", "BIOL& 213", "CHEM& 141", "CHEM& 142", "CHEM& 143",
-                "CHEM& 241", "CHEM& 242", "CHEM& 243", "CHIN& 121", "CHIN& 122", "CHIN& 123"};
-        arrMatch = new int[courses.length];
+//        courses = new String[] {"ACCT& 201", "ACCT& 202", "ACCT& 203", "ASL& 121", "ASL& 122", "ASL& 123",
+//                "ANTH 201", "ANTH 202", "ANTH 203", "ARAB 121", "ARAB 122", "ARAB 123", "ART 101", "ART 102",
+//                "ART 103", "BIOL& 211", "BIOL& 212", "BIOL& 213", "CHEM& 141", "CHEM& 142", "CHEM& 143",
+//                "CHEM& 241", "CHEM& 242", "CHEM& 243", "CHIN& 121", "CHIN& 122", "CHIN& 123"};
+        arrMatch = new ArrayList<>();
     }
 
     public String getFirstName() {
@@ -76,13 +92,13 @@ public class User implements Comparable<User> {
         this.bio = bio;
     }
 
-    public ArrayList<User> getFriends() {
-        return friends;
-    }
-
-    public void setFriends(ArrayList<User> friends) {
-        this.friends = friends;
-    }
+//    public ArrayList<User> getFriends() {
+//        return friends;
+//    }
+//
+//    public void setFriends(ArrayList<User> friends) {
+//        this.friends = friends;
+//    }
 
     public int getId() {
         return id;
@@ -116,11 +132,11 @@ public class User implements Comparable<User> {
         this.classes = classes;
     }
 
-    public int[] getArrMatch() {
+    public List<Integer> getArrMatch() {
         return arrMatch;
     }
 
-    public void setArrMatch(int[] arrMatch) {
+    public void setArrMatch(List<Integer> arrMatch) {
         this.arrMatch = arrMatch;
     }
 
@@ -133,10 +149,9 @@ public class User implements Comparable<User> {
     }
 
     public String printClasses() {
-        String strClasses = "";
-        for (Course cs : classes) {
-            strClasses += cs + "\n";
-        }
+        String[] classes = Classes.courses;
+        String strClasses = classes[arrMatch.get(0)] + '\n' + classes[arrMatch.get(1)] +
+                '\n' + classes[arrMatch.get(2)];
         return strClasses;
     }
 

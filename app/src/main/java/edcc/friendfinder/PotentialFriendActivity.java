@@ -89,46 +89,94 @@ public class PotentialFriendActivity extends BaseActivity {
         }
     }
 
+//    @Override
+//    public void setUpDataListeners() {
+//        um = UserManager.getUserManager(getApplicationContext(), userId);
+//        //pet listener
+//        final DocumentReference petRef = db.collection("users").document(userId).
+//                collection("pets").document(String.valueOf(thisUserId));
+//        userDataListener = new EventListener<DocumentSnapshot>() {
+//            @Override
+//            public void onEvent(DocumentSnapshot snapshot, FirebaseFirestoreException e) {
+//                if (e != null) {
+//                    Log.w("MYLOG", "User listener failed.", e);
+//                    return;
+//                }
+//                if (snapshot != null && snapshot.exists()) {
+//                    thisUser = snapshot.toObject(User.class);
+//                    um.setUser(thisUser);
+//                    lblName.setText(thisUser.toString());
+//                    lblMajor.setText(thisUser.getMajor());
+//                    //String[] genderArray = getResources().getStringArray(R.array.arrGenders);
+//                    //lblGender.setText(genderArray[thisPet.getGender()]);
+//                    lblClasses.setText(thisUser.printClasses());
+//                    lblLanguage.setText(thisUser.getLanguage());
+//                    lblBio.setText(thisUser.getBio());
+////                    if (thisUser.getFriendId() > -1 && um.getFriendList().size() > 0 &&
+////                            um.getFriend(thisUser.getFriendId()) != null) {
+////                        lblClient.setText(dm.getClient(thisPet.getClientId()).toString());
+////                    }
+//                    String photoStr = thisUser.getPhoto();
+//                    imgUser = findViewById(R.id.imgFriendPicture);
+//                    if (photoStr != null) {
+//                        byte[] photo = Base64.decode(photoStr, Base64.DEFAULT);
+//                        imgUser.setImageBitmap(BitmapFactory.decodeByteArray(photo, 0, photo.length));
+//                        imgUser.setScaleType(ImageView.ScaleType.FIT_CENTER);
+//                    } else {
+//                        imgUser.setImageBitmap(null);
+//                    }
+//                }
+//            }
+//        };
+//        userReg = petRef.addSnapshotListener(userDataListener);
+//        //vet listener
+//        final CollectionReference vetRef = db.collection("users").document(userId)
+//                .collection("vets");
+//        friendDataListener = new EventListener<QuerySnapshot>() {
+//            @Override
+//            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+//                if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
+//                    ArrayList<User> list = new ArrayList<>();
+//                    for (int i = 0; i < documentSnapshots.size(); i++) {
+//                        DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
+//                        User friend = snapshot.toObject(User.class);
+//                        list.add(friend);
+//                    }
+//                    um.setFriendList(list);
+////                    if (thisUser != null && thisUser.getFriendId() >= 0) {
+////                        lbl.setText(dm.getVet(thisPet.getVetId()).toString());
+////                    }
+//                }
+//            }
+//        };
+//        friendReg = vetRef.addSnapshotListener(friendDataListener);
+//    }
+
     @Override
     public void setUpDataListeners() {
         um = UserManager.getUserManager(getApplicationContext(), userId);
-        //pet listener
-        final DocumentReference petRef = db.collection("users").document(userId).
-                collection("pets").document(String.valueOf(thisUserId));
-        userDataListener = new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(DocumentSnapshot snapshot, FirebaseFirestoreException e) {
-                if (e != null) {
-                    Log.w("MYLOG", "User listener failed.", e);
-                    return;
-                }
-                if (snapshot != null && snapshot.exists()) {
-                    thisUser = snapshot.toObject(User.class);
-                    um.setUser(thisUser);
-                    lblName.setText(thisUser.toString());
-                    lblMajor.setText(thisUser.getMajor());
-                    //String[] genderArray = getResources().getStringArray(R.array.arrGenders);
-                    //lblGender.setText(genderArray[thisPet.getGender()]);
-                    lblClasses.setText(thisUser.printClasses());
-                    lblLanguage.setText(thisUser.getLanguage());
-                    lblBio.setText(thisUser.getBio());
+        thisUser = um.getUser(thisUserId);
+        um.setUser(thisUser);
+        lblName.setText(thisUser.toString());
+        lblMajor.setText(thisUser.getMajor());
+        //String[] genderArray = getResources().getStringArray(R.array.arrGenders);
+        //lblGender.setText(genderArray[thisPet.getGender()]);
+        lblClasses.setText(thisUser.printClasses());
+        lblLanguage.setText(thisUser.getLanguage());
+        lblBio.setText(thisUser.getBio());
 //                    if (thisUser.getFriendId() > -1 && um.getFriendList().size() > 0 &&
 //                            um.getFriend(thisUser.getFriendId()) != null) {
 //                        lblClient.setText(dm.getClient(thisPet.getClientId()).toString());
 //                    }
-                    String photoStr = thisUser.getPhoto();
-                    imgUser = findViewById(R.id.imgFriendPicture);
-                    if (photoStr != null) {
-                        byte[] photo = Base64.decode(photoStr, Base64.DEFAULT);
-                        imgUser.setImageBitmap(BitmapFactory.decodeByteArray(photo, 0, photo.length));
-                        imgUser.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                    } else {
-                        imgUser.setImageBitmap(null);
-                    }
-                }
-            }
-        };
-        userReg = petRef.addSnapshotListener(userDataListener);
+        String photoStr = thisUser.getPhoto();
+        imgUser = findViewById(R.id.imgFriendPicture);
+        if (photoStr != null) {
+            byte[] photo = Base64.decode(photoStr, Base64.DEFAULT);
+            imgUser.setImageBitmap(BitmapFactory.decodeByteArray(photo, 0, photo.length));
+            imgUser.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        } else {
+            imgUser.setImageBitmap(null);
+        }
         //vet listener
         final CollectionReference vetRef = db.collection("users").document(userId)
                 .collection("vets");

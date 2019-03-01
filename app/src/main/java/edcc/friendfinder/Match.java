@@ -1,6 +1,8 @@
 package edcc.friendfinder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Match {
@@ -37,9 +39,14 @@ public class Match {
         }
     }
 
-    public boolean compareClassesHelper( int[] arr1, int arr2[]) {
-        for (int i = 0; i < arr1.length; i++) {
-            if(arr1[i] == 1 && arr2[i] == 1) {
+    public boolean compareClassesHelper( List<Integer> arr1, List<Integer> arr2) {
+        Collections.sort(arr1);
+        Collections.sort(arr2);
+//        for (Integer i: arr1) {
+//            if(i == arr2)
+//        }
+        for (int i = 0; i < arr1.size(); i++) {
+            if (arr1.get(i) == arr2.get(i)) {
                 return true;
             }
         }

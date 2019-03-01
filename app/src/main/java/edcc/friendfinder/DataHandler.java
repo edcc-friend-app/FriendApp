@@ -1,6 +1,7 @@
 package edcc.friendfinder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DataHandler {
 
@@ -42,82 +43,93 @@ public class DataHandler {
         classes.add(math);
         classes.add(cs);
         classes.add(english);
+
         friend1 = new User("Franshesco", "Coello","CS", "Soccer",
-                friends, classes, 955123123, "English");
-        int[] classes1 = new int[25];
-        classes1[0] = 3;
-        classes1[1] = 9;
-        classes1[2] = 12;
+                classes, "English");
+        List<Integer> classes1 = new ArrayList<>();
+        classes1.add(0);
+        classes1.add(1);
+        classes1.add(2);
         friend1.setArrMatch(classes1);
+
         friend2 = new User("Anthony", "Luong", "CS", "Memes",
-                friends, classes, 955111321, "Vietnamese");
-        int[] classes2 = new int[25];
-        classes1[0] = 1;
-        classes1[1] = 1;
-        classes1[2] = 1;
-        friend1.setArrMatch(classes2);
+                classes, "Vietnamese");
+        List<Integer> classes2 = new ArrayList<>();
+        classes2.add(3);
+        classes2.add(12);
+        classes2.add(21);
+        friend2.setArrMatch(classes2);
+
         friend3 = new User("Jonathan", "Young", "Mathematics", "Football",
-                friends, classes, 955008130, "Chinese");
-        int[] classes3 = new int[25];
-        classes1[0] = 1;
-        classes1[1] = 1;
-        classes1[2] = 1;
-        friend1.setArrMatch(classes1);
+                classes, "Chinese");
+        List<Integer> classes3 = new ArrayList<>();
+        classes3.add(8);
+        classes3.add(5);
+        classes3.add(24);
+        friend3.setArrMatch(classes3);
+
         friend4 = new User("Susy", "Lincoln", "English", "Dancing",
-                friends, classes, 955062330, "Spanish");
-        int[] classes4 = new int[25];
-        classes1[0] = 1;
-        classes1[1] = 1;
-        classes1[2] = 1;
-        friend1.setArrMatch(classes1);
+                classes, "Spanish");
+        List<Integer> classes4 = new ArrayList<>();
+        classes4.add(13);
+        classes4.add(4);
+        classes4.add(19);
+        friend4.setArrMatch(classes4);
+
         friend5 = new User("Jared", "Kuddes", "English", "Memes",
-                friends, classes, 955025430, "French");
-        int[] classes5 = new int[25];
-        classes1[0] = 1;
-        classes1[1] = 1;
-        classes1[2] = 1;
-        friend1.setArrMatch(classes1);
+                classes, "French");
+        List<Integer> classes5 = new ArrayList<>();
+        classes5.add(23);
+        classes5.add(1);
+        classes5.add(16);
+        friend5.setArrMatch(classes5);
+
         friend6 = new User("Sora", "Fung", "Biology", "Dancing",
-                friends, classes, 955073430, "Chinese");
-        int[] classes6 = new int[25];
-        classes1[0] = 1;
-        classes1[1] = 1;
-        classes1[2] = 1;
-        friend1.setArrMatch(classes1);
+                classes, "Chinese");
+        List<Integer> classes6 = new ArrayList<>();
+        classes6.add(3);
+        classes6.add(21);
+        classes6.add(6);
+        friend6.setArrMatch(classes6);
+
         friend7 = new User("Roxas", "Pham", "Mathematics", "Guitar",
-                friends, classes, 955013230, "Vietnamese");
-        int[] classes7 = new int[25];
-        classes1[0] = 1;
-        classes1[1] = 1;
-        classes1[2] = 1;
-        friend1.setArrMatch(classes1);
+                classes, "Vietnamese");
+        List<Integer> classes7 = new ArrayList<>();
+        classes7.add(10);
+        classes7.add(20);
+        classes7.add(5);
+        friend7.setArrMatch(classes7);
+
         friend8 = new User("Vivian", "Nguyen", "Biology", "Swimming",
-                friends, classes, 955008430, "Vietnamese");
-        int[] classes8 = new int[25];
-        classes1[0] = 1;
-        classes1[1] = 1;
-        classes1[2] = 1;
-        friend1.setArrMatch(classes1);
+                classes, "Vietnamese");
+        List<Integer> classes8 = new ArrayList<>();
+        classes8.add(2);
+        classes8.add(3);
+        classes8.add(5);
+        friend8.setArrMatch(classes8);
+
         friend9 = new User("Henry", "Zokkins", "Art", "Tennis",
-                friends, classes, 955073530, "English");
-        int[] classes9 = new int[25];
-        classes1[0] = 1;
-        classes1[1] = 1;
-        classes1[2] = 1;
-        friend1.setArrMatch(classes1);
+                classes, "English");
+        List<Integer> classes9 = new ArrayList<>();
+        classes9.add(3);
+        classes9.add(15);
+        classes9.add(22);
+        friend9.setArrMatch(classes9);
+
         friend10 = new User("Vy", "Bui", "Art", "Swimming",
-                friends, classes, 955029630, "Chinese");
-        int[] classes10 = new int[25];
-        classes1[0] = 1;
-        classes1[1] = 1;
-        classes1[2] = 1;
-        friend1.setArrMatch(classes1);
+                classes, "Chinese");
+        List<Integer> classes10 = new ArrayList<>();
+        classes10.add(0);
+        classes10.add(1);
+        classes10.add(2);
+        friend10.setArrMatch(classes10);
+
         //Add current Friends and potential Friends
-        friends.add(friend1);
-        friends.add(friend2);
-        friends.add(friend3);
-        friends.add(friend4);
-        friends.add(friend5);
+        potFriends.add(friend1);
+        potFriends.add(friend2);
+        potFriends.add(friend3);
+        potFriends.add(friend4);
+        potFriends.add(friend5);
         potFriends.add(friend6);
         potFriends.add(friend7);
         potFriends.add(friend8);
