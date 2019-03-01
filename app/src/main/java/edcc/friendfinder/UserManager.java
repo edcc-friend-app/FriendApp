@@ -90,6 +90,24 @@ public class UserManager {
         }
     }
 
+    User getUser(String id) {
+        //search for id
+        int index = -1;
+        for (int i = 0; i < userList.size(); i++) {
+            User u = userList.get(i);
+            if (u.toString().equalsIgnoreCase(id)) {
+                index = i;
+                break;
+            }
+        }
+        //if found
+        if (index >= 0) {
+            return userList.get(index);
+        } else {
+            return null;
+        }
+    }
+
     public void setUser(User user) {
         for (int i = 0; i < userList.size(); i++) {
             if (userList.get(i).getId() == user.getId()) {

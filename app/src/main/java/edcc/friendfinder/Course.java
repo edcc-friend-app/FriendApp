@@ -9,6 +9,9 @@ public class Course implements Comparable<Course>{
         this.instructor = instructor;
     }
 
+    public Course() {}
+
+
     public String getName() {
         return name;
     }

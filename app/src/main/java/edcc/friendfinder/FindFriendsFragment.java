@@ -121,7 +121,7 @@ public class FindFriendsFragment extends Fragment {
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             User thisFriend = (User) lstFriends.getItemAtPosition(position);
                             listener.viewPotFriendRequested(thisFriend);
-                            //clearFilter();
+                            clearFilter();
                             isFiltered = false;
                         }
                     };
@@ -192,7 +192,7 @@ public class FindFriendsFragment extends Fragment {
      */
     private void clearFilter() {
         listAdapter = new ArrayAdapter<>(rootView.getContext(),
-                android.R.layout.simple_list_item_1, um.getPotentialFriends());
+                android.R.layout.simple_list_item_1, potFriendList);
         lstFriends.setAdapter(listAdapter);
         txtFilter.setText("");
     }

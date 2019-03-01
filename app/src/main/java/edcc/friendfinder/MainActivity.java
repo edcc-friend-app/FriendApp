@@ -153,7 +153,7 @@ public class MainActivity extends BaseActivity
             };
             userReg = ref.addSnapshotListener(userDataListener);
         } else if (fragment instanceof FriendsFragment) {
-            //set up vet list
+            //
             um = UserManager.getUserManager(this, userId);
             final CollectionReference ref = db.collection("users").document(userId)
                     .collection("friends");

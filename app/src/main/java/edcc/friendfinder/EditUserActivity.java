@@ -61,10 +61,10 @@ public class EditUserActivity extends AppCompatActivity {
     private Classes classes;
     private ArrayAdapter<String> classesAdapter;
     //    private List<Classes> classesList = new ArrayList<>();
-    private Major majors;
+    private Major majors = new Major();
     private ArrayAdapter<String> majorAdapter;
 //    private List<Major> majorList = new ArrayList<>();
-    private Language languages;
+    private Language languages = new Language();
     private ArrayAdapter<String> languageAdapter;
     //    private List<Language> languageList = new ArrayList<>();
 
@@ -139,7 +139,7 @@ public class EditUserActivity extends AppCompatActivity {
         });
         // course 1
         spn1Classes = findViewById(R.id.spnClass1);
-        classesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, classes.getCourseList());
+        classesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, Classes.courses);
         spn1Classes.setAdapter(classesAdapter);
         spn1Classes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -154,7 +154,7 @@ public class EditUserActivity extends AppCompatActivity {
         });
         // course 2
         spn2Classes = findViewById(R.id.spnClass2);
-        classesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, classes.getCourseList());
+        classesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, Classes.courses);
         spn2Classes.setAdapter(classesAdapter);
         spn2Classes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -169,7 +169,7 @@ public class EditUserActivity extends AppCompatActivity {
         });
         // course 3
         spn3Classes = findViewById(R.id.spnClass3);
-        classesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, classes.getCourseList());
+        classesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, Classes.courses);
         spn3Classes.setAdapter(classesAdapter);
         spn3Classes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
