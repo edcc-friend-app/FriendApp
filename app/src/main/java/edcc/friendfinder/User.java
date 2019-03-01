@@ -15,7 +15,6 @@ public class User implements Comparable<User> {
     private ArrayList<Course> classes;
     private String language;
     private int id;
-    //added from Linda's code
     static boolean listType;
     private String photo; //base64 encoded byte array
     //tests for match

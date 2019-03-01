@@ -7,18 +7,16 @@ import android.content.SharedPreferences;
 /**
  * Manages the user preferences for the app.
  *
- * @author Linda Zuvich
- * @version 12/21/2018
  */
 public class PreferencesManager {
     static final String CURRENT_FRAGMENT = "currentFragment";
     //fields
     private static PreferencesManager pm;
-    private boolean listBreed;
+    //private boolean listBreed;
     private boolean sortAZ;
-    private boolean warnBeforeDeletingPet;
-    private boolean warnBeforeDeletingVet;
-    private boolean warnBeforeDeletingClient;
+    private boolean warnBeforeDeletingFriend;
+//    private boolean warnBeforeDeletingVet;
+//    private boolean warnBeforeDeletingClient;
     private String currentFragment;
     private final SharedPreferences PREFS;
 
@@ -39,48 +37,48 @@ public class PreferencesManager {
      */
     private PreferencesManager(Context ctx) {
         PREFS = ctx.getSharedPreferences("edcc.friendfinder", Context.MODE_PRIVATE);
-        listBreed = PREFS.getBoolean("listType", true);
-        User.listType = listBreed;
+//        listBreed = PREFS.getBoolean("listType", true);
+//        User.listType = listBreed;
         sortAZ = PREFS.getBoolean("sortAZ", true);
-        warnBeforeDeletingPet = PREFS.getBoolean("warnBeforeDeletingPet", true);
-        warnBeforeDeletingVet = PREFS.getBoolean("warnBeforeDeletingVet", true);
-        warnBeforeDeletingClient = PREFS.getBoolean("warnBeforeDeletingClient", true);
+        warnBeforeDeletingFriend = PREFS.getBoolean("warnBeforeDeletingFriend", true);
+//        warnBeforeDeletingVet = PREFS.getBoolean("warnBeforeDeletingVet", true);
+//        warnBeforeDeletingClient = PREFS.getBoolean("warnBeforeDeletingClient", true);
         currentFragment = PREFS.getString(CURRENT_FRAGMENT, "profile");
     }
 
-    /**
-     * Provides access to the preference to list the breed with the pet name.
-     *
-     * @return true if breed should be listed, false if not
-     */
-    boolean isListBreed() {
-        return listBreed;
-    }
+//    /**
+//     * Provides access to the preference to list the breed with the pet name.
+//     *
+//     * @return true if breed should be listed, false if not
+//     */
+//    boolean isListBreed() {
+//        return listBreed;
+//    }
+
+//    /**
+//     * Allows the preference to list the breed with the pet name to be changed.
+//     *
+//     * @param listBreed true if the breed should be listed, false if not
+//     */
+//    void setListBreed(boolean listBreed) {
+//        this.listBreed = listBreed;
+//        PREFS.edit().putBoolean("listType", listBreed).apply();
+//        User.listType = listBreed;
+//    }
 
     /**
-     * Allows the preference to list the breed with the pet name to be changed.
+     * Provides access to the preference to sort friends A to Z or Z to A.
      *
-     * @param listBreed true if the breed should be listed, false if not
-     */
-    void setListBreed(boolean listBreed) {
-        this.listBreed = listBreed;
-        PREFS.edit().putBoolean("listType", listBreed).apply();
-        User.listType = listBreed;
-    }
-
-    /**
-     * Provides access to the preference to sort pets A to Z or Z to A.
-     *
-     * @return true if pets should be sorted A to Z, false if Z to A
+     * @return true if friends should be sorted A to Z, false if Z to A
      */
     boolean isSortAZ() {
         return sortAZ;
     }
 
     /**
-     * Allows the preference to sort pets A to Z or Z to A to be changed.
+     * Allows the preference to sort friends A to Z or Z to A to be changed.
      *
-     * @param sortAZ true if pets should be sorted A to Z, false if Z to A
+     * @param sortAZ true if friends should be sorted A to Z, false if Z to A
      */
     void setSortAZ(boolean sortAZ) {
         this.sortAZ = sortAZ;
@@ -88,61 +86,61 @@ public class PreferencesManager {
     }
 
     /**
-     * Provides access to the preference to warn before deleting a pet.
+     * Provides access to the preference to warn before deleting a friend.
      *
      * @return true if a warning should be given, false if not
      */
-    boolean isWarnBeforeDeletingPet() {
-        return warnBeforeDeletingPet;
+    boolean isWarnBeforeDeletingFriend() {
+        return warnBeforeDeletingFriend;
     }
 
     /**
-     * Allows the preference to warn before deleting a pet to be changed.
+     * Allows the preference to warn before deleting a friend to be changed.
      *
-     * @param warnBeforeDeletingPet true if a a warning should be given, false if not
+     * @param warnBeforeDeletingFriend true if a a warning should be given, false if not
      */
-    void setWarnBeforeDeletingPet(boolean warnBeforeDeletingPet) {
-        this.warnBeforeDeletingPet = warnBeforeDeletingPet;
-        PREFS.edit().putBoolean("warnBeforeDeletingPet", warnBeforeDeletingPet).apply();
+    void setWarnBeforeDeletingFriend(boolean warnBeforeDeletingFriend) {
+        this.warnBeforeDeletingFriend = warnBeforeDeletingFriend;
+        PREFS.edit().putBoolean("warnBeforeDeletingPet", warnBeforeDeletingFriend).apply();
     }
 
-    /**
-     * Provides access to the preference to warn before deleting a vet.
-     *
-     * @return true if a warning should be given, false if not
-     */
-    boolean isWarnBeforeDeletingVet() {
-        return warnBeforeDeletingVet;
-    }
-
-    /**
-     * Allows the preference to warn before deleting a vet to be changed.
-     *
-     * @param warnBeforeDeletingVet true if a a warning should be given, false if not
-     */
-    void setWarnBeforeDeletingVet(boolean warnBeforeDeletingVet) {
-        this.warnBeforeDeletingVet = warnBeforeDeletingVet;
-        PREFS.edit().putBoolean("warnBeforeDeletingVet", warnBeforeDeletingVet).apply();
-    }
-
-    /**
-     * Provides access to the preference to warn before deleting a client.
-     *
-     * @return true if a warning should be given, false if not
-     */
-    boolean isWarnBeforeDeletingClient() {
-        return warnBeforeDeletingClient;
-    }
-
-    /**
-     * Allows the preference to warn before deleting a client to be changed.
-     *
-     * @param warnBeforeDeletingClient true if a a warning should be given, false if not
-     */
-    void setWarnBeforeDeletingClient(boolean warnBeforeDeletingClient) {
-        this.warnBeforeDeletingClient = warnBeforeDeletingClient;
-        PREFS.edit().putBoolean("warnBeforeDeletingClient", warnBeforeDeletingClient).apply();
-    }
+//    /**
+//     * Provides access to the preference to warn before deleting a vet.
+//     *
+//     * @return true if a warning should be given, false if not
+//     */
+//    boolean isWarnBeforeDeletingVet() {
+//        return warnBeforeDeletingVet;
+//    }
+//
+//    /**
+//     * Allows the preference to warn before deleting a vet to be changed.
+//     *
+//     * @param warnBeforeDeletingVet true if a a warning should be given, false if not
+//     */
+//    void setWarnBeforeDeletingVet(boolean warnBeforeDeletingVet) {
+//        this.warnBeforeDeletingVet = warnBeforeDeletingVet;
+//        PREFS.edit().putBoolean("warnBeforeDeletingVet", warnBeforeDeletingVet).apply();
+//    }
+//
+//    /**
+//     * Provides access to the preference to warn before deleting a client.
+//     *
+//     * @return true if a warning should be given, false if not
+//     */
+//    boolean isWarnBeforeDeletingClient() {
+//        return warnBeforeDeletingClient;
+//    }
+//
+//    /**
+//     * Allows the preference to warn before deleting a client to be changed.
+//     *
+//     * @param warnBeforeDeletingClient true if a a warning should be given, false if not
+//     */
+//    void setWarnBeforeDeletingClient(boolean warnBeforeDeletingClient) {
+//        this.warnBeforeDeletingClient = warnBeforeDeletingClient;
+//        PREFS.edit().putBoolean("warnBeforeDeletingClient", warnBeforeDeletingClient).apply();
+//    }
 
     /**
      * Provides access to the current fragment showing in the NavActivity. This allows the app

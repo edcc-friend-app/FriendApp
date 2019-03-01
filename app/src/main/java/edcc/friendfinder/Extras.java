@@ -15,8 +15,8 @@ class Extras {
     static final String FRIEND_ID = "friendId";
     static final String CURRENT_FRAGMENT = "currentFragment";
     static final int REQUEST_IMAGE_CAPTURE = 1;
-    static final int REQUEST_VET = 2;
-    static final int REQUEST_CLIENT = 3;
+    static final int REQUEST_FRIEND = 2;
+    static final int REQUEST_POTENTIAL_FRIEND = 3;
     static final int REQUEST_AUTH = 4;
 
     private Fragment fragment;
