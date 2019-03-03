@@ -22,6 +22,21 @@ public class UserManager {
     private ArrayList<Course> classes;
     private int[] currClasses;
     private Match match;
+    private String[] courses = new String[]{"ACCT& 201", "ACCT& 202", "ACCT& 203", "ASL& 121", "ASL& 122", "ASL& 123",
+            "ANTH 201", "ANTH 202", "ANTH 203", "ARAB 121", "ARAB 122", "ARAB 123", "ART 101", "ART 102",
+            "ART 103", "BIOL& 211", "BIOL& 212", "BIOL& 213", "CHEM& 141", "CHEM& 142", "CHEM& 143",
+            "CHEM& 241", "CHEM& 242", "CHEM& 243", "CHIN& 121", "CHIN& 122", "CHIN& 123"};
+    private String[] languages = {"Arabic", "Chinese (Cantonese)", "Chinese (Mandarin)", "English",
+            "French", "German", "Indonesian (Malay)", "Hindustani", "Japanese", "Korean", "Russian",
+            "Spanish", "Vietnamese"};
+    private String[] majors = {"Accounting", "Allied Health Education", "Biology", "Business",
+            "Business Information Technology", "Business Management", "Business Training Center",
+            "Child, Youth, and Family Studies", "Computer Information Systems", "Computer Science",
+            "Construction Management", "Culinary Arts", "Early Childhood Education", "Emergency Management",
+            "Engineering and Science", "Engineering Technology", "Event Planning", "Family Support Studies",
+            "General Studies", "Horticulture", "Hospitality and Tourism", "Music", "Nursing",
+            "Occupational Safety and Health", "Paralegal", "Social and Human Services",
+            "Transfer (General)", "Visual Communications"};
 
     private UserManager(Context ctx) {
         dh = new DataHandler();
@@ -288,6 +303,30 @@ public class UserManager {
 
     public void setThisUser(User thisUser) {
         this.thisUser = thisUser;
+    }
+
+    public String[] getCourses() {
+        return courses;
+    }
+
+    public void setCourses(String[] courses) {
+        this.courses = courses;
+    }
+
+    public String[] getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(String[] languages) {
+        this.languages = languages;
+    }
+
+    public String[] getMajors() {
+        return majors;
+    }
+
+    public void setMajors(String[] majors) {
+        this.majors = majors;
     }
 }
 

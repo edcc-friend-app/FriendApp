@@ -157,7 +157,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txtAvailable" />
 
         <TextView
-            android:id="@+id/lblBio"
+            android:id="@+id/txtBio"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

@@ -13,9 +13,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -59,7 +56,7 @@ public class ProfileFragment extends Fragment {
         lblMajor = rootView.findViewById(R.id.lblMajor);
         lblLanguage = rootView.findViewById(R.id.lblLanguage);
         lblClasses = rootView.findViewById(R.id.lblClasses);
-        lblBio = rootView.findViewById(R.id.lblBio);
+        lblBio = rootView.findViewById(R.id.txtBio);
         imgUser = rootView.findViewById(R.id.imgUserPhoto);
         return rootView;
     }
@@ -122,8 +119,6 @@ public class ProfileFragment extends Fragment {
         } else {
             imgUser.setImageBitmap(null);
         }
-        //added for mock-up user
-        imgUser.setImageDrawable(rootView.getResources().getDrawable(R.drawable.user_icon));
     }
 
 }

@@ -64,7 +64,7 @@ public class PotentialFriendActivity extends BaseActivity {
         lblMajor = findViewById(R.id.lblMajor);
         lblClasses = findViewById(R.id.lblClasses);
         lblLanguage = findViewById(R.id.lblLanguage);
-        lblBio = findViewById(R.id.lblBio);
+        lblBio = findViewById(R.id.txtBio);
         imgUser = findViewById(R.id.imgFriendPicture);
 
     }

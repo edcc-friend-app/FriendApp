@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.view.Menu;
@@ -14,17 +13,11 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.ArrayList;
-
-import static java.security.AccessController.getContext;
 
 public class FriendDetailsActivity extends BaseActivity {
 
@@ -70,7 +63,7 @@ public class FriendDetailsActivity extends BaseActivity {
         lblMajor = findViewById(R.id.lblMajor);
         lblClasses = findViewById(R.id.lblClasses);
         lblLanguage = findViewById(R.id.lblLanguage);
-        lblBio = findViewById(R.id.lblBio);
+        lblBio = findViewById(R.id.txtBio);
         imgFriend = findViewById(R.id.imgFriendPicture);
     }
 
