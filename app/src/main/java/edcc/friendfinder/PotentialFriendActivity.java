@@ -150,7 +150,7 @@ public class PotentialFriendActivity extends BaseActivity {
     public void setUpDataListeners() {
         um = UserManager.getUserManager(getApplicationContext(), userId);
         thisUser = um.getUser(thisUserName);
-        um.setUser(thisUser);
+        //um.setUser(thisUser);
         lblName.setText(thisUser.toString());
         lblMajor.setText(thisUser.getMajor());
         //String[] genderArray = getResources().getStringArray(R.array.arrGenders);
