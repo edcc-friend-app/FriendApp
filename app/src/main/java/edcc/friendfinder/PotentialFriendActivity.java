@@ -203,6 +203,7 @@ public class PotentialFriendActivity extends BaseActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         getMenuInflater().inflate(R.menu.menu_add, menu);
+
         return true;
     }
 

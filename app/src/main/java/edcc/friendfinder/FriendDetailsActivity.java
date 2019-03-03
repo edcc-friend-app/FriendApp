@@ -144,6 +144,7 @@ public class FriendDetailsActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.menu_delete, menu);
         getMenuInflater().inflate(R.menu.menu_done, menu);
         return true;
     }
@@ -168,6 +169,8 @@ public class FriendDetailsActivity extends BaseActivity {
                 //settings menu option
 //                Intent intent = new Intent(this, PreferencesActivity.class);
 //                startActivity(intent);
+            case R.id.action_delete:
+                deleteFriend();
                 return true;
         }
         return super.onOptionsItemSelected(item);
