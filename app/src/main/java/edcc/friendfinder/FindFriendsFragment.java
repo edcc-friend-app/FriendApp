@@ -65,7 +65,7 @@ public class FindFriendsFragment extends Fragment {
                 handleFilterClick();
             }
         });
-        updateData();
+        //updateData();
         return rootView;
     }
 

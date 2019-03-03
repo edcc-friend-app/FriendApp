@@ -61,7 +61,7 @@ public class FriendDetailsActivity extends BaseActivity {
         um = UserManager.getUserManager(getApplicationContext(), userId);
         //get current friend
         Intent intent = getIntent();
-        id = intent.getIntExtra("itemId", -1);
+        id = intent.getIntExtra(Extras.FRIEND_ID, -1);
         if (id < 0) {
             finish();
         }

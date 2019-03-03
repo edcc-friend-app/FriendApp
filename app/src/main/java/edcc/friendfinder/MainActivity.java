@@ -45,8 +45,9 @@ import java.util.List;
  */
 
 public class MainActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener, FriendsFragment.FriendListener,
-        ProfileFragment.ProfileListener, FindFriendsFragment.FriendListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        FriendsFragment.FriendListener, ProfileFragment.ProfileListener,
+        FindFriendsFragment.FriendListener {
     //fields
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private EventListener<QuerySnapshot> profileDataListener;
@@ -61,10 +62,13 @@ public class MainActivity extends BaseActivity
     private String currentFragment;
     private PreferencesManager pm;
 
-    private int type;
     public static final String USER_ID = "userId";
 
-
+    /**
+     * Android onCreate method.
+     *
+     * @param savedInstanceState the class state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,7 +117,7 @@ public class MainActivity extends BaseActivity
             //set up pet list
             um = UserManager.getUserManager(this, userId);
             final CollectionReference ref = db.collection("users").document(userId)
-                    .collection("frie");
+                    .collection("friends");
             profileDataListener = new EventListener<QuerySnapshot>() {
                 @Override
                 public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
@@ -125,7 +129,7 @@ public class MainActivity extends BaseActivity
                             userList.add(user);
                         }
                         um.setThisUser(userList.get(0));
-                        //((FriendsFragment)fragment).updateData();
+                        ((ProfileFragment)fragment).updateData();
                     }
                 }
             };
@@ -134,7 +138,7 @@ public class MainActivity extends BaseActivity
             //set up client list
             um = UserManager.getUserManager(this, userId);
             final CollectionReference ref = db.collection("users").document(userId)
-                    .collection("clients");
+                    .collection("friends");
             userDataListener = new EventListener<QuerySnapshot>() {
                 @Override
                 public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
@@ -150,7 +154,7 @@ public class MainActivity extends BaseActivity
                     }
                 }
             };
-            //userReg = ref.addSnapshotListener(userDataListener);
+            userReg = ref.addSnapshotListener(userDataListener);
         } else if (fragment instanceof FriendsFragment) {
             //
             um = UserManager.getUserManager(this, userId);
@@ -159,7 +163,6 @@ public class MainActivity extends BaseActivity
             friendDataListener = new EventListener<QuerySnapshot>() {
                 @Override
                 public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
-
                     if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
                         ArrayList<User> friendList = new ArrayList<>();
                         for (int i = 0; i < documentSnapshots.size(); i++) {
@@ -219,17 +222,10 @@ public class MainActivity extends BaseActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
-
         if (id == R.id.action_sign_out) {
             signOut();
             return true;
@@ -242,7 +238,6 @@ public class MainActivity extends BaseActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         if (id == R.id.nav_profile) {
             actionBar.setTitle("Profile");
             fragment = new ProfileFragment();
@@ -261,6 +256,7 @@ public class MainActivity extends BaseActivity
         ft.replace(R.id.frmFragment, fragment);
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         ft.commit();
+        setUpDataListeners();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
