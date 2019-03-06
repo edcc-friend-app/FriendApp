@@ -173,7 +173,7 @@ public class FriendDetailsActivity extends BaseActivity {
         if (pm.isWarnBeforeDeletingFriend()) {
             new AlertDialog.Builder(this)
                     .setTitle("Confirm")
-                    .setMessage("Are you sure you want to delete this pet?")
+                    .setMessage("Are you sure you want to delete this friend?")
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         @Override

@@ -843,7 +843,7 @@ public class EditUserActivity extends BaseActivity {
                 @Override
                 public void onEvent(DocumentSnapshot snapshot, FirebaseFirestoreException e) {
                     if (e != null) {
-                        Log.w("MYLOG", "Pet listener failed.", e);
+                        Log.w("MYLOG", "Profile listener failed.", e);
                         return;
                     }
                     if (snapshot != null && snapshot.exists()) {
