@@ -11,11 +11,9 @@ public class PreferencesManager {
     static final String CURRENT_FRAGMENT = "currentFragment";
     //fields
     private static PreferencesManager pm;
-    //private boolean listBreed;
     private boolean sortAZ;
     private boolean warnBeforeDeletingFriend;
-    //    private boolean warnBeforeDeletingVet;
-//    private boolean warnBeforeDeletingClient;
+    //    private boolean warnBeforeDeleting;
     private String currentFragment;
     private final SharedPreferences PREFS;
 
@@ -37,7 +35,7 @@ public class PreferencesManager {
     private PreferencesManager(Context ctx) {
         PREFS = ctx.getSharedPreferences("edcc.friendfinder", Context.MODE_PRIVATE);
 //        listBreed = PREFS.getBoolean("listType", true);
-//        User.listType = listBreed;
+//        User.listType = listFriends;
         sortAZ = PREFS.getBoolean("sortAZ", true);
         warnBeforeDeletingFriend = PREFS.getBoolean("warnBeforeDeletingFriend", true);
 //        warnBeforeDeletingVet = PREFS.getBoolean("warnBeforeDeletingVet", true);
@@ -100,7 +98,7 @@ public class PreferencesManager {
      */
     void setWarnBeforeDeletingFriend(boolean warnBeforeDeletingFriend) {
         this.warnBeforeDeletingFriend = warnBeforeDeletingFriend;
-        PREFS.edit().putBoolean("warnBeforeDeletingPet", warnBeforeDeletingFriend).apply();
+        PREFS.edit().putBoolean("warnBeforeDeletingFriend", warnBeforeDeletingFriend).apply();
     }
 
 
