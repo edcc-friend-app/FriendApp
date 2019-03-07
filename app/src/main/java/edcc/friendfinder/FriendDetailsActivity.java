@@ -91,7 +91,7 @@ public class FriendDetailsActivity extends BaseActivity {
         lblName.setText(thisFriend.toString());
         lblMajor.setText(thisFriend.getMajor());
         //String[] genderArray = getResources().getStringArray(R.array.arrGenders);
-        //lblGender.setText(genderArray[thisPet.getGender()]);
+        //lblGender.setText(genderArray[thisUser.getGender()]);
         lblClasses.setText(thisFriend.printClasses());
         lblLanguage.setText(thisFriend.getLanguage());
         lblBio.setText(thisFriend.getBio());
