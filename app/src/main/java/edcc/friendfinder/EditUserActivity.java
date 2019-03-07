@@ -758,10 +758,10 @@ public class EditUserActivity extends BaseActivity {
 
         //if new, add to pet list
         if (profileId < 0) {
-            um.addUser(p);
+            um.setThisUser(p);
         } else {
             p.setId(profileId);
-            um.replaceUser(p);
+            um.setThisUser(p);
         }
         //close
         finish();
@@ -837,7 +837,7 @@ public class EditUserActivity extends BaseActivity {
         spnClass3.setAdapter(courseAdapter);
 
         final DocumentReference petRef = db.collection("users").document(userId).
-                collection("friends").document(String.valueOf(profileId));
+                collection("profile").document(String.valueOf(profileId));
         if (profileId >= 0) {
             profileDataListener = new EventListener<DocumentSnapshot>() {
                 @Override
@@ -855,66 +855,27 @@ public class EditUserActivity extends BaseActivity {
             };
             profileReg = petRef.addSnapshotListener(profileDataListener);
         }
-//        //vet listener
-//        final CollectionReference vetRef = db.collection("users").document(userId)
-//                .collection("vets");
-//        vetDataListener = new EventListener<QuerySnapshot>() {
-//            @Override
-//            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
-//                if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
-//                    vetList.clear();
-//                    for (int i = 0; i < documentSnapshots.size(); i++) {
-//                        DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
-//                        Vet vet = snapshot.toObject(Vet.class);
-//                        vetList.add(vet);
+        //Friends listener
+        final CollectionReference ref = db.collection("users").document(userId)
+                .collection("friends");
+        friendDataListener = new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+                if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
+                    ArrayList<User> list = new ArrayList<>();
+                    for (int i = 0; i < documentSnapshots.size(); i++) {
+                        DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
+                        User friend = snapshot.toObject(User.class);
+                        list.add(friend);
+                    }
+                    um.setFriendList(list);
+//                    if (thisUser != null && thisUser.getFriendId() >= 0) {
+//                        lbl.setText(dm.getVet(thisPet.getVetId()).toString());
 //                    }
-//                    dm.setVetList(vetList);
-//                    vetAdapter.clear();
-//                    vetAdapter.addAll(vetList);
-//                    if (vetChanged) {
-//                        Vet v = dm.getVet(vetId);
-//                        int index = vetList.indexOf(v);
-//                        spnVet.setSelection(index);
-//                    } else {
-//                        if (thisPet != null && thisPet.getVetId() > -1) {
-//                            int index = vetList.indexOf(dm.getVet(thisPet.getVetId()));
-//                            spnVet.setSelection(index);
-//                        }
-//                    }
-//                }
-//            }
-//        };
-//        vetReg = vetRef.addSnapshotListener(vetDataListener);
-//        //client listener
-//        final CollectionReference clientRef = db.collection("users").document(userId)
-//                .collection("clients");
-//        clientDataListener = new EventListener<QuerySnapshot>() {
-//            @Override
-//            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
-//                if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
-//                    ArrayList<Client> list = new ArrayList<>();
-//                    for (int i = 0; i < documentSnapshots.size(); i++) {
-//                        DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
-//                        Client client = snapshot.toObject(Client.class);
-//                        list.add(client);
-//                    }
-//                    dm.setClientList(list);
-//                    clientAdapter.clear();
-//                    clientAdapter.addAll(clientList);
-//                    if (clientChanged) {
-//                        Client c = dm.getClient(clientId);
-//                        int index = clientList.indexOf(c);
-//                        spnClient.setSelection(index);
-//                    } else {
-//                        if (thisPet != null && thisPet.getClientId() > -1) {
-//                            int index = clientList.indexOf(dm.getClient(thisPet.getClientId()));
-//                            spnClient.setSelection(index);
-//                        }
-//                    }
-//                }
-//            }
-//        };
-//        clientReg = clientRef.addSnapshotListener(clientDataListener);
+                }
+            }
+        };
+        friendReg = ref.addSnapshotListener(friendDataListener);
     }
 
     /**

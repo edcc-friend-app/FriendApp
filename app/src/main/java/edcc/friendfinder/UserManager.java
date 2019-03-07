@@ -19,8 +19,6 @@ public class UserManager {
     private User thisUser;
     private PreferencesManager pm;
     private static String userId;
-    private ArrayList<Course> classes;
-    private int[] currClasses;
     private Match match;
     private String[] courses = new String[]{"ACCT& 201", "ACCT& 202", "ACCT& 203", "ASL& 121", "ASL& 122", "ASL& 123",
             "ANTH 201", "ANTH 202", "ANTH 203", "ARAB 121", "ARAB 122", "ARAB 123", "ART 101", "ART 102",
@@ -43,18 +41,7 @@ public class UserManager {
         pm = PreferencesManager.getInstance(ctx);
         friendList = new ArrayList<>();
         userList = dh.getPotFriends();
-        classes = new ArrayList<>();
-        classes.add(new Course("CS 240", "Linda Zuvich"));
-        classes.add(new Course("MATH 272", "Wayne Neidhardt"));
-        classes.add(new Course("PHYS 222", "Tom Flemming"));
-        thisUser = new User("Estefano", "Felipa", "CS", "Soccer",
-                classes, "Spanish");
-        List<Integer> currClasses = new ArrayList<>();
-        currClasses.add(0);
-        currClasses.add(1);
-        currClasses.add(2);
-        thisUser.setArrMatch(currClasses);
-        match = new Match(thisUser, userList);
+        thisUser = new User();
     }
 
 
@@ -133,6 +120,7 @@ public class UserManager {
     }
 
     public List<User> getPotentialFriends() {
+        match = new Match(thisUser, userList);
         return match.getPotFriends();
     }
 
@@ -303,6 +291,9 @@ public class UserManager {
 
     public void setThisUser(User thisUser) {
         this.thisUser = thisUser;
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("users").document(userId).collection("profile")
+                .document(String.valueOf(thisUser.getId())).set(thisUser);
     }
 
     public String[] getCourses() {

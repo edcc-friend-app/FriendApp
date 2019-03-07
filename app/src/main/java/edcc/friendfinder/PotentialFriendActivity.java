@@ -192,6 +192,20 @@ public class PotentialFriendActivity extends BaseActivity {
             }
         };
         friendReg = vetRef.addSnapshotListener(friendDataListener);
+        //profile listener
+        final CollectionReference ref = db.collection("users").document(userId)
+                .collection("profile");
+        profileDataListener = new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+                if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
+                    DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(0);
+                    User profile = snapshot.toObject(User.class);
+                    um.setThisUser(profile);
+                }
+            }
+        };
+        profileReg = ref.addSnapshotListener(profileDataListener);
     }
 
     /**

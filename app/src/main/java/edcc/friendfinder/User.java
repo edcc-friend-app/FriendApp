@@ -25,28 +25,18 @@ public class User implements Comparable<User> {
     private int friendId = -1;
     //tests for match
     private int matchCount;
-    private List<Integer> arrMatch;
+    private List<Integer> arrMatch = new ArrayList<>();
     //private String[] courses;
 
     public User() {
+        firstName = "";
+        lastName = "";
+        major = "";
+        bio = "";
+        classes = new ArrayList<>();
+        language = "";
+        matchCount = 0;
     }
-
-//    public User(String firstName, String lastName, String major,
-//                String interests, ArrayList<User> friends, ArrayList<Course> classes, String language) {
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.major = major;
-//        this.bio = interests;
-//        this.friends = friends;
-//        this.classes = classes;
-//        this.language = language;
-//        matchCount = 0;
-////        courses = new String[] {"ACCT& 201", "ACCT& 202", "ACCT& 203", "ASL& 121", "ASL& 122", "ASL& 123",
-////                "ANTH 201", "ANTH 202", "ANTH 203", "ARAB 121", "ARAB 122", "ARAB 123", "ART 101", "ART 102",
-////                "ART 103", "BIOL& 211", "BIOL& 212", "BIOL& 213", "CHEM& 141", "CHEM& 142", "CHEM& 143",
-////                "CHEM& 241", "CHEM& 242", "CHEM& 243", "CHIN& 121", "CHIN& 122", "CHIN& 123"};
-//        arrMatch = new ArrayList<>();
-//    }
 
     public User(String firstName, String lastName, String major,
                 String interests, ArrayList<Course> classes, String language) {
@@ -57,11 +47,7 @@ public class User implements Comparable<User> {
         this.classes = classes;
         this.language = language;
         matchCount = 0;
-//        courses = new String[] {"ACCT& 201", "ACCT& 202", "ACCT& 203", "ASL& 121", "ASL& 122", "ASL& 123",
-//                "ANTH 201", "ANTH 202", "ANTH 203", "ARAB 121", "ARAB 122", "ARAB 123", "ART 101", "ART 102",
-//                "ART 103", "BIOL& 211", "BIOL& 212", "BIOL& 213", "CHEM& 141", "CHEM& 142", "CHEM& 143",
-//                "CHEM& 241", "CHEM& 242", "CHEM& 243", "CHIN& 121", "CHIN& 122", "CHIN& 123"};
-        arrMatch = new ArrayList<>();
+        //arrMatch = new ArrayList<>();
     }
 
     public String getFirstName() {
@@ -215,9 +201,6 @@ public class User implements Comparable<User> {
             case "class":
                 matchCount += 60;
                 break;
-//            case "bio":
-//                matchCount += 20;
-//                break;
             case "language":
                 matchCount += 30;
                 break;

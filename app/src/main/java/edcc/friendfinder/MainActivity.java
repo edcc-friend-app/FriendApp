@@ -117,19 +117,15 @@ public class MainActivity extends BaseActivity
             //set up pet list
             um = UserManager.getUserManager(this, userId);
             final CollectionReference ref = db.collection("users").document(userId)
-                    .collection("friends");
+                    .collection("profile");
             profileDataListener = new EventListener<QuerySnapshot>() {
                 @Override
                 public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
                     if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
-                        ArrayList<User> userList = new ArrayList<>();
-                        for (int i = 0; i < documentSnapshots.size(); i++) {
-                            DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
-                            User user = snapshot.toObject(User.class);
-                            userList.add(user);
-                        }
-                        um.setThisUser(userList.get(0));
-                        ((ProfileFragment)fragment).updateData();
+                        DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(0);
+                        User profile = snapshot.toObject(User.class);
+                        um.setThisUser(profile);
+                        ((ProfileFragment) fragment).updateData();
                     }
                 }
             };
@@ -137,24 +133,25 @@ public class MainActivity extends BaseActivity
         } else if (fragment instanceof FindFriendsFragment) {
             //set up client list
             um = UserManager.getUserManager(this, userId);
-            final CollectionReference ref = db.collection("users").document(userId)
-                    .collection("friends");
-            userDataListener = new EventListener<QuerySnapshot>() {
-                @Override
-                public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
-                    if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
-                        ArrayList<User> userList = new ArrayList<>();
-                        for (int i = 0; i < documentSnapshots.size(); i++) {
-                            DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
-                            User user = snapshot.toObject(User.class);
-                            userList.add(user);
-                        }
-                        //um.setUserList(userList);
-                        ((FindFriendsFragment) fragment).updateData();
-                    }
-                }
-            };
-            userReg = ref.addSnapshotListener(userDataListener);
+//            final CollectionReference ref = db.collection("users").document(userId)
+//                    .collection("friends");
+//            userDataListener = new EventListener<QuerySnapshot>() {
+//                @Override
+//                public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+//                    if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
+//                        ArrayList<User> userList = new ArrayList<>();
+//                        for (int i = 0; i < documentSnapshots.size(); i++) {
+//                            DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
+//                            User user = snapshot.toObject(User.class);
+//                            userList.add(user);
+//                        }
+//                        //um.setUserList(userList);
+//                        ((FindFriendsFragment) fragment).updateData();
+//                    }
+//                }
+//            };
+            //userReg = ref.addSnapshotListener(userDataListener);
+            //((FindFriendsFragment) fragment).updateData();
         } else if (fragment instanceof FriendsFragment) {
             //
             um = UserManager.getUserManager(this, userId);

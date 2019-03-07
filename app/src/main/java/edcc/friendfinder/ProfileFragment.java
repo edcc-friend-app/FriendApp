@@ -111,6 +111,10 @@ public class ProfileFragment extends Fragment {
         lblLanguage.setText(thisUser.getLanguage());
         lblClasses.setText(thisUser.printClasses());
         lblBio.setText(thisUser.getBio());
+        if(lblName.getText().toString().isEmpty()) {
+            listener.editUser(um.getThisUser());
+            System.out.println("HOLAAAA");
+        }
         String photoStr = thisUser.getPhoto();
         if (photoStr != null) {
             byte[] photo = Base64.decode(photoStr, Base64.DEFAULT);

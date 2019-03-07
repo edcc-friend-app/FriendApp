@@ -53,15 +53,6 @@ public class Match {
         return false;
     }
 
-
-    public void compareBio() {
-        for (User f : friends) {
-            if (thisUser.getBio().equalsIgnoreCase(f.getBio())) {
-                f.incrementCount("major");
-            }
-        }
-    }
-
     public void compareLanguage() {
         for (User f : friends) {
             if (thisUser.getLanguage().equalsIgnoreCase(f.getLanguage())) {

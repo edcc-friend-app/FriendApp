@@ -13,9 +13,11 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -106,27 +108,21 @@ public class FriendDetailsActivity extends BaseActivity {
         } else {
             imgFriend.setImageBitmap(null);
         }
-        //vet listener
-//        final CollectionReference vetRef = db.collection("users").document(userId)
-//                .collection("friends");
-//        friendDataListener = new EventListener<QuerySnapshot>() {
-//            @Override
-//            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
-//                if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
-//                    ArrayList<User> list = new ArrayList<>();
-//                    for (int i = 0; i < documentSnapshots.size(); i++) {
-//                        DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
-//                        User friend = snapshot.toObject(User.class);
-//                        list.add(friend);
-//                    }
-//                    um.setFriendList(list);
-////                    if (thisUser != null && thisUser.getFriendId() >= 0) {
-////                        lbl.setText(dm.getVet(thisPet.getVetId()).toString());
-////                    }
-//                }
-//            }
-//        };
-//        friendReg = vetRef.addSnapshotListener(friendDataListener);
+
+        //profile listener
+        final CollectionReference ref = db.collection("users").document(userId)
+                .collection("profile");
+        profileDataListener = new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+                if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
+                    DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(0);
+                    User profile = snapshot.toObject(User.class);
+                    um.setThisUser(profile);
+                }
+            }
+        };
+        profileReg = ref.addSnapshotListener(profileDataListener);
     }
 
     /**
@@ -138,7 +134,6 @@ public class FriendDetailsActivity extends BaseActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         getMenuInflater().inflate(R.menu.menu_delete, menu);
-        getMenuInflater().inflate(R.menu.menu_done, menu);
         return true;
     }
 
