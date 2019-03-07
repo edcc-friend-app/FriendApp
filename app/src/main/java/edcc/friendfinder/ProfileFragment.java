@@ -58,6 +58,7 @@ public class ProfileFragment extends Fragment {
         lblClasses = rootView.findViewById(R.id.lblClasses);
         lblBio = rootView.findViewById(R.id.txtBio);
         imgUser = rootView.findViewById(R.id.imgUserPhoto);
+        updateData();
         return rootView;
     }
 
@@ -107,21 +108,22 @@ public class ProfileFragment extends Fragment {
         //set UI components
         thisUser = um.getThisUser();
         lblName.setText(thisUser.toString());
-        lblMajor.setText(thisUser.getMajor());
-        lblLanguage.setText(thisUser.getLanguage());
-        lblClasses.setText(thisUser.printClasses());
-        lblBio.setText(thisUser.getBio());
-        if(lblName.getText().toString().isEmpty()) {
+        if(lblName.getText().toString().equals(" ")) {
             listener.editUser(um.getThisUser());
-            System.out.println("HOLAAAA");
-        }
-        String photoStr = thisUser.getPhoto();
-        if (photoStr != null) {
-            byte[] photo = Base64.decode(photoStr, Base64.DEFAULT);
-            imgUser.setImageBitmap(BitmapFactory.decodeByteArray(photo, 0, photo.length));
-            imgUser.setScaleType(ImageView.ScaleType.FIT_CENTER);
         } else {
-            imgUser.setImageBitmap(null);
+            lblMajor.setText(thisUser.getMajor());
+            lblLanguage.setText(thisUser.getLanguage());
+            lblClasses.setText(thisUser.printClasses());
+            lblBio.setText(thisUser.getBio());
+
+            String photoStr = thisUser.getPhoto();
+            if (photoStr != null) {
+                byte[] photo = Base64.decode(photoStr, Base64.DEFAULT);
+                imgUser.setImageBitmap(BitmapFactory.decodeByteArray(photo, 0, photo.length));
+                imgUser.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            } else {
+                imgUser.setImageBitmap(null);
+            }
         }
     }
 

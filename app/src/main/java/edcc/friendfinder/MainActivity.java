@@ -125,7 +125,7 @@ public class MainActivity extends BaseActivity
                         DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(0);
                         User profile = snapshot.toObject(User.class);
                         um.setThisUser(profile);
-                        ((ProfileFragment) fragment).updateData();
+                        //((ProfileFragment) fragment).updateData();
                     }
                 }
             };

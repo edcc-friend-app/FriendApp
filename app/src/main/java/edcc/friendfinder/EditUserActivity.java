@@ -8,7 +8,6 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -16,12 +15,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.Spinner;
 
 import com.google.firebase.firestore.CollectionReference;
@@ -585,6 +582,7 @@ public class EditUserActivity extends BaseActivity {
         //spnClass2.setAdapter(courseAdapter);
         spnClass3 = findViewById(R.id.spnClass3);
         //spnClass3.setAdapter(courseAdapter);
+
     }
 
     /**
@@ -836,7 +834,7 @@ public class EditUserActivity extends BaseActivity {
         spnClass2.setAdapter(courseAdapter);
         spnClass3.setAdapter(courseAdapter);
 
-        final DocumentReference petRef = db.collection("users").document(userId).
+        final DocumentReference profileRef = db.collection("users").document(userId).
                 collection("profile").document(String.valueOf(profileId));
         if (profileId >= 0) {
             profileDataListener = new EventListener<DocumentSnapshot>() {
@@ -850,10 +848,11 @@ public class EditUserActivity extends BaseActivity {
                         profile = snapshot.toObject(User.class);
                         um.setThisUser(profile);
                         populateFields();
+
                     }
                 }
             };
-            profileReg = petRef.addSnapshotListener(profileDataListener);
+            profileReg = profileRef.addSnapshotListener(profileDataListener);
         }
         //Friends listener
         final CollectionReference ref = db.collection("users").document(userId)
@@ -890,24 +889,6 @@ public class EditUserActivity extends BaseActivity {
         //bio
         EditText txtBio = findViewById(R.id.txtBio);
         txtBio.setText(String.valueOf(profile.getBio()));
-        //gender
-//        int gender = thisPet.getGender();
-//        switch (gender) {
-//            case Pet.INTACT_MALE:
-//                rbtnIntactMale.setChecked(true);
-//                break;
-//            case Pet.NEUTERED_MALE:
-//                rbtnNeuteredMale.setChecked(true);
-//                break;
-//            case Pet.INTACT_FEMALE:
-//                rbtnIntactFemale.setChecked(true);
-//                break;
-//            case Pet.SPAYED_FEMALE:
-//                rbtnSpayedFemale.setChecked(true);
-//                break;
-//            default:
-//                break;
-//        }
         //photo
         if (photoChanged && newPhoto != null) {
             ibtnUserPhoto.setImageBitmap(newPhoto);
