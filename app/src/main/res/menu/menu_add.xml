@@ -4,6 +4,6 @@
 
     <item
         android:id="@+id/action_add"
-        android:title="Add"
+        android:title="@string/add"
         app:showAsAction="ifRoom" />
 </menu>

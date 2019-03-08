@@ -21,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtFilter" />
 
-    <!-- android:textAppearance="@android:style/TextAppearance.Material.Medium" -->
+
     <EditText
         android:id="@+id/txtFilter"
         android:layout_width="0dp"
@@ -32,6 +32,8 @@
         android:ems="10"
         android:hint="@string/search_name"
         android:inputType="textPersonName"
+        android:importantForAutofill="no"
+        tools:targetApi="o"
         app:layout_constraintEnd_toStartOf="@+id/ibtnFilter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
