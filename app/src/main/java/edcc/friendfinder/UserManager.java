@@ -292,6 +292,7 @@ public class UserManager {
 
     public void setThisUser(User thisUser) {
         this.thisUser = thisUser;
+        thisUser.setId(0);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("users").document(userId).collection("profile")
                 .document(String.valueOf(thisUser.getId())).set(thisUser);
