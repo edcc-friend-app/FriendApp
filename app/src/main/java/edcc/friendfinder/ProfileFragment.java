@@ -58,7 +58,7 @@ public class ProfileFragment extends Fragment {
         lblClasses = rootView.findViewById(R.id.lblClasses);
         lblBio = rootView.findViewById(R.id.txtBio);
         imgUser = rootView.findViewById(R.id.imgUserPhoto);
-        updateData();
+        //updateData();
         return rootView;
     }
 

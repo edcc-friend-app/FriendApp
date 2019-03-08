@@ -125,7 +125,9 @@ public class MainActivity extends BaseActivity
                         DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(0);
                         User profile = snapshot.toObject(User.class);
                         um.setThisUser(profile);
-                        //((ProfileFragment) fragment).updateData();
+                        ((ProfileFragment) fragment).updateData();
+                    } else {
+                        ((ProfileFragment) fragment).updateData();
                     }
                 }
             };
@@ -262,7 +264,7 @@ public class MainActivity extends BaseActivity
     @Override
     public void editUser(User current) {
         Intent intent = new Intent(MainActivity.this, EditUserActivity.class);
-        intent.putExtra(USER_ID, current.getId());
+        intent.putExtra(Extras.PROFILE_ID, current.getId());
         startActivity(intent);
     }
 

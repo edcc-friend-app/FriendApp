@@ -19,7 +19,7 @@ public class User implements Comparable<User> {
     private String class1;
     private String class2;
     private String class3;
-    private int id;
+    private int id = -1;
     static boolean listType;
     private String photo; //base64 encoded byte array
     private int friendId = -1;
@@ -206,8 +206,5 @@ public class User implements Comparable<User> {
                 break;
 
         }
-
     }
-
-
 }
