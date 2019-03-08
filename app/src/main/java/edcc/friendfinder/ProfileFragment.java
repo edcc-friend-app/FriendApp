@@ -58,7 +58,7 @@ public class ProfileFragment extends Fragment {
         lblClasses = rootView.findViewById(R.id.lblClasses);
         lblBio = rootView.findViewById(R.id.txtBio);
         imgUser = rootView.findViewById(R.id.imgUserPhoto);
-        updateData();
+        //updateData();
         return rootView;
     }
 
@@ -72,10 +72,6 @@ public class ProfileFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_sign_out:
-                System.out.println("hey");
-                //signOut();
-                return true;
             case R.id.action_edit:
                 listener.editUser(um.getThisUser());
                 return true;

@@ -62,8 +62,6 @@ public class MainActivity extends BaseActivity
     private String currentFragment;
     private PreferencesManager pm;
 
-    public static final String USER_ID = "userId";
-
     /**
      * Android onCreate method.
      *
@@ -125,35 +123,18 @@ public class MainActivity extends BaseActivity
                         DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(0);
                         User profile = snapshot.toObject(User.class);
                         um.setThisUser(profile);
-                        //((ProfileFragment) fragment).updateData();
+                        ((ProfileFragment) fragment).updateData();
+                    } else {
+                        ((ProfileFragment) fragment).updateData();
                     }
                 }
             };
             profileReg = ref.addSnapshotListener(profileDataListener);
         } else if (fragment instanceof FindFriendsFragment) {
-            //set up client list
+            //set up potential friends list
             um = UserManager.getUserManager(this, userId);
-//            final CollectionReference ref = db.collection("users").document(userId)
-//                    .collection("friends");
-//            userDataListener = new EventListener<QuerySnapshot>() {
-//                @Override
-//                public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
-//                    if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
-//                        ArrayList<User> userList = new ArrayList<>();
-//                        for (int i = 0; i < documentSnapshots.size(); i++) {
-//                            DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
-//                            User user = snapshot.toObject(User.class);
-//                            userList.add(user);
-//                        }
-//                        //um.setUserList(userList);
-//                        ((FindFriendsFragment) fragment).updateData();
-//                    }
-//                }
-//            };
-            //userReg = ref.addSnapshotListener(userDataListener);
-            //((FindFriendsFragment) fragment).updateData();
         } else if (fragment instanceof FriendsFragment) {
-            //
+            //set up the friends list
             um = UserManager.getUserManager(this, userId);
             final CollectionReference ref = db.collection("users").document(userId)
                     .collection("friends");
@@ -262,7 +243,7 @@ public class MainActivity extends BaseActivity
     @Override
     public void editUser(User current) {
         Intent intent = new Intent(MainActivity.this, EditUserActivity.class);
-        intent.putExtra(USER_ID, current.getId());
+        intent.putExtra(Extras.PROFILE_ID, current.getId());
         startActivity(intent);
     }
 

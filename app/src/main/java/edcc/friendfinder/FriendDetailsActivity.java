@@ -119,6 +119,8 @@ public class FriendDetailsActivity extends BaseActivity {
                     DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(0);
                     User profile = snapshot.toObject(User.class);
                     um.setThisUser(profile);
+                } else {
+                    //((ProfileFragment) fragment).updateData();
                 }
             }
         };
