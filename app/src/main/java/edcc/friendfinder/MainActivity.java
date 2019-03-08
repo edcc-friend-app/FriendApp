@@ -62,8 +62,6 @@ public class MainActivity extends BaseActivity
     private String currentFragment;
     private PreferencesManager pm;
 
-    public static final String USER_ID = "userId";
-
     /**
      * Android onCreate method.
      *
@@ -133,29 +131,10 @@ public class MainActivity extends BaseActivity
             };
             profileReg = ref.addSnapshotListener(profileDataListener);
         } else if (fragment instanceof FindFriendsFragment) {
-            //set up client list
+            //set up potential friends list
             um = UserManager.getUserManager(this, userId);
-//            final CollectionReference ref = db.collection("users").document(userId)
-//                    .collection("friends");
-//            userDataListener = new EventListener<QuerySnapshot>() {
-//                @Override
-//                public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
-//                    if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
-//                        ArrayList<User> userList = new ArrayList<>();
-//                        for (int i = 0; i < documentSnapshots.size(); i++) {
-//                            DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
-//                            User user = snapshot.toObject(User.class);
-//                            userList.add(user);
-//                        }
-//                        //um.setUserList(userList);
-//                        ((FindFriendsFragment) fragment).updateData();
-//                    }
-//                }
-//            };
-            //userReg = ref.addSnapshotListener(userDataListener);
-            //((FindFriendsFragment) fragment).updateData();
         } else if (fragment instanceof FriendsFragment) {
-            //
+            //set up the friends list
             um = UserManager.getUserManager(this, userId);
             final CollectionReference ref = db.collection("users").document(userId)
                     .collection("friends");

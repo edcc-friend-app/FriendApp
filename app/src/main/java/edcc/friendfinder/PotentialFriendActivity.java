@@ -150,11 +150,8 @@ public class PotentialFriendActivity extends BaseActivity {
     public void setUpDataListeners() {
         um = UserManager.getUserManager(getApplicationContext(), userId);
         thisUser = um.getUser(thisUserName);
-        //um.setUser(thisUser);
         lblName.setText(thisUser.toString());
         lblMajor.setText(thisUser.getMajor());
-        //String[] genderArray = getResources().getStringArray(R.array.arrGenders);
-        //lblGender.setText(genderArray[thisPet.getGender()]);
         lblClasses.setText(thisUser.printClasses());
         lblLanguage.setText(thisUser.getLanguage());
         lblBio.setText(thisUser.getBio());
@@ -202,6 +199,9 @@ public class PotentialFriendActivity extends BaseActivity {
                     DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(0);
                     User profile = snapshot.toObject(User.class);
                     um.setThisUser(profile);
+                }
+                else {
+                    //((ProfileFragment) fragment).updateData();
                 }
             }
         };
