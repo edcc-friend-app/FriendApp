@@ -706,22 +706,13 @@ public class EditUserActivity extends BaseActivity {
             txtBio.setError("Bio is required.");
             return;
         }
-        //set up pet object
+        //set up user object
         User p = new User();
-        //set pet fields
+        //set user fields
         p.setFirstName(txtFirstName.getText().toString());
         p.setLastName(txtLastName.getText().toString());
         p.setBio(txtBio.getText().toString());
 
-//        if (rbtnIntactMale.isChecked()) {
-//            p.setGender(Pet.INTACT_MALE);
-//        } else if (rbtnNeuteredMale.isChecked()) {
-//            p.setGender(Pet.NEUTERED_MALE);
-//        } else if (rbtnIntactFemale.isChecked()) {
-//            p.setGender(Pet.INTACT_FEMALE);
-//        } else if (rbtnSpayedFemale.isChecked()) {
-//            p.setGender(Pet.SPAYED_FEMALE);
-//        }
         if (photoChanged && newPhoto != null) {
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             newPhoto.compress(Bitmap.CompressFormat.PNG, 100, bos);
@@ -732,17 +723,7 @@ public class EditUserActivity extends BaseActivity {
         } else {
             p.setPhoto(null);
         }
-//        p.setCare(txtCareInstructions.getText().toString());
-//        if (spnMajor.getAdapter().getCount() > 0) {
-//            p.setClientId(((Client) spnClient.getSelectedItem()).getClientId());
-//        } else {
-//            p.setClientId(-1);
-//        }
-//        if (spnVet.getAdapter().getCount() > 0) {
-//            p.setVetId(((Vet) spnVet.getSelectedItem()).getVetId());
-//        } else {
-//            p.setVetId(-1);
-//        }
+
         p.setMajor(spnMajor.getSelectedItem().toString());
         p.setLanguage(spnLanguage.getSelectedItem().toString());
         int class1 = spnClass1.getSelectedItemPosition();
@@ -754,7 +735,7 @@ public class EditUserActivity extends BaseActivity {
         classes.add(class3);
         p.setArrMatch(classes);
 
-        //if new, add to pet list
+        //if new, add to user list
         if (profileId < 0) {
             um.setThisUser(p);
         } else {

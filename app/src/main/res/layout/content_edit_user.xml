@@ -97,7 +97,8 @@
             android:text="@string/last_name"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblNamePrompt" />
+            app:layout_constraintTop_toBottomOf="@+id/lblNamePrompt"
+            android:labelFor="@id/txtLastName" />
 
         <TextView
             android:id="@+id/lblNamePrompt"
@@ -108,7 +109,8 @@
             android:text="@string/first_name"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ibtnUserPhoto" />
+            app:layout_constraintTop_toBottomOf="@+id/ibtnUserPhoto"
+            android:labelFor="@id/txtFirstName"/>
 
         <EditText
             android:id="@+id/txtFirstName"
@@ -116,8 +118,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:contentDescription="Your First Name"
-            android:importantForAutofill="no"
+            android:contentDescription="@string/your_first_name"
             android:inputType="text|textCapWords"
             android:textColor="@color/colorPrimary"
             android:textSize="24sp"
@@ -125,7 +126,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/lblNamePrompt"
             app:layout_constraintTop_toTopOf="@+id/lblNamePrompt"
-            tools:text="Your first name" />
+            tools:text="Your first name"
+            android:autofillHints= "First name"
+            tools:targetApi="o"
+            android:importantForAutofill="no"/>
 
         <EditText
             android:id="@+id/txtLastName"
@@ -141,7 +145,9 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/lblLastNamePrompt"
             app:layout_constraintTop_toTopOf="@+id/lblLastNamePrompt"
-            tools:text="Your family name" />
+            tools:text="Your family name"
+            android:importantForAutofill="no"
+            tools:targetApi="o" />
 
         <TextView
             android:id="@+id/lblLanguagePrompt"
@@ -172,6 +178,7 @@
             android:layout_marginStart="8dp"
             android:text="@string/bio"
             android:textSize="24sp"
+            android:labelFor="@id/txtBio"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtAvailable" />
 
@@ -183,6 +190,7 @@
             android:layout_marginTop="8dp"
             android:text="@string/availability"
             android:textSize="24sp"
+            android:labelFor="@id/txtAvailable"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblClass3Prompt" />
 
@@ -198,7 +206,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblBioPrompt"
-            tools:text="Tell us about yourself" />
+            tools:text="Tell us about yourself"
+            android:importantForAutofill="no"
+            tools:targetApi="o" />
 
         <EditText
             android:id="@+id/txtAvailable"
@@ -213,7 +223,9 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblAvailablePrompt"
-            tools:text="Enter your availability" />
+            tools:text="Enter your availability"
+            android:importantForAutofill="no"
+            tools:targetApi="o" />
 
         <Spinner
             android:id="@+id/spnMajor"
