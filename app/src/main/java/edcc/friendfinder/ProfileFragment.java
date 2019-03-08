@@ -72,10 +72,6 @@ public class ProfileFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_sign_out:
-                System.out.println("hey");
-                //signOut();
-                return true;
             case R.id.action_edit:
                 listener.editUser(um.getThisUser());
                 return true;

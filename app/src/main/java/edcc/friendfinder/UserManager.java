@@ -262,6 +262,7 @@ public class UserManager {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("users").document(userId).collection("friends")
                 .document(String.valueOf(newFriend.getId())).set(newFriend);
+        userList.remove(newFriend);
         return newFriend.getId();
     }
 
