@@ -463,6 +463,7 @@ public class EditUserActivity extends BaseActivity {
     private boolean class1Changed;
     private boolean class2Changed;
     private boolean class3Changed;
+    private boolean availabilityChanged;
     private Bitmap newPhoto;
     private String[] courseList = new String[27];
     private ArrayAdapter<String> courseAdapter;
@@ -480,6 +481,7 @@ public class EditUserActivity extends BaseActivity {
     private EditText txtFirstName;
     private EditText txtLastName;
     private EditText txtBio;
+    private EditText txtAvailability;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private EventListener<DocumentSnapshot> profileDataListener;
     private ListenerRegistration profileReg;
@@ -511,11 +513,13 @@ public class EditUserActivity extends BaseActivity {
             newPhoto = savedInstanceState.getParcelable("newPhoto");
             vetChanged = savedInstanceState.getBoolean("vetChanged");
             vetId = savedInstanceState.getInt("vetId", -1);
+            availabilityChanged = savedInstanceState.getBoolean("availabilityChanged");
         }
         //get UI components
         txtFirstName = findViewById(R.id.txtFirstName);
         txtLastName = findViewById(R.id.txtLastName);
         txtBio = findViewById(R.id.txtBio);
+        txtAvailability = findViewById(R.id.txtAvailable);
         //get User info
         Intent intent = getIntent();
         profileId = intent.getIntExtra(Extras.PROFILE_ID, -1);
@@ -712,6 +716,7 @@ public class EditUserActivity extends BaseActivity {
         p.setFirstName(txtFirstName.getText().toString());
         p.setLastName(txtLastName.getText().toString());
         p.setBio(txtBio.getText().toString());
+        p.setAvailability((txtAvailability.getText().toString()));
 
         if (photoChanged && newPhoto != null) {
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
