@@ -20,7 +20,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-
 import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -30,7 +29,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +51,6 @@ public class EditUserActivity extends BaseActivity {
     private ArrayAdapter<String> languageAdapter;
     private List<String> majorList = new ArrayList<>();
     private ArrayAdapter<String> majorAdapter;
-    private boolean vetChanged;
     private ImageView ibtnUserPhoto;
     private Spinner spnMajor;
     private Spinner spnLanguage;
@@ -253,24 +250,6 @@ public class EditUserActivity extends BaseActivity {
         outState.putBoolean("class1Changed", class1Changed);
         outState.putBoolean("class2Changed", class2Changed);
         outState.putBoolean("class3Changed", class3Changed);
-//        if (majorChanged) {
-//            outState.putInt("class1Id", -1);
-//        }
-//        if (class1Changed) {
-//            outState.putInt("class1Id", -1);
-//        }
-//        if (class1Changed) {
-//            outState.putInt("class1Id", -1);
-//        }
-//        if (class1Changed) {
-//            outState.putInt("class1Id", -1);
-//        }
-//        if (class1Changed) {
-//            outState.putInt("class1Id", -1);
-//        }
-//        if (class1Changed) {
-//            outState.putInt("class1Id", -1);
-//        }
     }
 
     /**
@@ -457,6 +436,12 @@ public class EditUserActivity extends BaseActivity {
                         String l = profile.getLanguage();
                         index = languageList.indexOf(l);
                         spnLanguage.setSelection(index);
+                        index = profile.getArrMatch().get(0);
+                        spnClass1.setSelection(index);
+                        index = profile.getArrMatch().get(1);
+                        spnClass2.setSelection(index);
+                        index = profile.getArrMatch().get(2);
+                        spnClass3.setSelection(index);
                     }
                 }
             };

@@ -109,13 +109,6 @@ public class User implements Comparable<User> {
         this.bio = bio;
     }
 
-//    public ArrayList<User> getFriends() {
-//        return friends;
-//    }
-//
-//    public void setFriends(ArrayList<User> friends) {
-//        this.friends = friends;
-//    }
 
     public int getId() {
         return id;
