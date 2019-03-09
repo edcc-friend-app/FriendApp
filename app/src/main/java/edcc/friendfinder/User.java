@@ -12,15 +12,12 @@ public class User implements Comparable<User> {
     private String lastName;
     private String major;
     private String bio;
-    //private ArrayList<User> friends;
-    private ArrayList<Course> classes;
     private String language;
     private String availability;
     private String class1;
     private String class2;
     private String class3;
     private int id = -1;
-    static boolean listType;
     private String photo; //base64 encoded byte array
     private int friendId = -1;
     //tests for match
@@ -33,18 +30,16 @@ public class User implements Comparable<User> {
         lastName = "";
         major = "";
         bio = "";
-        classes = new ArrayList<>();
         language = "";
         matchCount = 0;
     }
 
     public User(String firstName, String lastName, String major,
-                String interests, ArrayList<Course> classes, String language) {
+                String interests, String language) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.major = major;
         this.bio = interests;
-        this.classes = classes;
         this.language = language;
         matchCount = 0;
         //arrMatch = new ArrayList<>();
@@ -144,14 +139,6 @@ public class User implements Comparable<User> {
 
     public void setPhoto(String photo) {
         this.photo = photo;
-    }
-
-    public ArrayList<Course> getClasses() {
-        return classes;
-    }
-
-    public void setClasses(ArrayList<Course> classes) {
-        this.classes = classes;
     }
 
     public List<Integer> getArrMatch() {

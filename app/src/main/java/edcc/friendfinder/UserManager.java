@@ -20,21 +20,9 @@ public class UserManager {
     private PreferencesManager pm;
     private static String userId;
     private Match match;
-    private String[] courses = new String[]{"ACCT& 201", "ACCT& 202", "ACCT& 203", "ASL& 121", "ASL& 122", "ASL& 123",
-            "ANTH 201", "ANTH 202", "ANTH 203", "ARAB 121", "ARAB 122", "ARAB 123", "ART 101", "ART 102",
-            "ART 103", "BIOL& 211", "BIOL& 212", "BIOL& 213", "CHEM& 141", "CHEM& 142", "CHEM& 143",
-            "CHEM& 241", "CHEM& 242", "CHEM& 243", "CHIN& 121", "CHIN& 122", "CHIN& 123"};
-    private String[] languages = {"Arabic", "Chinese (Cantonese)", "Chinese (Mandarin)", "English",
-            "French", "German", "Indonesian (Malay)", "Hindustani", "Japanese", "Korean", "Russian",
-            "Spanish", "Vietnamese"};
-    private String[] majors = {"Accounting", "Allied Health Education", "Biology", "Business",
-            "Business Information Technology", "Business Management", "Business Training Center",
-            "Child, Youth, and Family Studies", "Computer Information Systems", "Computer Science",
-            "Construction Management", "Culinary Arts", "Early Childhood Education", "Emergency Management",
-            "Engineering and Science", "Engineering Technology", "Event Planning", "Family Support Studies",
-            "General Studies", "Horticulture", "Hospitality and Tourism", "Music", "Nursing",
-            "Occupational Safety and Health", "Paralegal", "Social and Human Services",
-            "Transfer (General)", "Visual Communications"};
+    private List<String> courses;
+    private List<String> languages;
+    private List<String> majors;
 
     private UserManager(Context ctx) {
         dh = new DataHandler();
@@ -42,6 +30,78 @@ public class UserManager {
         friendList = new ArrayList<>();
         userList = dh.getPotFriends();
         thisUser = new User();
+        courses = new ArrayList<>();
+        courses.add("ACCT& 201");
+        courses.add("ACCT& 202");
+        courses.add("ACCT& 203");
+        courses.add("ASL& 121");
+        courses.add("ASL& 122");
+        courses.add("ASL& 123");
+        courses.add("ANTH 201");
+        courses.add("ANTH 202");
+        courses.add("ANTH 203");
+        courses.add("ANTH 201");
+        courses.add("ARAB 121");
+        courses.add("ARAB 122");
+        courses.add("ARAB 123");
+        courses.add("ART 101");
+        courses.add("ART 102");
+        courses.add("ART 103");
+        courses.add("BIOL& 211");
+        courses.add("BIOL& 212");
+        courses.add("BIOL& 213");
+        courses.add("CHEM& 141");
+        courses.add("CHEM& 142");
+        courses.add("CHEM& 143");
+        courses.add("CHEM& 241");
+        courses.add("CHEM& 242");
+        courses.add("CHEM& 243");
+        courses.add("CHIN& 121");
+        courses.add("CHIN& 122");
+        courses.add("CHIN& 123");
+        languages = new ArrayList<>();
+        languages.add("Arabic");
+        languages.add("Chinese (Cantonese)");
+        languages.add("Chinese (Mandarin)");
+        languages.add("English");
+        languages.add("French");
+        languages.add("German");
+        languages.add("Indonesian (Malay)");
+        languages.add("Hindustani");
+        languages.add("Japanese");
+        languages.add("Korean");
+        languages.add("Russian");
+        languages.add("Spanish");
+        languages.add("Vietnamese");
+        majors = new ArrayList<>();
+        majors.add("Accounting");
+        majors.add("Allied Health Education");
+        majors.add("Biology");
+        majors.add("Business");
+        majors.add("Business Information Technology");
+        majors.add("Business Management");
+        majors.add("Business Training Center");
+        majors.add("Child, Youth, and Family Studies");
+        majors.add("Computer Information Systems");
+        majors.add("Computer Science");
+        majors.add("Construction Management");
+        majors.add("Culinary Arts");
+        majors.add( "Early Childhood Education");
+        majors.add("Emergency Management");
+        majors.add("Engineering and Science");
+        majors.add("Engineering Technology");
+        majors.add("Event Planning");
+        majors.add("Family Support Studies");
+        majors.add("General Studies");
+        majors.add("Horticulture");
+        majors.add("Hospitality and Tourism");
+        majors.add("Music");
+        majors.add("Nursing");
+        majors.add("Occupational Safety and Health");
+        majors.add("Paralegal");
+        majors.add("Social and Human Services");
+        majors.add("Transfer (General)");
+        majors.add("Visual Communications");
     }
 
 
@@ -298,27 +358,27 @@ public class UserManager {
                 .document(String.valueOf(thisUser.getId())).set(thisUser);
     }
 
-    public String[] getCourses() {
+    public List<String> getCourses() {
         return courses;
     }
 
-    public void setCourses(String[] courses) {
+    public void setCourses(List<String> courses) {
         this.courses = courses;
     }
 
-    public String[] getLanguages() {
+    public List<String> getLanguages() {
         return languages;
     }
 
-    public void setLanguages(String[] languages) {
+    public void setLanguages(List<String> languages) {
         this.languages = languages;
     }
 
-    public String[] getMajors() {
+    public List<String> getMajors() {
         return majors;
     }
 
-    public void setMajors(String[] majors) {
+    public void setMajors(List<String> majors) {
         this.majors = majors;
     }
 }
