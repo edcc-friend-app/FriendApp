@@ -21,6 +21,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -472,7 +473,7 @@ public class EditUserActivity extends BaseActivity {
     private String[] majorList = new String[27];
     private ArrayAdapter<String> majorAdapter;
     private boolean vetChanged;
-    private ImageButton ibtnUserPhoto;
+    private ImageView ibtnUserPhoto;
     private Spinner spnMajor;
     private Spinner spnLanguage;
     private Spinner spnClass1;
@@ -507,6 +508,7 @@ public class EditUserActivity extends BaseActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         ibtnUserPhoto = findViewById(R.id.ibtnUserPhoto);
+        Glide.with(this).load(R.raw.camera).into(ibtnUserPhoto);
         //get saved state
         if (savedInstanceState != null) {
             photoChanged = savedInstanceState.getBoolean("photoChanged");
