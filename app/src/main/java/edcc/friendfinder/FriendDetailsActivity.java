@@ -30,6 +30,7 @@ public class FriendDetailsActivity extends BaseActivity {
     private TextView lblMajor;
     private TextView lblClasses;
     private TextView lblLanguage;
+    private TextView lblAvailability;
     private TextView lblBio;
     private ImageView imgFriend;
     private PreferencesManager pm;
@@ -66,6 +67,7 @@ public class FriendDetailsActivity extends BaseActivity {
         lblClasses = findViewById(R.id.lblClasses);
         lblLanguage = findViewById(R.id.lblLanguage);
         lblBio = findViewById(R.id.txtBio);
+        lblAvailability = findViewById(R.id.txtAvailability);
         imgFriend = findViewById(R.id.imgFriendPicture);
     }
 
@@ -90,15 +92,10 @@ public class FriendDetailsActivity extends BaseActivity {
         um.setFriend(thisFriend);
         lblName.setText(thisFriend.toString());
         lblMajor.setText(thisFriend.getMajor());
-        //String[] genderArray = getResources().getStringArray(R.array.arrGenders);
-        //lblGender.setText(genderArray[thisUser.getGender()]);
         lblClasses.setText(thisFriend.printClasses());
         lblLanguage.setText(thisFriend.getLanguage());
         lblBio.setText(thisFriend.getBio());
-//                    if (thisUser.getFriendId() > -1 && um.getFriendList().size() > 0 &&
-//                            um.getFriend(thisUser.getFriendId()) != null) {
-//                        lblClient.setText(dm.getClient(thisPet.getClientId()).toString());
-//                    }
+        lblAvailability.setText(thisFriend.getAvailability());
         String photoStr = thisFriend.getPhoto();
         imgFriend = findViewById(R.id.imgFriendPicture);
         if (photoStr != null) {

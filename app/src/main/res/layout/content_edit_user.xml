@@ -132,9 +132,10 @@
         <EditText
             android:id="@+id/txtLastName"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="53dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:importantForAutofill="no"
             android:inputType="text|textCapWords"
             android:textColor="@color/colorPrimary"
             android:textSize="24sp"
@@ -143,9 +144,8 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/lblLastNamePrompt"
             app:layout_constraintTop_toTopOf="@+id/lblLastNamePrompt"
-            tools:text="Your family name"
-            android:importantForAutofill="no"
-            tools:targetApi="o" />
+            tools:targetApi="o"
+            tools:text="Your family name" />
 
         <TextView
             android:id="@+id/lblLanguagePrompt"
@@ -178,7 +178,7 @@
             android:textSize="24sp"
             android:labelFor="@id/txtBio"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtAvailable" />
+            app:layout_constraintTop_toBottomOf="@+id/txtAvailability" />
 
         <TextView
             android:id="@+id/lblAvailablePrompt"
@@ -188,7 +188,7 @@
             android:layout_marginTop="8dp"
             android:text="@string/availability"
             android:textSize="24sp"
-            android:labelFor="@id/txtAvailable"
+            android:labelFor="@id/txtAvailability"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblClass3Prompt" />
 
@@ -209,7 +209,7 @@
             tools:targetApi="o" />
 
         <EditText
-            android:id="@+id/txtAvailable"
+            android:id="@+id/txtAvailability"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

@@ -20,70 +20,71 @@ public class DataHandler {
     public DataHandler() {
         potFriends = new ArrayList<>();
 
-        friend1 = new User("Franshesco", "Coello", "CS", "Soccer", "English");
+        friend1 = new User("Franshesco", "Coello", "CS", "Soccer", "English",
+                "All day");
         List<Integer> classes1 = new ArrayList<>();
         classes1.add(0);
         classes1.add(1);
         classes1.add(2);
         friend1.setArrMatch(classes1);
 
-        friend2 = new User("Anthony", "Luong", "CS", "Memes", "Vietnamese");
+        friend2 = new User("Anthony", "Luong", "CS", "Memes", "Vietnamese", "All day");
         List<Integer> classes2 = new ArrayList<>();
         classes2.add(3);
         classes2.add(12);
         classes2.add(21);
         friend2.setArrMatch(classes2);
 
-        friend3 = new User("Jonathan", "Young", "Mathematics", "Football", "Chinese");
+        friend3 = new User("Jonathan", "Young", "Mathematics", "Football", "Chinese", "All day");
         List<Integer> classes3 = new ArrayList<>();
         classes3.add(8);
         classes3.add(5);
         classes3.add(24);
         friend3.setArrMatch(classes3);
 
-        friend4 = new User("Susy", "Lincoln", "English", "Dancing", "Spanish");
+        friend4 = new User("Susy", "Lincoln", "English", "Dancing", "Spanish", "All day");
         List<Integer> classes4 = new ArrayList<>();
         classes4.add(13);
         classes4.add(4);
         classes4.add(19);
         friend4.setArrMatch(classes4);
 
-        friend5 = new User("Jared", "Kuddes", "English", "Memes", "French");
+        friend5 = new User("Jared", "Kuddes", "English", "Memes", "French", "All day");
         List<Integer> classes5 = new ArrayList<>();
         classes5.add(23);
         classes5.add(1);
         classes5.add(16);
         friend5.setArrMatch(classes5);
 
-        friend6 = new User("Sora", "Fung", "Biology", "Dancing", "Chinese");
+        friend6 = new User("Sora", "Fung", "Biology", "Dancing", "Chinese", "All day");
         List<Integer> classes6 = new ArrayList<>();
         classes6.add(3);
         classes6.add(21);
         classes6.add(6);
         friend6.setArrMatch(classes6);
 
-        friend7 = new User("Roxas", "Pham", "Mathematics", "Guitar", "Vietnamese");
+        friend7 = new User("Roxas", "Pham", "Mathematics", "Guitar", "Vietnamese", "All day");
         List<Integer> classes7 = new ArrayList<>();
         classes7.add(10);
         classes7.add(20);
         classes7.add(5);
         friend7.setArrMatch(classes7);
 
-        friend8 = new User("Vivian", "Nguyen", "Biology", "Swimming", "Vietnamese");
+        friend8 = new User("Vivian", "Nguyen", "Biology", "Swimming", "Vietnamese", "All day");
         List<Integer> classes8 = new ArrayList<>();
         classes8.add(2);
         classes8.add(3);
         classes8.add(5);
         friend8.setArrMatch(classes8);
 
-        friend9 = new User("Henry", "Zokkins", "Art", "Tennis", "English");
+        friend9 = new User("Henry", "Zokkins", "Art", "Tennis", "English", "All day");
         List<Integer> classes9 = new ArrayList<>();
         classes9.add(3);
         classes9.add(15);
         classes9.add(22);
         friend9.setArrMatch(classes9);
 
-        friend10 = new User("Vy", "Bui", "Art", "Swimming", "Chinese");
+        friend10 = new User("Vy", "Bui", "Art", "Swimming", "Chinese", "All day");
         List<Integer> classes10 = new ArrayList<>();
         classes10.add(0);
         classes10.add(1);

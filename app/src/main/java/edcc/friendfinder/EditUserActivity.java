@@ -59,6 +59,7 @@ public class EditUserActivity extends BaseActivity {
     private Spinner spnClass3;
     private EditText txtFirstName;
     private EditText txtLastName;
+    private EditText txtAvailability;
     private EditText txtBio;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private EventListener<DocumentSnapshot> profileDataListener;
@@ -99,6 +100,7 @@ public class EditUserActivity extends BaseActivity {
         //get UI components
         txtFirstName = findViewById(R.id.txtFirstName);
         txtLastName = findViewById(R.id.txtLastName);
+        txtAvailability = findViewById(R.id.txtAvailability);
         txtBio = findViewById(R.id.txtBio);
         //get User info
         Intent intent = getIntent();
@@ -303,6 +305,11 @@ public class EditUserActivity extends BaseActivity {
             txtLastName.setError("Last Name is required.");
             return;
         }
+        entry = txtAvailability.getText().toString();
+        if (TextUtils.isEmpty(entry)) {
+            txtAvailability.setError("Availability is required");
+            return;
+        }
         entry = txtBio.getText().toString();
         if (TextUtils.isEmpty(entry)) {
             txtBio.setError("Bio is required.");
@@ -314,6 +321,7 @@ public class EditUserActivity extends BaseActivity {
         p.setFirstName(txtFirstName.getText().toString());
         p.setLastName(txtLastName.getText().toString());
         p.setBio(txtBio.getText().toString());
+        p.setAvailability(txtAvailability.getText().toString());
 
         if (photoChanged && newPhoto != null) {
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -482,6 +490,9 @@ public class EditUserActivity extends BaseActivity {
         //bio
         EditText txtBio = findViewById(R.id.txtBio);
         txtBio.setText(String.valueOf(profile.getBio()));
+        //availability
+        EditText txtAvailability = findViewById(R.id.txtAvailability);
+        txtAvailability.setText(profile.getAvailability());
         //photo
         if (photoChanged && newPhoto != null) {
             ibtnUserPhoto.setImageBitmap(newPhoto);

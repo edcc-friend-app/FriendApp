@@ -32,6 +32,7 @@ public class ProfileFragment extends Fragment {
     private TextView lblMajor;
     private TextView lblClasses;
     private TextView lblBio;
+    private TextView lblAvailability;
     private TextView lblLanguage;
     private ImageView imgUser;
     private PreferencesManager pm;
@@ -57,6 +58,7 @@ public class ProfileFragment extends Fragment {
         lblLanguage = rootView.findViewById(R.id.lblLanguage);
         lblClasses = rootView.findViewById(R.id.lblClasses);
         lblBio = rootView.findViewById(R.id.txtBio);
+        lblAvailability = rootView.findViewById(R.id.txtAvailability);
         imgUser = rootView.findViewById(R.id.imgUserPhoto);
         //updateData();
         return rootView;
@@ -111,6 +113,7 @@ public class ProfileFragment extends Fragment {
             lblLanguage.setText(thisUser.getLanguage());
             lblClasses.setText(thisUser.printClasses());
             lblBio.setText(thisUser.getBio());
+            lblAvailability.setText(thisUser.getAvailability());
 
             String photoStr = thisUser.getPhoto();
             if (photoStr != null) {

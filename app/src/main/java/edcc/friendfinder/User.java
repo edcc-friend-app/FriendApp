@@ -14,16 +14,12 @@ public class User implements Comparable<User> {
     private String bio;
     private String language;
     private String availability;
-    private String class1;
-    private String class2;
-    private String class3;
     private int id = -1;
     private String photo; //base64 encoded byte array
     private int friendId = -1;
     //tests for match
     private int matchCount;
     private List<Integer> arrMatch = new ArrayList<>();
-    //private String[] courses;
 
     public User() {
         firstName = "";
@@ -35,12 +31,13 @@ public class User implements Comparable<User> {
     }
 
     public User(String firstName, String lastName, String major,
-                String interests, String language) {
+                String bio, String language, String availability) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.major = major;
-        this.bio = interests;
+        this.bio = bio;
         this.language = language;
+        this.availability = availability;
         matchCount = 0;
         //arrMatch = new ArrayList<>();
     }
@@ -65,32 +62,8 @@ public class User implements Comparable<User> {
         this.availability = availability;
     }
 
-    public void setClass1(String class1) {
-        this.class1 = class1;
-    }
-
-    public void setClass2(String class2) {
-        this.class2 = class2;
-    }
-
-    public void setClass3(String class3) {
-        this.class3 = class3;
-    }
-
     public String getAvailability() {
         return availability;
-    }
-
-    public String getClass1() {
-        return class1;
-    }
-
-    public String getClass2() {
-        return class2;
-    }
-
-    public String getClass3() {
-        return class3;
     }
 
     public String getMajor() {
@@ -108,7 +81,6 @@ public class User implements Comparable<User> {
     public void setBio(String bio) {
         this.bio = bio;
     }
-
 
     public int getId() {
         return id;
@@ -148,6 +120,14 @@ public class User implements Comparable<User> {
 
     public void setFriendId(int friendId) {
         this.friendId = friendId;
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public void setMatchCount(int matchCount) {
+        this.matchCount = matchCount;
     }
 
     public String printClasses() {
