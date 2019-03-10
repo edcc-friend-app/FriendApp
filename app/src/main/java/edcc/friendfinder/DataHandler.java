@@ -20,7 +20,7 @@ public class DataHandler {
     public DataHandler() {
         potFriends = new ArrayList<>();
 
-        friend1 = new User("Franshesco", "Coello", "CS", "Soccer", "English",
+        friend1 = new User("Franshesco", "Coello", "Computer Science", "Soccer", "English",
                 "All day");
         List<Integer> classes1 = new ArrayList<>();
         classes1.add(0);
@@ -28,7 +28,7 @@ public class DataHandler {
         classes1.add(2);
         friend1.setArrMatch(classes1);
 
-        friend2 = new User("Anthony", "Luong", "CS", "Memes", "Vietnamese", "All day");
+        friend2 = new User("Anthony", "Luong", "Computer Science", "Memes", "Vietnamese", "All day");
         List<Integer> classes2 = new ArrayList<>();
         classes2.add(3);
         classes2.add(12);
@@ -42,14 +42,14 @@ public class DataHandler {
         classes3.add(24);
         friend3.setArrMatch(classes3);
 
-        friend4 = new User("Susy", "Lincoln", "English", "Dancing", "Spanish", "All day");
+        friend4 = new User("Susy", "Lincoln", "Business", "Dancing", "Spanish", "All day");
         List<Integer> classes4 = new ArrayList<>();
         classes4.add(13);
         classes4.add(4);
         classes4.add(19);
         friend4.setArrMatch(classes4);
 
-        friend5 = new User("Jared", "Kuddes", "English", "Memes", "French", "All day");
+        friend5 = new User("Jared", "Kuddes", "Nursing", "Memes", "French", "All day");
         List<Integer> classes5 = new ArrayList<>();
         classes5.add(23);
         classes5.add(1);

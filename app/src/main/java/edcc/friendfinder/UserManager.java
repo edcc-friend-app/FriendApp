@@ -28,7 +28,7 @@ public class UserManager {
         dh = new DataHandler();
         pm = PreferencesManager.getInstance(ctx);
         friendList = new ArrayList<>();
-        userList = dh.getPotFriends();
+        userList = new ArrayList<>();
         thisUser = new User();
         courses = new ArrayList<>();
         courses.add("ACCT& 201");
@@ -180,6 +180,7 @@ public class UserManager {
     }
 
     public List<User> getPotentialFriends() {
+        userList = dh.getPotFriends();
         match = new Match(thisUser, userList);
         return match.getPotFriends();
     }

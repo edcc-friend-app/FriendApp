@@ -12,6 +12,9 @@ public class Match {
     public Match(User thisUser, List<User> friends) {
         this.thisUser = thisUser;
         this.friends = friends;
+        for (User f: friends) {
+            f.setMatchCount(0);
+        }
     }
 
     public List<User> getPotFriends() {
@@ -71,7 +74,7 @@ public class Match {
         for (int i = 0; i < friends.size(); i++) {
             swapped = false;
             for (int j = 1; j < friends.size() - i; j++) {
-                if (friends.get(j).matchCompare(friends.get(j - 1)) <= 0) {
+                if (friends.get(j).matchCompare(friends.get(j - 1))> 0) {
                     User temp = friends.get(j);
                     friends.set(j, friends.get(j - 1));
                     friends.set(j - 1, temp);
