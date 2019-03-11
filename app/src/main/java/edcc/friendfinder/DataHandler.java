@@ -41,7 +41,7 @@ class DataHandler {
         classes3.add(8);
         classes3.add(5);
         classes3.add(24);
-        User friend3 = new User("Jonathan", "Young", "Business", "Football", "Chinese", "All day", classes3);
+        User friend3 = new User("Jonathan", "Young", "Business", "Football", "Chinese (Cantonese)", "All day", classes3);
 
         List<Integer> classes4 = new ArrayList<>();
         classes4.add(13);
@@ -59,7 +59,7 @@ class DataHandler {
         classes6.add(3);
         classes6.add(21);
         classes6.add(6);
-        User friend6 = new User("Sora", "Fung", "Biology", "Dancing", "Chinese", "All day", classes6);
+        User friend6 = new User("Sora", "Fung", "Biology", "Dancing", "Chinese (Mandarin)", "All day", classes6);
 
         List<Integer> classes7 = new ArrayList<>();
         classes7.add(10);
@@ -83,7 +83,7 @@ class DataHandler {
         classes10.add(0);
         classes10.add(1);
         classes10.add(2);
-        User friend10 = new User("Vy", "Bui", "Biology", "Swimming", "Chinese", "All day", classes10);
+        User friend10 = new User("Vy", "Bui", "Biology", "Swimming", "Chinese (Mandarin)", "All day", classes10);
 
         //Add current Friends and potential Friends
         potFriends.add(friend1);

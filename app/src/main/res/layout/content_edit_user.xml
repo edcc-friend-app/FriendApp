@@ -63,8 +63,8 @@
 
         <ImageView
             android:id="@+id/ibtnUserPhoto"
-            android:layout_width="130dp"
-            android:layout_height="137dp"
+            android:layout_width="@dimen/photo_width"
+            android:layout_height="@dimen/photo_height"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"

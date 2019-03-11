@@ -167,13 +167,15 @@
 
         <ImageView
             android:id="@+id/imgUserPhoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/photo_width"
+            android:layout_height="@dimen/photo_height"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
             android:contentDescription="@string/profile_picture"
             android:scaleType="fitCenter"
+            app:layout_constraintBottom_toTopOf="@+id/lblName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

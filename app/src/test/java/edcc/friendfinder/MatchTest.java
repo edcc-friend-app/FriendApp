@@ -73,7 +73,7 @@ public class MatchTest {
     }
 
     @Test
-    public void compareMajor() {
+    public void testCompareMajor() {
         match.compareMajor();
         assertEquals(0, friends.get(0).getMatchCount());
         assertEquals(50, friends.get(1).getMatchCount());

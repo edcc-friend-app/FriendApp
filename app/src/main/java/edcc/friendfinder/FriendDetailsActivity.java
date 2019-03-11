@@ -44,7 +44,6 @@ public class FriendDetailsActivity extends BaseActivity {
     private TextView lblAvailability;
     private TextView lblBio;
     private ImageView imgFriend;
-    private PreferencesManager pm;
     private EventListener<QuerySnapshot> profileDataListener;
     private ListenerRegistration profileReg;
 
@@ -56,7 +55,6 @@ public class FriendDetailsActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        pm = PreferencesManager.getInstance(getApplicationContext());
         setContentView(R.layout.activity_friend_details);
         //create action bar and back arrow
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -173,8 +171,7 @@ public class FriendDetailsActivity extends BaseActivity {
      * Delete the current friend.
      */
     private void deleteFriend() {
-        if (pm.isWarnBeforeDeletingFriend()) {
-            new AlertDialog.Builder(this)
+        new AlertDialog.Builder(this)
                     .setTitle("Confirm")
                     .setMessage("Are you sure you want to delete this friend?")
                     .setIcon(android.R.drawable.ic_dialog_alert)
@@ -187,9 +184,6 @@ public class FriendDetailsActivity extends BaseActivity {
                     })
                     .setNegativeButton(android.R.string.no, null)
                     .show();
-        } else {
-            um.deleteFriend(id);
-        }
     }
 
     /**

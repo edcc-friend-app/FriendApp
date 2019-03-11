@@ -47,7 +47,6 @@ public class MainActivity extends BaseActivity
     private UserManager um;
     private ActionBar actionBar;
     private String currentFragment;
-    private PreferencesManager pm;
 
     /**
      * Android onCreate method.
@@ -70,8 +69,7 @@ public class MainActivity extends BaseActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         //set up fragment
-        pm = PreferencesManager.getInstance(this);
-        currentFragment = pm.getCurrentFragment();
+        currentFragment = "profile";
         switch (currentFragment) {
             case "profile":
                 fragment = new ProfileFragment();
@@ -136,6 +134,7 @@ public class MainActivity extends BaseActivity
                             friendList.add(friend);
                         }
                         um.setFriendList(friendList);
+                        um.getPotentialFriends();
                     }
                 }
             };
@@ -251,7 +250,7 @@ public class MainActivity extends BaseActivity
             fragment = new FriendsFragment();
             currentFragment = "friends";
         }
-        pm.setCurrentFragment(currentFragment);
+        //CurrentFragment(currentFragment);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frmFragment, fragment);
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
