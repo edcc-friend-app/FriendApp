@@ -216,7 +216,7 @@ public class UserManager {
 
     void deleteFriend(int id) {
         int index = -1;
-        //find vet in list
+        //find friend in list
         for (int i = 0; i < friendList.size(); i++) {
             User f = friendList.get(i);
             if (f.getId() == id) {
@@ -227,10 +227,11 @@ public class UserManager {
         //if found
         if (index >= 0) {
             //delete
-            friendList.remove(index);
+            User removedFriend = friendList.remove(index);
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             db.collection("users").document(userId).collection("friends")
                     .document(String.valueOf(id)).delete();
+            userList.add(removedFriend);
         }
     }
 
