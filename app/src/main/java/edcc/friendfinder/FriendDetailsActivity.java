@@ -22,6 +22,8 @@ import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
 
 /**
+ * Activity class for friend details screen.
+ *
  * @author Anthony Luong
  * @author Estefano Felipa
  * @author Jonathan Young
@@ -29,6 +31,7 @@ import com.google.firebase.firestore.QuerySnapshot;
  */
 public class FriendDetailsActivity extends BaseActivity {
 
+    //fields
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private int id;
     private UserManager um;
@@ -44,6 +47,11 @@ public class FriendDetailsActivity extends BaseActivity {
     private EventListener<QuerySnapshot> profileDataListener;
     private ListenerRegistration profileReg;
 
+    /**
+     * Builds the activity on startup.
+     *
+     * @param savedInstanceState the saved state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +81,9 @@ public class FriendDetailsActivity extends BaseActivity {
         imgFriend = findViewById(R.id.imgFriendPicture);
     }
 
+    /**
+     * On pause, all data listeners are stopped.
+     */
     @Override
     protected void onPause() {
         super.onPause();
@@ -81,6 +92,10 @@ public class FriendDetailsActivity extends BaseActivity {
         }
     }
 
+    /**
+     * Connects up the data listeners once authentication is completed in the BaseActivity.
+     * The friend listener is listening for changes in this particular friend entry.
+     */
     @Override
     public void setUpDataListeners() {
         um = UserManager.getUserManager(getApplicationContext(), userId);
@@ -154,6 +169,9 @@ public class FriendDetailsActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Delete the current friend.
+     */
     private void deleteFriend() {
         if (pm.isWarnBeforeDeletingFriend()) {
             new AlertDialog.Builder(this)
