@@ -36,6 +36,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Activity class for edit user screen.
+ *
  * @author Anthony Luong
  * @author Estefano Felipa
  * @author Jonathan Young
@@ -286,6 +288,9 @@ public class EditUserActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Saves the user profile.
+     */
     private void saveProfile() {
         //make sure important fields are filled
         String entry = txtFirstName.getText().toString();
