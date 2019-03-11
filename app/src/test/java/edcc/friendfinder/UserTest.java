@@ -3,12 +3,16 @@ package edcc.friendfinder;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 
 public class UserTest {
 
     User user = new User();
+    List<Integer> list = new ArrayList<>();
 
     @Before
     public void setUp() {
@@ -20,6 +24,10 @@ public class UserTest {
     user.setBio("I like to look at memes");
     user.setId(29);
     user.setPhoto("asui324nb12m");
+    list.add(12);
+    list.add(1);
+    list.add(5);
+    user.setArrMatch(list);
 
     }
     @Test
@@ -112,26 +120,46 @@ public class UserTest {
 
     @Test
     public void getArrMatch() {
+    List<Integer> list2 = new ArrayList<>();
+        list2.add(12);
+        list2.add(1);
+        list2.add(5);
+
+        assertEquals(list2, user.getArrMatch());
     }
 
     @Test
     public void setArrMatch() {
-    }
+        List<Integer> list3 = new ArrayList<>();
+        list3.add(4);
+        list3.add(5);
+        list3.add(3);
 
-    @Test
-    public void getMatchCount() {
-    }
+        List<Integer> list4 = new ArrayList<>();
+        list4.add(4);
+        list4.add(5);
+        list4.add(3);
 
-    @Test
-    public void setMatchCount() {
+        user.setArrMatch(list3);
+        assertEquals(list4, user.getArrMatch());
     }
 
     @Test
     public void testToString() {
+        assertEquals("0.0% Freddie Wonder", user.toString());
     }
 
     @Test
     public void compareTo() {
+        User user2 = new User();
+        user2.setFirstName("Tidus");
+        user2.setLastName("Ngo");
+        user2.setMajor("Biology");
+        user2.setLanguage("Vietnamese");
+        user2.setAvailability("Busy");
+        user2.setBio("I like to swim");
+
+
     }
 
     @Test
