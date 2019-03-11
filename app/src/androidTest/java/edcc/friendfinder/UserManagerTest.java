@@ -19,9 +19,11 @@ public class UserManagerTest {
     ArrayList<User> friends;
     private Match match;
     Context appContext = InstrumentationRegistry.getTargetContext();
+    UserManager um;
 
     @Before
     public void setUp() throws Exception {
+        um = UserManager.getUserManager(appContext, "0");
         List<Integer> classes = new ArrayList<>();
         classes.add(0);
         classes.add(8);
@@ -70,7 +72,7 @@ public class UserManagerTest {
 
     @Test
     public void getUserManager() {
-
+        assertNotNull(um);
     }
 
     @Test
@@ -94,31 +96,13 @@ public class UserManagerTest {
     }
 
     @Test
-    public void setFriendList() {
-    }
-
-    @Test
     public void getFriend() {
+
     }
 
     @Test
     public void setFriend() {
+        
     }
 
-    @Test
-    public void getThisUser() {
-    }
-
-    @Test
-    public void getCourses() {
-    }
-
-    @Test
-    public void getLanguages() {
-
-    }
-
-    @Test
-    public void getMajors() {
-    }
 }
