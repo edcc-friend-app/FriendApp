@@ -102,7 +102,7 @@ public class MainActivity extends BaseActivity
     protected void setUpDataListeners() {
         stopDataListeners();
         if (fragment instanceof ProfileFragment) {
-            //set up pet list
+            //set up friend list
             um = UserManager.getUserManager(this, userId);
             final CollectionReference ref = db.collection("users").document(userId)
                     .collection("profile");

@@ -13,7 +13,7 @@ import android.content.SharedPreferences;
  */
 public class PreferencesManager {
 
-    static final String CURRENT_FRAGMENT = "currentFragment";
+    private static final String CURRENT_FRAGMENT = "currentFragment";
     //fields
     private static PreferencesManager pm;
     private final SharedPreferences PREFS;

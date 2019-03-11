@@ -18,21 +18,22 @@ import java.util.List;
  */
 public class UserManager {
 
+    //fields
     private static UserManager um;
     private static String userId;
     private List<User> friendList;
     private int nextFriendId;
     private List<User> userList;
-    private DataHandler dh;
+    private final DataHandler dh;
     private User thisUser;
-    private PreferencesManager pm;
-    private List<String> courses;
-    private List<String> languages;
-    private List<String> majors;
+    private final PreferencesManager pm;
+    private final List<String> courses;
+    private final List<String> languages;
+    private final List<String> majors;
 
-/**
- *Private constructor.
- */
+    /**
+     * Private constructor.
+     */
     private UserManager(Context ctx) {
         dh = new DataHandler();
         pm = PreferencesManager.getInstance(ctx);
@@ -43,7 +44,6 @@ public class UserManager {
         languages = dh.getLanguages();
         majors = dh.getMajors();
     }
-
 
     /**
      * Singleton implementation - returns the single instance of
@@ -58,8 +58,9 @@ public class UserManager {
     }
 
     /**
-     * Provides access to a sorted list of all pets.
+     * Provides access to a sorted list of all users.
      * Sorts in reverse if user preferences require it.
+     *
      * @param id - these users name
      * @return List<User> - the list of users
      */
@@ -82,21 +83,8 @@ public class UserManager {
     }
 
     /**
-     * Replaces the user list when Firebase has pushed an update to
-     * an activity. Does not require updating the DB since it came from the DB.
-     *
-     * @param user the new list of User objects
-     */
-    public void setUser(User user) {
-        for (int i = 0; i < userList.size(); i++) {
-            if (userList.get(i).getId() == user.getId()) {
-                userList.set(i, user);
-            }
-        }
-    }
-
-    /**
      * Gets a list of potential friends, placing higher matches as priority on this top of the list.
+     *
      * @return list of User objects
      */
     public List<User> getPotentialFriends() {
@@ -117,6 +105,7 @@ public class UserManager {
 
     /**
      * Gets current friend list
+     *
      * @return list of User objects that are added by you
      */
     List<User> getFriendList() {
@@ -146,6 +135,7 @@ public class UserManager {
 
     /**
      * Getter for the user that is added
+     *
      * @param id the user's name
      * @return the user object
      */
@@ -169,6 +159,7 @@ public class UserManager {
 
     /**
      * Places the newly added user into the official friends list.
+     *
      * @param friend user object that is placed within the new friend list
      */
     public void setFriend(User friend) {
@@ -181,12 +172,12 @@ public class UserManager {
 
     /**
      * Method to execute the add function
+     *
      * @param newFriend user object that is selected to add
-     * @return user object into the friend list
      */
-    int addFriend(User newFriend) {
+    void addFriend(User newFriend) {
         if (newFriend == null) {
-            return -1;
+            return;
         }
         newFriend.setId(nextFriendId);
         friendList.add(newFriend);
@@ -196,11 +187,11 @@ public class UserManager {
         db.collection("users").document(userId).collection("friends")
                 .document(String.valueOf(newFriend.getId())).set(newFriend);
         userList.remove(newFriend);
-        return newFriend.getId();
     }
 
     /**
      * Deletes the current user object from your friends list
+     *
      * @param id the user's name that's selected
      */
     void deleteFriend(int id) {
@@ -226,6 +217,7 @@ public class UserManager {
 
     /**
      * Getter for the selected user object.
+     *
      * @return user object
      */
     public User getThisUser() {
@@ -234,6 +226,7 @@ public class UserManager {
 
     /**
      * Setter for the selected user object.
+     *
      * @param thisUser the user object selected
      */
     public void setThisUser(User thisUser) {
@@ -246,6 +239,7 @@ public class UserManager {
 
     /**
      * Getter for the course list
+     *
      * @return list of course objects
      */
     public List<String> getCourses() {
@@ -255,6 +249,7 @@ public class UserManager {
 
     /**
      * Getter for the language list
+     *
      * @return list of language objects
      */
     public List<String> getLanguages() {
@@ -264,6 +259,7 @@ public class UserManager {
 
     /**
      * Getter for the majors list
+     *
      * @return list of major objects
      */
     public List<String> getMajors() {

@@ -37,7 +37,6 @@ public class FriendDetailsActivity extends BaseActivity {
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private int id;
     private UserManager um;
-    private User thisFriend;
     private TextView lblName;
     private TextView lblMajor;
     private TextView lblClasses;
@@ -101,7 +100,7 @@ public class FriendDetailsActivity extends BaseActivity {
     @Override
     public void setUpDataListeners() {
         um = UserManager.getUserManager(getApplicationContext(), userId);
-        thisFriend = um.getFriend(id);
+        User thisFriend = um.getFriend(id);
         um.setFriend(thisFriend);
         lblName.setText(thisFriend.printName());
         lblMajor.setText(thisFriend.getMajor());
@@ -193,10 +192,15 @@ public class FriendDetailsActivity extends BaseActivity {
         }
     }
 
+    /**
+     * Prints out the user's classes
+     *
+     * @param u the user you want to print the classes of
+     * @return the user's classes
+     */
     private String printClasses(User u) {
         List<String> classes = um.getCourses();
-        String strClasses = classes.get(u.getArrMatch().get(0)) + '\n' + classes.get(u.getArrMatch().get(1)) +
+        return classes.get(u.getArrMatch().get(0)) + '\n' + classes.get(u.getArrMatch().get(1)) +
                 '\n' + classes.get(u.getArrMatch().get(2));
-        return strClasses;
     }
 }

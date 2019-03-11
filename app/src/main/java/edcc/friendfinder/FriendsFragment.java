@@ -29,6 +29,7 @@ import java.util.List;
  * @author Jonathan Young
  * @version 1.0 3/10/19
  */
+@SuppressWarnings("NullableProblems")
 public class FriendsFragment extends Fragment {
 
     //fields
@@ -122,7 +123,7 @@ public class FriendsFragment extends Fragment {
 
     /**
      * Updates the friends list. This method must be called by the controlling activity
-     * whenever this fragment is visible and pet data is altered outside of this fragment.
+     * whenever this fragment is visible and user data is altered outside of this fragment.
      */
     public void updateData() {
         friendList = um.getFriendList();

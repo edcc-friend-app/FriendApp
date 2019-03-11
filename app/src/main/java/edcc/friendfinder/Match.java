@@ -12,11 +12,11 @@ import java.util.List;
  * @author Jonathan Young
  * @version 1.0 3/10/19
  */
-public class Match {
+class Match {
 
     //fields
-    private User thisUser;
-    private List<User> friends;
+    private final User thisUser;
+    private final List<User> friends;
 
     /**
      * Complete constructor.
@@ -73,12 +73,12 @@ public class Match {
      * @param arr1 one of the other spinner options to be compared
      * @param arr2 another one of the other spinner options to be compared
      */
-    public void compareClassesHelper(List<Integer> arr1, List<Integer> arr2, User f) {
+    private void compareClassesHelper(List<Integer> arr1, List<Integer> arr2, User f) {
         Collections.sort(arr1);
         Collections.sort(arr2);
-        for (int a: arr1) {
-            for (int b: arr2) {
-                if(a == b) {
+        for (int a : arr1) {
+            for (int b : arr2) {
+                if (a == b) {
                     f.incrementCount("class");
                 }
             }

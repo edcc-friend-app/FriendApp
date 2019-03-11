@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 /**
  * Base activity class used for authentication in all child activity classes.
+ *
  * @author Anthony Luong
  * @author Estefano Felipa
  * @author Jonathan Young

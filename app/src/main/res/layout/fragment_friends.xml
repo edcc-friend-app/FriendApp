@@ -20,7 +20,9 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/ibtnFilter"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAutofill="no"
+        tools:targetApi="o" />
 
     <ListView
         android:id="@+id/lstFriends"

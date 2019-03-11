@@ -31,9 +31,6 @@ import java.util.List;
  */
 public class ProfileFragment extends Fragment {
 
-    //fields
-    private View rootView;
-    private User thisUser;
     private ProfileListener listener;
     private UserManager um;
     private TextView lblName;
@@ -43,7 +40,6 @@ public class ProfileFragment extends Fragment {
     private TextView lblAvailability;
     private TextView lblLanguage;
     private ImageView imgUser;
-    private PreferencesManager pm;
 
     /**
      * Required default constructor.
@@ -63,9 +59,9 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.fragment_profile, container, false);
+        //fields
+        View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
         um = UserManager.getUserManager(getContext(), FirebaseAuth.getInstance().getUid());
-        pm = PreferencesManager.getInstance(getActivity().getApplicationContext());
         //find UI components
         lblName = rootView.findViewById(R.id.lblName);
         lblMajor = rootView.findViewById(R.id.lblMajor);
@@ -135,7 +131,7 @@ public class ProfileFragment extends Fragment {
      */
     public void updateData() {
         //set UI components
-        thisUser = um.getThisUser();
+        User thisUser = um.getThisUser();
         lblName.setText(thisUser.printName());
         if (lblName.getText().toString().equals(" ")) {
             listener.editUser(um.getThisUser());
@@ -164,11 +160,16 @@ public class ProfileFragment extends Fragment {
         void editUser(User current);
     }
 
+    /**
+     * Prints out the user's classes
+     *
+     * @param u the user you want to print the classes of
+     * @return the user's classes
+     */
     private String printClasses(User u) {
         List<String> classes = um.getCourses();
-        String strClasses = classes.get(u.getArrMatch().get(0)) + '\n' + classes.get(u.getArrMatch().get(1)) +
+        return classes.get(u.getArrMatch().get(0)) + '\n' + classes.get(u.getArrMatch().get(1)) +
                 '\n' + classes.get(u.getArrMatch().get(2));
-        return strClasses;
     }
 
 }

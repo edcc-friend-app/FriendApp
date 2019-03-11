@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Fragment class for find friends list screen.
  *
  * @author Anthony Luong
  * @author Estefano Felipa
@@ -30,6 +30,7 @@ import java.util.List;
  */
 public class FindFriendsFragment extends Fragment {
 
+    //fields
     private boolean isFiltered;
     private EditText txtFilter;
     private UserManager um;
@@ -39,11 +40,20 @@ public class FindFriendsFragment extends Fragment {
     private List<User> potFriendList = new ArrayList<>();
     private FindFriendsFragment.FriendListener listener;
 
-
+    /**
+     * Required default constructor
+     */
     public FindFriendsFragment() {
-
     }
 
+    /**
+     * Creates the fragment.
+     *
+     * @param inflater           the layout inflater
+     * @param container          the container holding the fragment
+     * @param savedInstanceState the saved state
+     * @return the root view of the fragment
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -68,6 +78,11 @@ public class FindFriendsFragment extends Fragment {
         return rootView;
     }
 
+    /**
+     * Registers the controlling activity as a listener when the fragment is attached to it.
+     *
+     * @param context the controlling activity
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -105,7 +120,7 @@ public class FindFriendsFragment extends Fragment {
      * Updates the potential friend list. This method must be called by the controlling activity
      * whenever this fragment is visible and pet data is altered outside of this fragment.
      */
-    public void updateData() {
+    private void updateData() {
         potFriendList = um.getPotentialFriends();
         if (isFiltered) {
             filterList();
@@ -198,6 +213,9 @@ public class FindFriendsFragment extends Fragment {
         txtFilter.setText("");
     }
 
+    /**
+     * Interface for an activity to register as a FindFriendsFragment listener.
+     */
     interface FriendListener {
         void viewPotFriendRequested(User friend);
     }
