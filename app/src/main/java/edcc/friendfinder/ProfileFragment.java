@@ -22,7 +22,7 @@ import java.util.List;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * Fragment class for user profile screen
  *
  * @author Anthony Luong
  * @author Estefano Felipa
@@ -31,6 +31,7 @@ import java.util.List;
  */
 public class ProfileFragment extends Fragment {
 
+    //fields
     private View rootView;
     private User thisUser;
     private ProfileListener listener;
@@ -44,9 +45,20 @@ public class ProfileFragment extends Fragment {
     private ImageView imgUser;
     private PreferencesManager pm;
 
+    /**
+     * Required default constructor.
+     */
     public ProfileFragment() {
     }
 
+    /**
+     * Creaes the fragment
+     *
+     * @param inflater           the layout inflater
+     * @param container          the container holding the fragment
+     * @param savedInstanceState the saved state
+     * @return the root vie of the fragment
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -85,6 +97,11 @@ public class ProfileFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Registers the controlling activity as a listener when the fragment is attached to it.
+     *
+     * @param context the controlling activity
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -93,16 +110,32 @@ public class ProfileFragment extends Fragment {
         }
     }
 
+    /**
+     * Called when the activity is first created. This method also provides you with a Bundle
+     * containing the activity's previously frozen state, if there was one.
+     *
+     * @param savedInstanceState the activity of the fragment
+     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
 
+    /**
+     * Initialize the contents of the Activity's standard options menu.
+     *
+     * @param menu     the options menu as last shown or first initialized by onCreateOptionsMenu()
+     * @param inflater the menu's layout
+     */
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_edit, menu);
     }
 
+    /**
+     * Updates the user list. This method must be called by the controlling activity
+     * whenever this fragment is visible and user data is altered outside of this fragment.
+     */
     public void updateData() {
         //set UI components
         thisUser = um.getThisUser();
@@ -127,6 +160,9 @@ public class ProfileFragment extends Fragment {
         }
     }
 
+    /**
+     * Interface for an activity to register as a ProfileFragment listener.
+     */
     interface ProfileListener {
         void editUser(User current);
     }

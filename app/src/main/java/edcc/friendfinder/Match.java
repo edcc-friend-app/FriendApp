@@ -4,15 +4,25 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * Class to handle other users and categorize likelihood of networking with them
+ *
  * @author Anthony Luong
  * @author Estefano Felipa
  * @author Jonathan Young
  * @version 1.0 3/10/19
  */
 public class Match {
+
+    //fields
     private User thisUser;
     private List<User> friends;
 
+    /**
+     * Complete constructor.
+     *
+     * @param thisUser current user
+     * @param friends  potential friends
+     */
     public Match(User thisUser, List<User> friends) {
         this.thisUser = thisUser;
         this.friends = friends;
@@ -21,6 +31,11 @@ public class Match {
         }
     }
 
+    /**
+     * Getter for the other user's information.
+     *
+     * @return other user's information
+     */
     public List<User> getPotFriends() {
         //friends;
         compareMajor();
@@ -30,6 +45,9 @@ public class Match {
         return friends;
     }
 
+    /**
+     * Compares whether or not the majors are the same between users
+     */
     public void compareMajor() {
         for (User f : friends) {
             if (thisUser.getMajor().equalsIgnoreCase(f.getMajor())) {
@@ -38,12 +56,22 @@ public class Match {
         }
     }
 
+    /**
+     * Compares whether or not the classes are the same between users
+     */
     public void compareClasses() {
         for (User f : friends) {
             compareClassesHelper(thisUser.getArrMatch(), f.getArrMatch(), f);
         }
     }
 
+
+    /**
+     * Compares whether or not the majors are the same between users amongst the other two fields
+     *
+     * @param arr1 one of the other spinner options to be compared
+     * @param arr2 another one of the other spinner options to be compared
+     */
     public void compareClassesHelper(List<Integer> arr1, List<Integer> arr2, User f) {
         Collections.sort(arr1);
         Collections.sort(arr2);
@@ -56,6 +84,9 @@ public class Match {
         }
     }
 
+    /**
+     * Compares whether or not the language preferences are the same between users
+     */
     public void compareLanguage() {
         for (User f : friends) {
             if (thisUser.getLanguage().equalsIgnoreCase(f.getLanguage())) {
@@ -64,7 +95,10 @@ public class Match {
         }
     }
 
-    //bubbleSort from cs142
+    /**
+     * Sorting method to organize the list of potential friends based on their strength in likelihood
+     * of being your friend from the algorithm.
+     */
     public void sort() {
         boolean swapped;
         for (int i = 0; i < friends.size(); i++) {
@@ -82,5 +116,4 @@ public class Match {
             }
         }
     }
-
 }

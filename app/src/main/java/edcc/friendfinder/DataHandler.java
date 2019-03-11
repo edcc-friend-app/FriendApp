@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Pseudo users/friends within the app
  * @author Anthony Luong
  * @author Estefano Felipa
  * @author Jonathan Young

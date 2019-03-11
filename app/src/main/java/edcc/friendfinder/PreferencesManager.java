@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
  * @version 1.0 3/10/19
  */
 public class PreferencesManager {
+
     static final String CURRENT_FRAGMENT = "currentFragment";
     //fields
     private static PreferencesManager pm;
@@ -70,17 +71,6 @@ public class PreferencesManager {
     boolean isWarnBeforeDeletingFriend() {
         return warnBeforeDeletingFriend;
     }
-
-    /**
-     * Allows the preference to warn before deleting a friend to be changed.
-     *
-     * @param warnBeforeDeletingFriend true if a a warning should be given, false if not
-     */
-    void setWarnBeforeDeletingFriend(boolean warnBeforeDeletingFriend) {
-        this.warnBeforeDeletingFriend = warnBeforeDeletingFriend;
-        PREFS.edit().putBoolean("warnBeforeDeletingFriend", warnBeforeDeletingFriend).apply();
-    }
-
 
     /**
      * Provides access to the current fragment showing in the NavActivity. This allows the app

@@ -22,7 +22,7 @@ import java.util.List;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * Fragment class for friends list screen.
  *
  * @author Anthony Luong
  * @author Estefano Felipa
@@ -31,6 +31,7 @@ import java.util.List;
  */
 public class FriendsFragment extends Fragment {
 
+    //fields
     private ListView lstFriends;
     private EditText txtFilter;
     private ArrayAdapter<User> lstAdapter;
@@ -41,10 +42,21 @@ public class FriendsFragment extends Fragment {
     private View rootView;
 
 
+    /**
+     * Required empty public constructor
+     */
     public FriendsFragment() {
-        // Required empty public constructor
+
     }
 
+    /**
+     * Creates the fragment.
+     *
+     * @param inflater           the layout inflater
+     * @param container          the container holding the fragment
+     * @param savedInstanceState the saved state
+     * @return the root view of the fragment
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -70,6 +82,11 @@ public class FriendsFragment extends Fragment {
         return rootView;
     }
 
+    /**
+     * Registers the controlling activity as a listener when the fragment is attached to it.
+     *
+     * @param context the controlling activity
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -78,12 +95,20 @@ public class FriendsFragment extends Fragment {
         }
     }
 
+    /**
+     * Saves the state of the activity.
+     *
+     * @param outState the class state
+     */
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean("isFiltered", isFiltered);
     }
 
+    /**
+     * On resume, set up the list adapter and filter if was filtered.
+     */
     @Override
     public void onResume() {
         super.onResume();
@@ -95,6 +120,10 @@ public class FriendsFragment extends Fragment {
         }
     }
 
+    /**
+     * Updates the friends list. This method must be called by the controlling activity
+     * whenever this fragment is visible and pet data is altered outside of this fragment.
+     */
     public void updateData() {
         friendList = um.getFriendList();
         if (isFiltered) {
@@ -130,6 +159,9 @@ public class FriendsFragment extends Fragment {
         }
     }
 
+    /**
+     * Handles the filter click
+     */
     private void handleFilterClick() {
         //hide keyboard
         if (getActivity() != null) {
@@ -152,6 +184,9 @@ public class FriendsFragment extends Fragment {
         }
     }
 
+    /**
+     * Filters the list based on user selection.
+     */
     private void filterList() {
         if (um == null) {
             return;
@@ -181,6 +216,9 @@ public class FriendsFragment extends Fragment {
         txtFilter.setText("");
     }
 
+    /**
+     * Interface for an activity to register as a FriendsFragment listener.
+     */
     interface FriendListener {
         void viewFriendRequested(User friend);
 
