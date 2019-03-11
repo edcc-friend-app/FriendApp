@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class MatchTest {
 
@@ -14,7 +14,7 @@ public class MatchTest {
     private ArrayList<User> friends;
 
     @Before
-    public void setUp() throws Exception{
+    public void setUp() throws Exception {
         List<Integer> classes = new ArrayList<>();
         classes.add(0);
         classes.add(8);
@@ -60,6 +60,7 @@ public class MatchTest {
         friends.add(friend5);
         match = new Match(user, friends);
     }
+
     @Test
     public void testGetPotFriends() {
         List<User> users;
@@ -105,7 +106,7 @@ public class MatchTest {
     @Test
     public void testSortWithSameElements() {
         match.sort();
-        for (User f: friends) {
+        for (User f : friends) {
             assertEquals(0, f.getMatchCount());
         }
     }

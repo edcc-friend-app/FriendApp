@@ -30,9 +30,9 @@ public class UserManager {
     private final List<String> languages;
     private final List<String> majors;
 
-/**
- *Private constructor.
- */
+    /**
+     * Private constructor.
+     */
     private UserManager(Context ctx) {
         dh = new DataHandler();
         pm = PreferencesManager.getInstance(ctx);
@@ -60,6 +60,7 @@ public class UserManager {
     /**
      * Provides access to a sorted list of all users.
      * Sorts in reverse if user preferences require it.
+     *
      * @param id - these users name
      * @return List<User> - the list of users
      */
@@ -84,14 +85,15 @@ public class UserManager {
 
     /**
      * Gets a list of potential friends, placing higher matches as priority on this top of the list.
+     *
      * @return list of User objects
      */
     public List<User> getPotentialFriends() {
         userList = dh.getPotFriends();
         List<User> delete = new ArrayList<>();
-        for(User e: userList) {
-            for (User f: friendList) {
-                if(e.compareTo(f) == 0){
+        for (User e : userList) {
+            for (User f : friendList) {
+                if (e.compareTo(f) == 0) {
                     delete.add(e);
                 }
             }
@@ -103,6 +105,7 @@ public class UserManager {
 
     /**
      * Gets current friend list
+     *
      * @return list of User objects that are added by you
      */
     List<User> getFriendList() {
@@ -132,6 +135,7 @@ public class UserManager {
 
     /**
      * Getter for the user that is added
+     *
      * @param id the user's name
      * @return the user object
      */
@@ -155,6 +159,7 @@ public class UserManager {
 
     /**
      * Places the newly added user into the official friends list.
+     *
      * @param friend user object that is placed within the new friend list
      */
     public void setFriend(User friend) {
@@ -167,6 +172,7 @@ public class UserManager {
 
     /**
      * Method to execute the add function
+     *
      * @param newFriend user object that is selected to add
      */
     void addFriend(User newFriend) {
@@ -188,6 +194,7 @@ public class UserManager {
 
     /**
      * Deletes the current user object from your friends list
+     *
      * @param id the user's name that's selected
      */
     void deleteFriend(int id) {
@@ -213,6 +220,7 @@ public class UserManager {
 
     /**
      * Getter for the selected user object.
+     *
      * @return user object
      */
     public User getThisUser() {
@@ -221,6 +229,7 @@ public class UserManager {
 
     /**
      * Setter for the selected user object.
+     *
      * @param thisUser the user object selected
      */
     public void setThisUser(User thisUser) {
@@ -233,6 +242,7 @@ public class UserManager {
 
     /**
      * Getter for the course list
+     *
      * @return list of course objects
      */
     public List<String> getCourses() {
@@ -242,6 +252,7 @@ public class UserManager {
 
     /**
      * Getter for the language list
+     *
      * @return list of language objects
      */
     public List<String> getLanguages() {
@@ -251,6 +262,7 @@ public class UserManager {
 
     /**
      * Getter for the majors list
+     *
      * @return list of major objects
      */
     public List<String> getMajors() {

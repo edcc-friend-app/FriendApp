@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * Pseudo users/friends within the app
+ *
  * @author Anthony Luong
  * @author Estefano Felipa
  * @author Jonathan Young
@@ -17,6 +18,9 @@ class DataHandler {
     private final List<String> languages;
     private final List<String> majors;
 
+    /**
+     * Sample user handling method
+     */
     public DataHandler() {
         potFriends = new ArrayList<>();
 
@@ -169,18 +173,34 @@ class DataHandler {
         majors.add("Visual Communications");
     }
 
+    /**
+     * Get method for potential friends
+     * @return array list of user objects
+     */
     public ArrayList<User> getPotFriends() {
         return potFriends;
     }
 
+    /**
+     * Get method for courses
+     * @return array list of string courses
+     */
     public List<String> getCourses() {
         return courses;
     }
 
+    /**
+     * Get method for languages
+     * @return array list of string languages
+     */
     public List<String> getLanguages() {
         return languages;
     }
 
+    /**
+     * Get method for majors
+     * @return array list of string majors
+     */
     public List<String> getMajors() {
         return majors;
     }

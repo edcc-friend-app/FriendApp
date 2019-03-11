@@ -75,9 +75,9 @@ class Match {
     private void compareClassesHelper(List<Integer> arr1, List<Integer> arr2, User f) {
         Collections.sort(arr1);
         Collections.sort(arr2);
-        for (int a: arr1) {
-            for (int b: arr2) {
-                if(a == b) {
+        for (int a : arr1) {
+            for (int b : arr2) {
+                if (a == b) {
                     f.incrementCount("class");
                 }
             }
