@@ -192,6 +192,12 @@ public class FriendDetailsActivity extends BaseActivity {
         }
     }
 
+    /**
+     * Prints out the user's classes
+     *
+     * @param u the user you want to print the classes of
+     * @return the user's classes
+     */
     private String printClasses(User u) {
         List<String> classes = um.getCourses();
         return classes.get(u.getArrMatch().get(0)) + '\n' + classes.get(u.getArrMatch().get(1)) +

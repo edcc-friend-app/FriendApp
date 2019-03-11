@@ -18,6 +18,7 @@ import java.util.List;
  */
 public class UserManager {
 
+    //fields
     private static UserManager um;
     private static String userId;
     private List<User> friendList;
@@ -43,7 +44,6 @@ public class UserManager {
         languages = dh.getLanguages();
         majors = dh.getMajors();
     }
-
 
     /**
      * Singleton implementation - returns the single instance of
@@ -81,7 +81,6 @@ public class UserManager {
             return null;
         }
     }
-
 
     /**
      * Gets a list of potential friends, placing higher matches as priority on this top of the list.
