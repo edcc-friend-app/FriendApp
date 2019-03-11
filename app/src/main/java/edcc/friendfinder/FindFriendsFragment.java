@@ -41,7 +41,7 @@ public class FindFriendsFragment extends Fragment {
 
 
     public FindFriendsFragment() {
-        // Required empty public constructor
+
     }
 
     @Override

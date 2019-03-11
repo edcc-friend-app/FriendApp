@@ -1,7 +1,5 @@
 package edcc.friendfinder;
 
-import android.support.v4.app.Fragment;
-
 /**
  * Utility class to hold Intent keywords.
  *

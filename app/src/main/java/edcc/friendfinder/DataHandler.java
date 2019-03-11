@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Pseudo users/friends within the app
  * @author Anthony Luong
  * @author Estefano Felipa
  * @author Jonathan Young
@@ -114,8 +115,4 @@ public class DataHandler {
         return potFriends;
     }
 
-    public boolean addPotFriends(ArrayList<User> Users) {
-        potFriends = Users;
-        return true;
-    }
 }

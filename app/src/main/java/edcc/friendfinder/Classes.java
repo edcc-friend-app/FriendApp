@@ -1,6 +1,7 @@
 package edcc.friendfinder;
 
 /**
+ * Classes list to populate in the spinner.
  * @author Anthony Luong
  * @author Estefano Felipa
  * @author Jonathan Young
@@ -22,8 +23,6 @@ class Classes implements Comparable<Classes> {
     public Classes(int incClasses) {
         course = courses[incClasses];
     }
-
-
 
     @Override
     public int compareTo(Classes o) {
