@@ -150,7 +150,7 @@ public class EditUserActivity extends BaseActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-        //client
+        //classes
         spnLanguage = findViewById(R.id.spnLanguage);
 
         spnLanguage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -214,7 +214,7 @@ public class EditUserActivity extends BaseActivity {
     }
 
     /**
-     * On resume, reset the vet and client spinners.
+     * On resume, reset the class spinners.
      */
     @Override
     protected void onResume() {
@@ -286,9 +286,6 @@ public class EditUserActivity extends BaseActivity {
             case android.R.id.home:
                 //back arrow
                 finish();
-                return true;
-            case R.id.action_settings:
-
                 return true;
         }
         return super.onOptionsItemSelected(item);

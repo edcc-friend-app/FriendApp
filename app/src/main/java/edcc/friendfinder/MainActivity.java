@@ -43,8 +43,6 @@ public class MainActivity extends BaseActivity
     private ListenerRegistration profileReg;
     private EventListener<QuerySnapshot> friendDataListener;
     private ListenerRegistration friendReg;
-    private EventListener<QuerySnapshot> userDataListener;
-    private ListenerRegistration userReg;
     private Fragment fragment;
     private UserManager um;
     private ActionBar actionBar;
@@ -156,9 +154,6 @@ public class MainActivity extends BaseActivity
         if (profileReg != null && profileDataListener != null) {
             profileReg.remove();
         }
-        if (userReg != null && userDataListener != null) {
-            userReg.remove();
-        }
         if (friendReg != null && friendDataListener != null) {
             friendReg.remove();
         }
@@ -208,9 +203,6 @@ public class MainActivity extends BaseActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
         if (id == R.id.action_sign_out) {
             signOut();
             return true;

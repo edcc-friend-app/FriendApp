@@ -148,8 +148,6 @@ public class PotentialFriendActivity extends BaseActivity {
                     DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(0);
                     User profile = snapshot.toObject(User.class);
                     um.setThisUser(profile);
-                } else {
-                    //((ProfileFragment) fragment).updateData();
                 }
             }
         };
@@ -184,11 +182,6 @@ public class PotentialFriendActivity extends BaseActivity {
             case android.R.id.home:
                 //back arrow
                 finish();
-                return true;
-            case R.id.action_settings:
-                //settings menu option
-//                Intent intent = new Intent(this, PreferencesActivity.class);
-//                startActivity(intent);
                 return true;
             case R.id.action_add:
                 //Add this friend

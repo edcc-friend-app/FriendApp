@@ -163,7 +163,6 @@ public class FriendDetailsActivity extends BaseActivity {
                 //back arrow
                 finish();
                 return true;
-            case R.id.action_settings:
             case R.id.action_delete:
                 deleteFriend();
                 return true;

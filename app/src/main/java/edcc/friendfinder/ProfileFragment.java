@@ -90,9 +90,6 @@ public class ProfileFragment extends Fragment {
             case R.id.action_edit:
                 listener.editUser(um.getThisUser());
                 return true;
-            case R.id.action_settings:
-                //Intent intent = new Intent(this, PreferencesActivity.class);
-                //startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
