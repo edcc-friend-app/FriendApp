@@ -13,12 +13,11 @@ import android.content.SharedPreferences;
  */
 public class PreferencesManager {
 
-    static final String CURRENT_FRAGMENT = "currentFragment";
+    private static final String CURRENT_FRAGMENT = "currentFragment";
     //fields
     private static PreferencesManager pm;
-    private final SharedPreferences PREFS;
-    private boolean sortAZ;
-    private boolean warnBeforeDeletingFriend;
+    private final boolean sortAZ;
+    private final boolean warnBeforeDeletingFriend;
     //    private boolean warnBeforeDeleting;
     private String currentFragment;
 
@@ -26,7 +25,7 @@ public class PreferencesManager {
      * private constructor
      */
     private PreferencesManager(Context ctx) {
-        PREFS = ctx.getSharedPreferences("edcc.friendfinder", Context.MODE_PRIVATE);
+        SharedPreferences PREFS = ctx.getSharedPreferences("edcc.friendfinder", Context.MODE_PRIVATE);
         sortAZ = PREFS.getBoolean("sortAZ", true);
         warnBeforeDeletingFriend = PREFS.getBoolean("warnBeforeDeletingFriend", true);
         currentFragment = PREFS.getString(CURRENT_FRAGMENT, "profile");
@@ -51,16 +50,6 @@ public class PreferencesManager {
      */
     boolean isSortAZ() {
         return sortAZ;
-    }
-
-    /**
-     * Allows the preference to sort friends A to Z or Z to A to be changed.
-     *
-     * @param sortAZ true if friends should be sorted A to Z, false if Z to A
-     */
-    void setSortAZ(boolean sortAZ) {
-        this.sortAZ = sortAZ;
-        PREFS.edit().putBoolean("sortAZ", sortAZ).apply();
     }
 
     /**

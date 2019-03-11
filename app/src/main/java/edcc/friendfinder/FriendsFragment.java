@@ -29,6 +29,7 @@ import java.util.List;
  * @author Jonathan Young
  * @version 1.0 3/10/19
  */
+@SuppressWarnings("NullableProblems")
 public class FriendsFragment extends Fragment {
 
     //fields

@@ -23,13 +23,12 @@ public class UserManager {
     private List<User> friendList;
     private int nextFriendId;
     private List<User> userList;
-    private DataHandler dh;
+    private final DataHandler dh;
     private User thisUser;
-    private PreferencesManager pm;
-    private Match match;
-    private List<String> courses;
-    private List<String> languages;
-    private List<String> majors;
+    private final PreferencesManager pm;
+    private final List<String> courses;
+    private final List<String> languages;
+    private final List<String> majors;
 
 /**
  *Private constructor.
@@ -82,19 +81,6 @@ public class UserManager {
         }
     }
 
-    /**
-     * Replaces the user list when Firebase has pushed an update to
-     * an activity. Does not require updating the DB since it came from the DB.
-     *
-     * @param user the new list of User objects
-     */
-    public void setUser(User user) {
-        for (int i = 0; i < userList.size(); i++) {
-            if (userList.get(i).getId() == user.getId()) {
-                userList.set(i, user);
-            }
-        }
-    }
 
     /**
      * Gets a list of potential friends, placing higher matches as priority on this top of the list.
@@ -111,7 +97,7 @@ public class UserManager {
             }
         }
         userList.removeAll(delete);
-        match = new Match(thisUser, userList);
+        Match match = new Match(thisUser, userList);
         return match.getPotFriends();
     }
 
@@ -182,11 +168,10 @@ public class UserManager {
     /**
      * Method to execute the add function
      * @param newFriend user object that is selected to add
-     * @return user object into the friend list
      */
-    int addFriend(User newFriend) {
+    void addFriend(User newFriend) {
         if (newFriend == null) {
-            return -1;
+            return;
         }
         newFriend.setId(nextFriendId);
         friendList.add(newFriend);
@@ -199,7 +184,6 @@ public class UserManager {
         db.collection("users").document(userId).collection("friends")
                 .document(String.valueOf(newFriend.getId())).set(newFriend);
         userList.remove(newFriend);
-        return newFriend.getId();
     }
 
     /**

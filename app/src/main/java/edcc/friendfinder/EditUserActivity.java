@@ -54,12 +54,8 @@ public class EditUserActivity extends BaseActivity {
     private boolean class2Changed;
     private boolean class3Changed;
     private Bitmap newPhoto;
-    private List<String> courseList = new ArrayList<>();
-    private ArrayAdapter<String> courseAdapter;
     private List<String> languageList = new ArrayList<>();
-    private ArrayAdapter<String> languageAdapter;
     private List<String> majorList = new ArrayList<>();
-    private ArrayAdapter<String> majorAdapter;
     private ImageView ibtnUserPhoto;
     private Spinner spnMajor;
     private Spinner spnLanguage;
@@ -230,7 +226,6 @@ public class EditUserActivity extends BaseActivity {
                 spnClass3.setSelection(index);
             }
             if (majorChanged) {
-                String m = um.getThisUser().getMajor();
                 int index = majorList.indexOf(profile.getMajor());
                 spnMajor.setSelection(index);
             }
@@ -406,15 +401,15 @@ public class EditUserActivity extends BaseActivity {
         profile = um.getThisUser();
         majorList = um.getMajors();
         languageList = um.getLanguages();
-        courseList = um.getCourses();
+        List<String> courseList = um.getCourses();
 
-        majorAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, majorList);
+        ArrayAdapter<String> majorAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, majorList);
         spnMajor.setAdapter(majorAdapter);
 
-        languageAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, languageList);
+        ArrayAdapter<String> languageAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, languageList);
         spnLanguage.setAdapter(languageAdapter);
 
-        courseAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, courseList);
+        ArrayAdapter<String> courseAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, courseList);
         spnClass1.setAdapter(courseAdapter);
         spnClass2.setAdapter(courseAdapter);
         spnClass3.setAdapter(courseAdapter);

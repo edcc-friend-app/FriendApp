@@ -44,7 +44,6 @@ public class PotentialFriendActivity extends BaseActivity {
     private TextView lblAvailability;
     private TextView lblBio;
     private ImageView imgUser;
-    private PreferencesManager pm;
     private EventListener<QuerySnapshot> profileDataListener;
     private ListenerRegistration profileReg;
     private EventListener<QuerySnapshot> friendDataListener;
@@ -58,7 +57,6 @@ public class PotentialFriendActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        pm = PreferencesManager.getInstance(getApplicationContext());
         setContentView(R.layout.activity_potential_friend);
         //create action bar and back arrow
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -201,9 +199,8 @@ public class PotentialFriendActivity extends BaseActivity {
 
     private String printClasses(User u) {
         List<String> classes = um.getCourses();
-        String strClasses = classes.get(u.getArrMatch().get(0)) + '\n' + classes.get(u.getArrMatch().get(1)) +
+        return classes.get(u.getArrMatch().get(0)) + '\n' + classes.get(u.getArrMatch().get(1)) +
                 '\n' + classes.get(u.getArrMatch().get(2));
-        return strClasses;
     }
 
 

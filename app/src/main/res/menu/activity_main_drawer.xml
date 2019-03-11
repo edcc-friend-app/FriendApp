@@ -6,7 +6,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_profile"
-            android:icon="@mipmap/ic_launcher_round"
+            android:icon="@drawable/user_icon"
             android:title="@string/profile_nav" />
         <item
             android:id="@+id/nav_find"
@@ -15,7 +15,7 @@
             android:title="@string/find_friends_nav" />
         <item
             android:id="@+id/nav_friends"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/friends"
             android:title="@string/friends_nav" />
     </group>
 
