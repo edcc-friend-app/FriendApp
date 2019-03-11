@@ -22,6 +22,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 /**
+ * Activity class for potential friends details screen.
+ *
  * @author Anthony Luong
  * @author Estefano Felipa
  * @author Jonathan Young
@@ -29,6 +31,7 @@ import java.util.ArrayList;
  */
 public class PotentialFriendActivity extends BaseActivity {
 
+    //fields
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private String thisUserName;
     private UserManager um;
@@ -46,6 +49,11 @@ public class PotentialFriendActivity extends BaseActivity {
     private EventListener<QuerySnapshot> friendDataListener;
     private ListenerRegistration friendReg;
 
+    /**
+     * Builds the activity on startup.
+     *
+     * @param savedInstanceState the saved state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +81,9 @@ public class PotentialFriendActivity extends BaseActivity {
 
     }
 
+    /**
+     * On pause, all data listeners are stopped.
+     */
     @Override
     protected void onPause() {
         super.onPause();
@@ -85,6 +96,10 @@ public class PotentialFriendActivity extends BaseActivity {
     }
 
 
+    /**
+     * Connects up the data listeners once authentication is completed in the BaseActivity.
+     * The user listener is listening for changes in this particular user entry.
+     */
     @Override
     public void setUpDataListeners() {
         um = UserManager.getUserManager(getApplicationContext(), userId);
@@ -183,6 +198,9 @@ public class PotentialFriendActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Add the current user.
+     */
     private void addFriend() {
         um.addFriend(thisUser);
     }
