@@ -25,6 +25,8 @@ import java.util.ArrayList;
 
 
 /**
+ * Activity class for the main screen.
+ *
  * @author Anthony Luong
  * @author Estefano Felipa
  * @author Jonathan Young
@@ -34,6 +36,7 @@ public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         FriendsFragment.FriendListener, ProfileFragment.ProfileListener,
         FindFriendsFragment.FriendListener {
+
     //fields
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private EventListener<QuerySnapshot> profileDataListener;
@@ -94,6 +97,9 @@ public class MainActivity extends BaseActivity
         ft.commit();
     }
 
+    /**
+     * Connects up the data listener once authentication is completed in the BaseActivity.
+     */
     @Override
     protected void setUpDataListeners() {
         stopDataListeners();
@@ -158,6 +164,9 @@ public class MainActivity extends BaseActivity
         }
     }
 
+    /**
+     * Handles when the back button is clicked. If the navigation drawer is open, just close it.
+     */
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -177,6 +186,12 @@ public class MainActivity extends BaseActivity
         stopDataListeners();
     }
 
+    /**
+     * Creates the top menu.
+     *
+     * @param menu the top menu
+     * @return true
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -184,6 +199,12 @@ public class MainActivity extends BaseActivity
         return true;
     }
 
+    /**
+     * Handles the top menu item selection.
+     *
+     * @param item the item selected
+     * @return true
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -197,7 +218,13 @@ public class MainActivity extends BaseActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
+
+    /**
+     * Handles the navigation drawer item selections.
+     *
+     * @param item the item selected
+     * @return true
+     */
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -226,6 +253,11 @@ public class MainActivity extends BaseActivity
         return true;
     }
 
+    /**
+     * Edits the current user
+     *
+     * @param current the current user
+     */
     @Override
     public void editUser(User current) {
         Intent intent = new Intent(MainActivity.this, EditUserActivity.class);
@@ -233,6 +265,11 @@ public class MainActivity extends BaseActivity
         startActivity(intent);
     }
 
+    /**
+     * Displays the user details activity. From FriendsFragment, ProfileFragment, and FindFriendsFragment.
+     *
+     * @param friend the friend to view
+     */
     @Override
     public void viewFriendRequested(User friend) {
         Intent intent = new Intent(MainActivity.this, FriendDetailsActivity.class);
@@ -240,6 +277,11 @@ public class MainActivity extends BaseActivity
         startActivity(intent);
     }
 
+    /**
+     * Displays the user details activity. From FriendsFragment, ProfileFragment, and FindFriendsFragment.
+     *
+     * @param friend the friend to view
+     */
     @Override
     public void viewPotFriendRequested(User friend) {
         Intent intent = new Intent(MainActivity.this, PotentialFriendActivity.class);
