@@ -139,7 +139,7 @@ public class ProfileFragment extends Fragment {
     public void updateData() {
         //set UI components
         thisUser = um.getThisUser();
-        lblName.setText(thisUser.toString());
+        lblName.setText(thisUser.printName());
         if (lblName.getText().toString().equals(" ")) {
             listener.editUser(um.getThisUser());
         } else {

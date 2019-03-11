@@ -1,5 +1,6 @@
 package edcc.friendfinder;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -242,8 +243,10 @@ public class User implements Comparable<User> {
 
     @Override
     public String toString() {
-        double percentage = (matchCount / 260.0) * 100;
-        return percentage + "% " + firstName + " " + lastName;
+        NumberFormat numFormat = NumberFormat.getPercentInstance();
+        numFormat.setMinimumFractionDigits(1);
+        double percentage = matchCount / 260.0;
+        return numFormat.format(percentage) + " " + firstName + " " + lastName;
     }
 
     public String printName() {

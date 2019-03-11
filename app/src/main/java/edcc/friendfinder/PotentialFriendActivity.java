@@ -105,7 +105,7 @@ public class PotentialFriendActivity extends BaseActivity {
     public void setUpDataListeners() {
         um = UserManager.getUserManager(getApplicationContext(), userId);
         thisUser = um.getUser(thisUserName);
-        lblName.setText(thisUser.toString() + thisUser.getMatchCount());
+        lblName.setText(thisUser.printName());
         lblMajor.setText(thisUser.getMajor());
         lblClasses.setText(printClasses(thisUser));
         lblLanguage.setText(thisUser.getLanguage());
