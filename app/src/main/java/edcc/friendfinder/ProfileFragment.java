@@ -43,7 +43,6 @@ public class ProfileFragment extends Fragment {
     private PreferencesManager pm;
 
     public ProfileFragment() {
-        // Required empty public constructor
     }
 
     @Override

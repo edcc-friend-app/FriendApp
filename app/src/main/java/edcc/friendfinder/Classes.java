@@ -14,7 +14,6 @@ class Classes implements Comparable<Classes> {
             "CHEM& 241", "CHEM& 242", "CHEM& 243", "CHIN& 121", "CHIN& 122", "CHIN& 123"};
 
     private String course;
-    private int classId;
 
     public Classes() {
 
@@ -24,23 +23,7 @@ class Classes implements Comparable<Classes> {
         course = courses[incClasses];
     }
 
-    String getCourse() {
-        return course;
-    }
 
-    public int getClassId() {
-        return classId;
-    }
-
-    public void setClassId(int classId) {
-        this.classId = classId;
-    }
-
-    String[] getCourseList() {
-        return courses;
-
-
-    }
 
     @Override
     public int compareTo(Classes o) {

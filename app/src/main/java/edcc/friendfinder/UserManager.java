@@ -8,6 +8,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * @author Anthony Luong
+ * @author Estefano Felipa
+ * @author Jonathan Young
+ * @version 1.0 3/10/19
+ */
 public class UserManager {
 
     private static UserManager um;
@@ -143,33 +149,6 @@ public class UserManager {
         userList = dh.getPotFriends();
         match = new Match(thisUser, userList);
         return match.getPotFriends();
-    }
-
-    void replaceUser(User user) {
-        for (int i = 0; i < userList.size(); i++) {
-            if (userList.get(i).getId() == user.getId()) {
-                userList.set(i, user);
-            }
-        }
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("users").document(userId).collection("friends")
-                .document(String.valueOf(user.getId())).set(user);
-    }
-
-    void addUser(User newUser) {
-        if (newUser == null) {
-            return;
-        }
-        newUser.setId(nextUserId);
-        userList.add(newUser);
-        nextUserId++;
-        Collections.sort(userList);
-        if (!pm.isSortAZ()) {
-            Collections.reverse(userList);
-        }
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("users").document(userId).collection("friends")
-                .document(String.valueOf(newUser.getId())).set(newUser);
     }
 
     List<User> getFriendList() {

@@ -74,8 +74,6 @@ public class EditUserActivity extends BaseActivity {
     private ListenerRegistration profileReg;
     private EventListener<QuerySnapshot> friendDataListener;
     private ListenerRegistration friendReg;
-    private EventListener<DocumentSnapshot> userDataListener;
-    private ListenerRegistration userReg;
 
     /**
      * Android onCreate method.
@@ -159,7 +157,6 @@ public class EditUserActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 languageChanged = true;
-                //clientId = ((Client) spnClient.getItemAtPosition(position)).getClientId();
             }
 
             @Override
@@ -189,7 +186,6 @@ public class EditUserActivity extends BaseActivity {
             }
         });
         spnClass3 = findViewById(R.id.spnClass3);
-        //spnClass3.setAdapter(courseAdapter);
         spnClass3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -211,9 +207,6 @@ public class EditUserActivity extends BaseActivity {
         super.onPause();
         if (profileReg != null && profileDataListener != null) {
             profileReg.remove();
-        }
-        if (userReg != null && userDataListener != null) {
-            userReg.remove();
         }
         if (friendReg != null && friendDataListener != null) {
             friendReg.remove();

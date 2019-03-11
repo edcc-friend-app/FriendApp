@@ -21,6 +21,12 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
+/**
+ * @author Anthony Luong
+ * @author Estefano Felipa
+ * @author Jonathan Young
+ * @version 1.0 3/10/19
+ */
 public class PotentialFriendActivity extends BaseActivity {
 
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -39,8 +45,6 @@ public class PotentialFriendActivity extends BaseActivity {
     private ListenerRegistration profileReg;
     private EventListener<QuerySnapshot> friendDataListener;
     private ListenerRegistration friendReg;
-    private EventListener<DocumentSnapshot> userDataListener;
-    private ListenerRegistration userReg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +61,7 @@ public class PotentialFriendActivity extends BaseActivity {
         //get current user
         Intent intent = getIntent();
         thisUserName = intent.getStringExtra(Extras.USER_ID);
-//        if (thisUserId < 0) {
-//            finish();
-//        }
+
         //find UI components
         lblName = findViewById(R.id.lblName);
         lblMajor = findViewById(R.id.lblMajor);
@@ -76,9 +78,6 @@ public class PotentialFriendActivity extends BaseActivity {
         super.onPause();
         if (profileReg != null && profileDataListener != null) {
             profileReg.remove();
-        }
-        if (userReg != null && userDataListener != null) {
-            userReg.remove();
         }
         if (friendReg != null && friendDataListener != null) {
             friendReg.remove();

@@ -43,10 +43,6 @@ public class FriendDetailsActivity extends BaseActivity {
     private PreferencesManager pm;
     private EventListener<QuerySnapshot> profileDataListener;
     private ListenerRegistration profileReg;
-    private EventListener<QuerySnapshot> friendDataListener;
-    private ListenerRegistration friendReg;
-    private EventListener<DocumentSnapshot> userDataListener;
-    private ListenerRegistration userReg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,12 +79,6 @@ public class FriendDetailsActivity extends BaseActivity {
         if (profileReg != null && profileDataListener != null) {
             profileReg.remove();
         }
-        if (userReg != null && userDataListener != null) {
-            userReg.remove();
-        }
-        if (friendReg != null && friendDataListener != null) {
-            friendReg.remove();
-        }
     }
 
     @Override
@@ -122,8 +112,6 @@ public class FriendDetailsActivity extends BaseActivity {
                     DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(0);
                     User profile = snapshot.toObject(User.class);
                     um.setThisUser(profile);
-                } else {
-                    //((ProfileFragment) fragment).updateData();
                 }
             }
         };
@@ -159,9 +147,6 @@ public class FriendDetailsActivity extends BaseActivity {
                 finish();
                 return true;
             case R.id.action_settings:
-                //settings menu option
-//                Intent intent = new Intent(this, PreferencesActivity.class);
-//                startActivity(intent);
             case R.id.action_delete:
                 deleteFriend();
                 return true;
@@ -188,6 +173,4 @@ public class FriendDetailsActivity extends BaseActivity {
             um.deleteFriend(id);
         }
     }
-
-
 }

@@ -1,6 +1,5 @@
 package edcc.friendfinder;
 
-
 import android.content.Context;
 import android.content.SharedPreferences;
 
