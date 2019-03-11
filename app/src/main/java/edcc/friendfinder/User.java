@@ -20,7 +20,7 @@ public class User implements Comparable<User> {
     private String photo; //base64 encoded byte array
     //tests for match
     private int matchCount;
-    private List<Integer> arrMatch = new ArrayList<>();
+    private List<Integer> arrMatch;
 
     public User() {
         firstName = "";
@@ -28,17 +28,20 @@ public class User implements Comparable<User> {
         major = "";
         bio = "";
         language = "";
+        availability = "";
+        arrMatch = new ArrayList<>();
         matchCount = 0;
     }
 
     public User(String firstName, String lastName, String major,
-                String bio, String language, String availability) {
+                String bio, String language, String availability, List<Integer> classes) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.major = major;
         this.bio = bio;
         this.language = language;
         this.availability = availability;
+        arrMatch = classes;
         matchCount = 0;
     }
 
@@ -122,15 +125,13 @@ public class User implements Comparable<User> {
         this.matchCount = matchCount;
     }
 
-    public String printClasses() {
-        String[] classes = Classes.courses;
-        String strClasses = classes[arrMatch.get(0)] + '\n' + classes[arrMatch.get(1)] +
-                '\n' + classes[arrMatch.get(2)];
-        return strClasses;
-    }
-
     @Override
     public String toString() {
+        double percentage = (matchCount / 260.0) * 100;
+        return percentage + "% " + firstName + " " + lastName;
+    }
+
+    public String printName() {
         return firstName + " " + lastName;
     }
 

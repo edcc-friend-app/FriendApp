@@ -40,22 +40,20 @@ public class Match {
 
     public void compareClasses() {
         for (User f : friends) {
-            if (compareClassesHelper(thisUser.getArrMatch(), f.getArrMatch())) {
-                f.incrementCount("classes");
-            }
+            compareClassesHelper(thisUser.getArrMatch(), f.getArrMatch(), f);
         }
     }
 
-    public boolean compareClassesHelper(List<Integer> arr1, List<Integer> arr2) {
+    public void compareClassesHelper(List<Integer> arr1, List<Integer> arr2, User f) {
         Collections.sort(arr1);
         Collections.sort(arr2);
-
-        for (int i = 0; i < arr1.size(); i++) {
-            if (arr1.get(i) == arr2.get(i)) {
-                return true;
+        for (int a: arr1) {
+            for (int b: arr2) {
+                if(a == b) {
+                    f.incrementCount("class");
+                }
             }
         }
-        return false;
     }
 
     public void compareLanguage() {

@@ -21,6 +21,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.List;
+
 /**
  * @author Anthony Luong
  * @author Estefano Felipa
@@ -86,9 +88,9 @@ public class FriendDetailsActivity extends BaseActivity {
         um = UserManager.getUserManager(getApplicationContext(), userId);
         thisFriend = um.getFriend(id);
         um.setFriend(thisFriend);
-        lblName.setText(thisFriend.toString());
+        lblName.setText(thisFriend.printName());
         lblMajor.setText(thisFriend.getMajor());
-        lblClasses.setText(thisFriend.printClasses());
+        lblClasses.setText(printClasses(thisFriend));
         lblLanguage.setText(thisFriend.getLanguage());
         lblBio.setText(thisFriend.getBio());
         lblAvailability.setText(thisFriend.getAvailability());
@@ -172,5 +174,12 @@ public class FriendDetailsActivity extends BaseActivity {
         } else {
             um.deleteFriend(id);
         }
+    }
+
+    private String printClasses(User u) {
+        List<String> classes = um.getCourses();
+        String strClasses = classes.get(u.getArrMatch().get(0)) + '\n' + classes.get(u.getArrMatch().get(1)) +
+                '\n' + classes.get(u.getArrMatch().get(2));
+        return strClasses;
     }
 }

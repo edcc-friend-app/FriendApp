@@ -1,7 +1,5 @@
 package edcc.friendfinder;
 
-import android.support.v4.app.Fragment;
-
 /**
  * Utility class to hold Intent keywords.
  *
@@ -18,6 +16,5 @@ class Extras {
     static final int REQUEST_MAJOR = 5;
     static final String USER_ID = "userId";
     static final String PROFILE_ID = "userId";
-
 
 }

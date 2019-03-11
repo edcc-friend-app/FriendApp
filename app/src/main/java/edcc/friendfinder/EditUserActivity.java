@@ -502,5 +502,6 @@ public class EditUserActivity extends BaseActivity {
         }
         ibtnUserPhoto.setScaleType(ImageView.ScaleType.FIT_CENTER);
     }
+
 }
 

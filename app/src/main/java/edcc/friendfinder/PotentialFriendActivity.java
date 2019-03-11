@@ -20,6 +20,7 @@ import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Anthony Luong
@@ -91,7 +92,7 @@ public class PotentialFriendActivity extends BaseActivity {
         thisUser = um.getUser(thisUserName);
         lblName.setText(thisUser.toString() + thisUser.getMatchCount());
         lblMajor.setText(thisUser.getMajor());
-        lblClasses.setText(thisUser.printClasses());
+        lblClasses.setText(printClasses(thisUser));
         lblLanguage.setText(thisUser.getLanguage());
         lblAvailability.setText(thisUser.getAvailability());
         lblBio.setText(thisUser.getBio());
@@ -185,6 +186,13 @@ public class PotentialFriendActivity extends BaseActivity {
 
     private void addFriend() {
         um.addFriend(thisUser);
+    }
+
+    private String printClasses(User u) {
+        List<String> classes = um.getCourses();
+        String strClasses = classes.get(u.getArrMatch().get(0)) + '\n' + classes.get(u.getArrMatch().get(1)) +
+                '\n' + classes.get(u.getArrMatch().get(2));
+        return strClasses;
     }
 
 

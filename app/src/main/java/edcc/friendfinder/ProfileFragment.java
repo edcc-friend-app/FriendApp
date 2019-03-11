@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.List;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -110,7 +112,7 @@ public class ProfileFragment extends Fragment {
         } else {
             lblMajor.setText(thisUser.getMajor());
             lblLanguage.setText(thisUser.getLanguage());
-            lblClasses.setText(thisUser.printClasses());
+            lblClasses.setText(printClasses(thisUser));
             lblBio.setText(thisUser.getBio());
             lblAvailability.setText(thisUser.getAvailability());
 
@@ -127,6 +129,13 @@ public class ProfileFragment extends Fragment {
 
     interface ProfileListener {
         void editUser(User current);
+    }
+
+    private String printClasses(User u) {
+        List<String> classes = um.getCourses();
+        String strClasses = classes.get(u.getArrMatch().get(0)) + '\n' + classes.get(u.getArrMatch().get(1)) +
+                '\n' + classes.get(u.getArrMatch().get(2));
+        return strClasses;
     }
 
 }
