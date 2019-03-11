@@ -123,6 +123,23 @@ public class MainActivity extends BaseActivity
         } else if (fragment instanceof FindFriendsFragment) {
             //set up potential friends list
             um = UserManager.getUserManager(this, userId);
+            final CollectionReference ref = db.collection("users").document(userId)
+                    .collection("friends");
+            friendDataListener = new EventListener<QuerySnapshot>() {
+                @Override
+                public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+                    if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
+                        ArrayList<User> friendList = new ArrayList<>();
+                        for (int i = 0; i < documentSnapshots.size(); i++) {
+                            DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
+                            User friend = snapshot.toObject(User.class);
+                            friendList.add(friend);
+                        }
+                        um.setFriendList(friendList);
+                    }
+                }
+            };
+            friendReg = ref.addSnapshotListener(friendDataListener);
         } else if (fragment instanceof FriendsFragment) {
             //set up the friends list
             um = UserManager.getUserManager(this, userId);

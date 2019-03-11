@@ -3,6 +3,7 @@ package edcc.friendfinder;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * This class represents one user.
@@ -257,14 +258,32 @@ public class User implements Comparable<User> {
      * Compares one user to another for sorting purposes. Uses the String representation of
      * each user for comparison.
      *
-     * @param another the other user to compare to this one
+     * @param other the other user to compare to this one
      * @return the user's String value, negative if lower, positive if greater, and zero if the same
      */
     @Override
-    public int compareTo(User another) {
-        String thisName = lastName.toLowerCase() + firstName.toLowerCase();
-        String anotherName = another.lastName.toLowerCase() + another.firstName.toLowerCase();
-        return thisName.compareTo(anotherName);
+    public int compareTo(User other) {
+        return  other.matchCount - this.matchCount ;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return matchCount == user.matchCount &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(major, user.major) &&
+                Objects.equals(bio, user.bio) &&
+                Objects.equals(language, user.language) &&
+                Objects.equals(availability, user.availability) &&
+                Objects.equals(arrMatch, user.arrMatch);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, major, bio, language, availability, id, photo, matchCount, arrMatch);
     }
 
     /**

@@ -47,19 +47,7 @@ public class UserManagerTest {
     }
 
     @Test
-    public void addFriend() {
-    }
-
-    @Test
-    public void deleteFriend() {
-    }
-
-    @Test
     public void getThisUser() {
-    }
-
-    @Test
-    public void setThisUser() {
     }
 
     @Test

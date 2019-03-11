@@ -26,7 +26,6 @@ public class UserManager {
     private DataHandler dh;
     private User thisUser;
     private PreferencesManager pm;
-    private Match match;
     private List<String> courses;
     private List<String> languages;
     private List<String> majors;
@@ -103,15 +102,16 @@ public class UserManager {
     public List<User> getPotentialFriends() {
         userList = dh.getPotFriends();
         List<User> delete = new ArrayList<>();
+        List<User> friends = getFriendList();
         for(User e: userList) {
-            for (User f: friendList) {
-                if(e.compareTo(f) == 0){
+            for (User f: friends) {
+                if(e.equals(f)){
                     delete.add(e);
                 }
             }
         }
         userList.removeAll(delete);
-        match = new Match(thisUser, userList);
+        Match match = new Match(thisUser, userList);
         return match.getPotFriends();
     }
 
@@ -192,9 +192,6 @@ public class UserManager {
         friendList.add(newFriend);
         nextFriendId++;
         Collections.sort(friendList);
-        if (!pm.isSortAZ()) {
-            Collections.reverse(friendList);
-        }
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("users").document(userId).collection("friends")
                 .document(String.valueOf(newFriend.getId())).set(newFriend);

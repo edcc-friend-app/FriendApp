@@ -17,7 +17,6 @@ public class PreferencesManager {
     //fields
     private static PreferencesManager pm;
     private final SharedPreferences PREFS;
-    private boolean sortAZ;
     private boolean warnBeforeDeletingFriend;
     //    private boolean warnBeforeDeleting;
     private String currentFragment;
@@ -27,7 +26,6 @@ public class PreferencesManager {
      */
     private PreferencesManager(Context ctx) {
         PREFS = ctx.getSharedPreferences("edcc.friendfinder", Context.MODE_PRIVATE);
-        sortAZ = PREFS.getBoolean("sortAZ", true);
         warnBeforeDeletingFriend = PREFS.getBoolean("warnBeforeDeletingFriend", true);
         currentFragment = PREFS.getString(CURRENT_FRAGMENT, "profile");
     }
@@ -42,25 +40,6 @@ public class PreferencesManager {
             pm = new PreferencesManager(ctx);
         }
         return pm;
-    }
-
-    /**
-     * Provides access to the preference to sort friends A to Z or Z to A.
-     *
-     * @return true if friends should be sorted A to Z, false if Z to A
-     */
-    boolean isSortAZ() {
-        return sortAZ;
-    }
-
-    /**
-     * Allows the preference to sort friends A to Z or Z to A to be changed.
-     *
-     * @param sortAZ true if friends should be sorted A to Z, false if Z to A
-     */
-    void setSortAZ(boolean sortAZ) {
-        this.sortAZ = sortAZ;
-        PREFS.edit().putBoolean("sortAZ", sortAZ).apply();
     }
 
     /**

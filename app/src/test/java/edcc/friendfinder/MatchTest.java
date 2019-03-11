@@ -108,23 +108,4 @@ public class MatchTest {
         assertEquals(0, friends.get(4).getMatchCount());
     }
 
-    @Test
-    public void testSortWithSameElements() {
-        match.sort();
-        for (User f: friends) {
-            assertEquals(0, f.getMatchCount());
-        }
-    }
-
-    @Test
-    public void testSortWithAddedCount() {
-        match.compareClasses();
-        match.sort();
-        assertEquals(120, friends.get(0).getMatchCount());
-        assertEquals(60, friends.get(1).getMatchCount());
-        assertEquals(0, friends.get(2).getMatchCount());
-        assertEquals(0, friends.get(3).getMatchCount());
-        assertEquals(0, friends.get(4).getMatchCount());
-
-    }
 }

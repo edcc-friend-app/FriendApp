@@ -1,5 +1,6 @@
 package edcc.friendfinder;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class Match {
         compareMajor();
         compareClasses();
         compareLanguage();
-        sort();
+        Collections.sort(friends);
         return friends;
     }
 
@@ -95,25 +96,4 @@ public class Match {
         }
     }
 
-    /**
-     * Sorting method to organize the list of potential friends based on their strength in likelihood
-     * of being your friend from the algorithm.
-     */
-    public void sort() {
-        boolean swapped;
-        for (int i = 0; i < friends.size(); i++) {
-            swapped = false;
-            for (int j = 1; j < friends.size() - i; j++) {
-                if (friends.get(j).matchCompare(friends.get(j - 1)) > 0) {
-                    User temp = friends.get(j);
-                    friends.set(j, friends.get(j - 1));
-                    friends.set(j - 1, temp);
-                    swapped = true;
-                }
-            }
-            if (!swapped) {
-                break;
-            }
-        }
-    }
 }
