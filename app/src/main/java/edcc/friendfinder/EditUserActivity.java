@@ -397,7 +397,7 @@ public class EditUserActivity extends BaseActivity {
     }
 
     /**
-     * Sets up data listeners for the user object and the client and vet lists after
+     * Sets up data listeners for the user object and the friend lists after
      * authentication is completed.
      */
     @Override
@@ -471,7 +471,7 @@ public class EditUserActivity extends BaseActivity {
     }
 
     /**
-     * Fills the UI fields with the proper pet data.
+     * Fills the UI fields with the proper user data.
      */
     private void populateFields() {
         //name

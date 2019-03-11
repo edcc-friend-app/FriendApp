@@ -102,8 +102,8 @@ public class FindFriendsFragment extends Fragment {
     }
 
     /**
-     * Updates the pet list. This method must be called by the controlling activity
-     * whenever this fragment is visible and pet data is altered outside of this fragment.
+     * Updates the friend list. This method must be called by the controlling activity
+     * whenever this fragment is visible and friend data is altered outside of this fragment.
      */
     public void updateData() {
         potFriendList = um.getPotentialFriends();

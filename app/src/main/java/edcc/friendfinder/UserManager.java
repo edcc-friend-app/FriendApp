@@ -59,7 +59,7 @@ public class UserManager {
     }
 
     /**
-     * Provides access to a sorted list of all pets.
+     * Provides access to a sorted list of all users.
      * Sorts in reverse if user preferences require it.
      * @param id - these users name
      * @return List<User> - the list of users
