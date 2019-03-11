@@ -102,6 +102,15 @@ public class UserManager {
      */
     public List<User> getPotentialFriends() {
         userList = dh.getPotFriends();
+        List<User> delete = new ArrayList<>();
+        for(User e: userList) {
+            for (User f: friendList) {
+                if(e.compareTo(f) == 0){
+                    delete.add(e);
+                }
+            }
+        }
+        userList.removeAll(delete);
         match = new Match(thisUser, userList);
         return match.getPotFriends();
     }
