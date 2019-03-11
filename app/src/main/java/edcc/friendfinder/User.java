@@ -287,17 +287,6 @@ public class User implements Comparable<User> {
     }
 
     /**
-     * Compares one user to another to see their compatibility.
-     *
-     * @param other the other user to compare compatibility values
-     * @return places current user before the other if value is positive,
-     * else the other way around if the value is negative
-     */
-    public int matchCompare(User other) {
-        return this.matchCount - other.matchCount;
-    }
-
-    /**
      * Increments compatibility values depending on what they match on
      *
      * @param type user profile information to be compared

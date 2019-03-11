@@ -15,7 +15,6 @@ public class UserManagerTest {
 
 
     User thisUser;
-    User diffUser;
     ArrayList<User> friends;
     private Match match;
     Context appContext = InstrumentationRegistry.getTargetContext();
@@ -71,38 +70,39 @@ public class UserManagerTest {
     }
 
     @Test
-    public void getUserManager() {
+    public void testGetUserManager() {
         assertNotNull(um);
     }
 
     @Test
-    public void getUser() {
-        assertNull(diffUser);
-        assertNotNull(thisUser);
-        assertEquals(thisUser.toString(), "0.0% Test One");
+    public void testGetUser() {
+        User user1 = um.getUser("Anthony Luong");
+        assertEquals("Anthony", user1.getFirstName());
+        assertEquals("Luong", user1.getLastName());
+        User user2 = um.getUser("Jonathan Young");
+        assertEquals("Jonathan", user2.getFirstName());
+        assertEquals("Young", user2.getLastName());
+        User user3 = um.getUser("Franshesco Coello");
+        assertEquals("Franshesco", user3.getFirstName());
+        assertEquals("Coello", user3.getLastName());
+
     }
 
 
     @Test
-    public void getPotentialFriends() {
-        List<User> user;
-        user = match.getPotFriends();
-        System.out.println(match.toString());
-    }
+    public void testGetPotentialFriends() {
+        List<User> friends = um.getPotentialFriends();
+        assertEquals("0.0% Franshesco Coello", friends.get(0).toString());
+        assertEquals("0.0% Anthony Luong", friends.get(1).toString());
+        assertEquals("0.0% Jonathan Young", friends.get(2).toString());
+        assertEquals("0.0% Susy Lincoln", friends.get(3).toString());
+        assertEquals("0.0% Jared Kuddes", friends.get(4).toString());
+        assertEquals("0.0% Sora Fung", friends.get(5).toString());
+        assertEquals("0.0% Roxas Pham", friends.get(6).toString());
+        assertEquals("0.0% Vivian Nguyen", friends.get(7).toString());
+        assertEquals("0.0% Henry Zokkins", friends.get(8).toString());
+        assertEquals("0.0% Vy Bui", friends.get(9).toString());
 
-    @Test
-    public void getFriendList() {
-
-    }
-
-    @Test
-    public void getFriend() {
-
-    }
-
-    @Test
-    public void setFriend() {
-        
     }
 
 }

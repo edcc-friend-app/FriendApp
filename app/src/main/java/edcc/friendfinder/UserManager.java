@@ -67,7 +67,7 @@ public class UserManager {
         int index = -1;
         for (int i = 0; i < userList.size(); i++) {
             User u = userList.get(i);
-            if (u.toString().equalsIgnoreCase(id)) {
+            if (u.printName().equalsIgnoreCase(id)) {
                 index = i;
                 break;
             }

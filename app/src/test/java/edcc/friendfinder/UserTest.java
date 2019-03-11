@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 
 
@@ -31,62 +32,62 @@ public class UserTest {
 
     }
     @Test
-    public void getFirstName() {
+    public void testGetFirstName() {
         assertEquals("Freddie", user.getFirstName());
     }
 
     @Test
-    public void setFirstName() {
+    public void testSetFirstName() {
         user.setFirstName("Tom");
         assertEquals("Tom", user.getFirstName());
     }
 
     @Test
-    public void getLastName() {
+    public void testGetLastName() {
         assertEquals("Wonder", user.getLastName());
     }
 
     @Test
-    public void setLastName() {
+    public void testSetLastName() {
         user.setLastName("Hanks");
         assertEquals("Hanks", user.getLastName());
     }
 
     @Test
-    public void getAvailability() {
+    public void testGetAvailability() {
         assertEquals("Free", user.getAvailability());
     }
 
     @Test
-    public void setAvailability() {
+    public void testSetAvailability() {
         user.setAvailability("Not available");
         assertEquals("Not available", user.getAvailability());
     }
 
     @Test
-    public void getMajor() {
+    public void testGetMajor() {
         assertEquals("Biology", user.getMajor());
     }
 
     @Test
-    public void setMajor() {
+    public void testSetMajor() {
         user.setMajor("Computer Science");
         assertEquals("Computer Science", user.getMajor());
     }
 
     @Test
-    public void getBio() {
+    public void testGetBio() {
         assertEquals("I like to look at memes", user.getBio());
     }
 
     @Test
-    public void setBio() {
+    public void testSetBio() {
         user.setBio("I prefer to study in groups");
         assertEquals("I prefer to study in groups", user.getBio());
     }
 
     @Test
-    public void getId() {
+    public void testGetId() {
         assertEquals(29, user.getId());
     }
 
@@ -158,15 +159,17 @@ public class UserTest {
         user2.setLanguage("Vietnamese");
         user2.setAvailability("Busy");
         user2.setBio("I like to swim");
-
-
-    }
-
-    @Test
-    public void matchCompare() {
+        user2.setMatchCount(20);
+        assertTrue(user.compareTo(user2) > 0);
     }
 
     @Test
     public void incrementCount() {
+        user.incrementCount("class");
+        assertEquals(60, user.getMatchCount());
+        user.incrementCount("major");
+        assertEquals(110, user.getMatchCount());
+        user.incrementCount("language");
+        assertEquals(140, user.getMatchCount());
     }
 }
