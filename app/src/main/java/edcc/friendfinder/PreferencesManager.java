@@ -72,17 +72,6 @@ public class PreferencesManager {
     }
 
     /**
-     * Allows the preference to warn before deleting a friend to be changed.
-     *
-     * @param warnBeforeDeletingFriend true if a a warning should be given, false if not
-     */
-    void setWarnBeforeDeletingFriend(boolean warnBeforeDeletingFriend) {
-        this.warnBeforeDeletingFriend = warnBeforeDeletingFriend;
-        PREFS.edit().putBoolean("warnBeforeDeletingFriend", warnBeforeDeletingFriend).apply();
-    }
-
-
-    /**
      * Provides access to the current fragment showing in the NavActivity. This allows the app
      * to open with the last fragment displayed. It also allows return to the same fragment when
      * navigating away from NavActivity and then back.
