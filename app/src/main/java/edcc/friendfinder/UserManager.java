@@ -26,7 +26,6 @@ public class UserManager {
     private List<User> userList;
     private final DataHandler dh;
     private User thisUser;
-    private final PreferencesManager pm;
     private final List<String> courses;
     private final List<String> languages;
     private final List<String> majors;
@@ -36,7 +35,6 @@ public class UserManager {
      */
     private UserManager(Context ctx) {
         dh = new DataHandler();
-        pm = PreferencesManager.getInstance(ctx);
         friendList = new ArrayList<>();
         userList = new ArrayList<>();
         thisUser = new User();

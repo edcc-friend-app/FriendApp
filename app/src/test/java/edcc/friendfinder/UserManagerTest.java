@@ -3,12 +3,20 @@ package edcc.friendfinder;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserManagerTest {
 
     User thisUser;
 
     @Before
     public void setUp() throws Exception {
+        List<Integer> classes = new ArrayList<>();
+        classes.add(2);
+        classes.add(4);
+        classes.add(16);
+        thisUser = new User("My", "UMT", "Business", "Getting 4.0's", "English", "Err Day", classes);
 
     }
 

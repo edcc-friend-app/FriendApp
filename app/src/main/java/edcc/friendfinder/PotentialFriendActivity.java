@@ -197,6 +197,11 @@ public class PotentialFriendActivity extends BaseActivity {
         um.addFriend(thisUser);
     }
 
+    /**
+     * Method to display classes
+     * @param u user being sent to check for matching parameters
+     * @return matching class list
+     */
     private String printClasses(User u) {
         List<String> classes = um.getCourses();
         return classes.get(u.getArrMatch().get(0)) + '\n' + classes.get(u.getArrMatch().get(1)) +
