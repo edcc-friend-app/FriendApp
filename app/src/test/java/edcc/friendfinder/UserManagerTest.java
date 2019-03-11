@@ -5,39 +5,89 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class UserManagerTest {
 
     User thisUser;
+    User diffUser;
+    ArrayList<User> friends;
+    private Match match;
 
     @Before
     public void setUp() throws Exception {
         List<Integer> classes = new ArrayList<>();
-        classes.add(2);
-        classes.add(4);
-        classes.add(16);
-        thisUser = new User("My", "UMT", "Business", "Getting 4.0's", "English", "Err Day", classes);
+        classes.add(0);
+        classes.add(8);
+        classes.add(24);
+        User user = new User("Test", "One", "Music", "Watching movies", "Chinese", "Everjy weekend", classes);
+        //friends set up
+        List<Integer> classes1 = new ArrayList<>();
+        classes1.add(0);
+        classes1.add(3);
+        classes1.add(6);
+        User friend1 = new User("Franshesco", "Coello", "Computer Science", "Soccer", "English",
+                "All day", classes1);
 
+        List<Integer> classes2 = new ArrayList<>();
+        classes2.add(3);
+        classes2.add(12);
+        classes2.add(21);
+        User friend2 = new User("Anthony", "Luong", "Music", "Memes", "Vietnamese", "All day", classes2);
+
+        List<Integer> classes3 = new ArrayList<>();
+        classes3.add(8);
+        classes3.add(5);
+        classes3.add(24);
+        User friend3 = new User("Jonathan", "Young", "Business", "Football", "Chinese", "All day", classes3);
+
+        List<Integer> classes4 = new ArrayList<>();
+        classes4.add(13);
+        classes4.add(4);
+        classes4.add(19);
+        User friend4 = new User("Susy", "Lincoln", "Music", "Dancing", "Spanish", "All day", classes4);
+
+        List<Integer> classes5 = new ArrayList<>();
+        classes5.add(23);
+        classes5.add(1);
+        classes5.add(16);
+        User friend5 = new User("Jared", "Kuddes", "Nursing", "Memes", "French", "All day", classes5);
+
+        friends = new ArrayList<>();
+        friends.add(friend1);
+        friends.add(friend2);
+        friends.add(friend3);
+        friends.add(friend4);
+        friends.add(friend5);
+        match = new Match(user, friends);
     }
 
     @Test
     public void getUserManager() {
+
     }
 
     @Test
     public void getUser() {
+        assertNull(diffUser);
+        assertNotNull(thisUser);
+        assertEquals(thisUser.toString(), "0.0% My UMT");
     }
 
-    @Test
-    public void setUser() {
-    }
 
     @Test
     public void getPotentialFriends() {
+        List<User> user;
+        user = match.getPotFriends();
+        System.out.println(match.toString());
     }
 
     @Test
     public void getFriendList() {
+
     }
 
     @Test
@@ -62,6 +112,7 @@ public class UserManagerTest {
 
     @Test
     public void getLanguages() {
+
     }
 
     @Test
