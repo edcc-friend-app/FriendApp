@@ -21,8 +21,15 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
 
+/**
+ * @author Anthony Luong
+ * @author Estefano Felipa
+ * @author Jonathan Young
+ * @version 1.0 3/10/19
+ */
 public class FriendDetailsActivity extends BaseActivity {
 
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private int id;
     private UserManager um;
     private User thisFriend;
@@ -34,7 +41,6 @@ public class FriendDetailsActivity extends BaseActivity {
     private TextView lblBio;
     private ImageView imgFriend;
     private PreferencesManager pm;
-    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private EventListener<QuerySnapshot> profileDataListener;
     private ListenerRegistration profileReg;
     private EventListener<QuerySnapshot> friendDataListener;

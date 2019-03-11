@@ -2,7 +2,6 @@ package edcc.friendfinder;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -24,6 +23,11 @@ import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
+ *
+ * @author Anthony Luong
+ * @author Estefano Felipa
+ * @author Jonathan Young
+ * @version 1.0 3/10/19
  */
 public class FriendsFragment extends Fragment {
 
@@ -39,12 +43,6 @@ public class FriendsFragment extends Fragment {
 
     public FriendsFragment() {
         // Required empty public constructor
-    }
-
-
-    interface FriendListener {
-        void viewFriendRequested(User friend);
-
     }
 
     @Override
@@ -181,6 +179,11 @@ public class FriendsFragment extends Fragment {
                 android.R.layout.simple_list_item_1, um.getFriendList());
         lstFriends.setAdapter(lstAdapter);
         txtFilter.setText("");
+    }
+
+    interface FriendListener {
+        void viewFriendRequested(User friend);
+
     }
 
 }

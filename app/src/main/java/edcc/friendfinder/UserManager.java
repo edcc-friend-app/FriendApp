@@ -1,16 +1,17 @@
 package edcc.friendfinder;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import android.content.Context;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class UserManager {
 
     private static UserManager um;
+    private static String userId;
     private List<User> friendList;
     private int nextFriendId;
     private List<User> userList;
@@ -18,7 +19,6 @@ public class UserManager {
     private DataHandler dh;
     private User thisUser;
     private PreferencesManager pm;
-    private static String userId;
     private Match match;
     private List<String> courses;
     private List<String> languages;
@@ -86,7 +86,7 @@ public class UserManager {
         majors.add("Computer Science");
         majors.add("Construction Management");
         majors.add("Culinary Arts");
-        majors.add( "Early Childhood Education");
+        majors.add("Early Childhood Education");
         majors.add("Emergency Management");
         majors.add("Engineering and Science");
         majors.add("Engineering Technology");
@@ -111,46 +111,6 @@ public class UserManager {
             um = new UserManager(ctx);
         }
         return um;
-    }
-
-    List<User> getUserList() {
-        Collections.sort(userList);
-        if (!pm.isSortAZ()) {
-            Collections.reverse(userList);
-        }
-        return userList;
-    }
-
-    void setUserList(List<User> list) {
-        Collections.sort(list);
-        userList = list;
-        if (userList.size() > 0) {
-            nextUserId = userList.get(0).getId();
-            for (User u : userList) {
-                if (u.getId() > nextUserId) {
-                    nextUserId = u.getId();
-                }
-            }
-            nextUserId++;
-        }
-    }
-
-    User getUser(int id) {
-        //search for id
-        int index = -1;
-        for (int i = 0; i < userList.size(); i++) {
-            User u = userList.get(i);
-            if (u.getId() == id) {
-                index = i;
-                break;
-            }
-        }
-        //if found
-        if (index >= 0) {
-            return userList.get(index);
-        } else {
-            return null;
-        }
     }
 
     User getUser(String id) {
@@ -212,46 +172,6 @@ public class UserManager {
                 .document(String.valueOf(newUser.getId())).set(newUser);
     }
 
-    void deleteUser(int id) {
-        int index = -1;
-        //find pet in list
-        for (int i = 0; i < userList.size(); i++) {
-            User u = userList.get(i);
-            if (u.getId() == id) {
-                index = i;
-                break;
-            }
-        }
-        //if found
-        if (index >= 0) {
-            //delete
-            userList.remove(index);
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            db.collection("users").document(userId).collection("friends")
-                    .document(String.valueOf(id)).delete();
-        }
-    }
-
-    boolean UserHasFriends(int friendId) {
-        int index = -1;
-        for (int i = 0; i < userList.size() && index < 0; i++) {
-            if (userList.get(i).getFriendId() == friendId) {
-                index = i;
-            }
-        }
-        return index > -1;
-    }
-
-    boolean friendHasFriends(int friendId) {
-        int index = -1;
-        for (int i = 0; i < friendList.size() && index < 0; i++) {
-            if (friendList.get(i).getFriendId() == friendId) {
-                index = i;
-            }
-        }
-        return index > -1;
-    }
-
     List<User> getFriendList() {
         Collections.sort(friendList);
         return friendList;
@@ -295,18 +215,6 @@ public class UserManager {
                 friendList.set(i, friend);
             }
         }
-    }
-
-    void replaceFriend(User friend) {
-        for (int i = 0; i < friendList.size(); i++) {
-            if (friendList.get(i).getId() == friend.getId()) {
-                friendList.set(i, friend);
-            }
-        }
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("users").document(userId).collection("friends")
-                .document(String.valueOf(friend.getId())).set(friend);
-
     }
 
     int addFriend(User newFriend) {
@@ -363,24 +271,15 @@ public class UserManager {
         return courses;
     }
 
-    public void setCourses(List<String> courses) {
-        this.courses = courses;
-    }
 
     public List<String> getLanguages() {
         return languages;
     }
 
-    public void setLanguages(List<String> languages) {
-        this.languages = languages;
-    }
 
     public List<String> getMajors() {
         return majors;
     }
 
-    public void setMajors(List<String> majors) {
-        this.majors = majors;
-    }
 }
 

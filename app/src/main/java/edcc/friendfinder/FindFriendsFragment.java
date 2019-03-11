@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +22,11 @@ import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
+ *
+ * @author Anthony Luong
+ * @author Estefano Felipa
+ * @author Jonathan Young
+ * @version 1.0 3/10/19
  */
 public class FindFriendsFragment extends Fragment {
 
@@ -38,11 +42,6 @@ public class FindFriendsFragment extends Fragment {
 
     public FindFriendsFragment() {
         // Required empty public constructor
-    }
-
-
-    interface FriendListener {
-        void viewPotFriendRequested(User friend);
     }
 
     @Override
@@ -197,6 +196,10 @@ public class FindFriendsFragment extends Fragment {
                 android.R.layout.simple_list_item_1, potFriendList);
         lstFriends.setAdapter(listAdapter);
         txtFilter.setText("");
+    }
+
+    interface FriendListener {
+        void viewPotFriendRequested(User friend);
     }
 
 }

@@ -5,10 +5,10 @@ import android.support.v4.app.Fragment;
 /**
  * Utility class to hold Intent keywords.
  *
- * @author Jonathan Young
  * @author Anthony Luong
- * @author Estefano Felipe
- * @version 1.0
+ * @author Estefano Felipa
+ * @author Jonathan Young
+ * @version 1.0 3/10/19
  */
 class Extras {
 
@@ -28,11 +28,10 @@ class Extras {
     static final int REQUEST_CLASS1 = 7;
     static final int REQUEST_CLASS2 = 8;
     static final int REQUEST_CLASS3 = 9;
-
-    private Fragment fragment;
-    private UserManager um;
     static final String ITEM_ID = "itemId";
     static final String USER_ID = "userId";
     static final String PROFILE_ID = "userId";
+    private Fragment fragment;
+    private UserManager um;
 
 }

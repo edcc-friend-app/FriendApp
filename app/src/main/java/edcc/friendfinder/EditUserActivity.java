@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+
 import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -29,12 +30,20 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
+
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Anthony Luong
+ * @author Estefano Felipa
+ * @author Jonathan Young
+ * @version 1.0 3/10/19
+ */
 public class EditUserActivity extends BaseActivity {
-//fields
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    //fields
     private UserManager um;
     private int profileId;
     private User profile;
@@ -61,7 +70,6 @@ public class EditUserActivity extends BaseActivity {
     private EditText txtLastName;
     private EditText txtAvailability;
     private EditText txtBio;
-    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private EventListener<DocumentSnapshot> profileDataListener;
     private ListenerRegistration profileReg;
     private EventListener<QuerySnapshot> friendDataListener;
@@ -139,6 +147,7 @@ public class EditUserActivity extends BaseActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 class3Changed = true;
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -163,6 +172,7 @@ public class EditUserActivity extends BaseActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 class1Changed = true;
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -173,6 +183,7 @@ public class EditUserActivity extends BaseActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 class2Changed = true;
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -184,6 +195,7 @@ public class EditUserActivity extends BaseActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 class3Changed = true;
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -214,10 +226,7 @@ public class EditUserActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        //majorAdapter.clear();
-//        majorAdapter.addAll(majorList);
-//        languageAdapter.clear();
-//        languageAdapter.addAll(languageList);
+
         if (um != null) {
             if (profileId >= 0) {
                 int index = profile.getArrMatch().get(0);
@@ -286,13 +295,12 @@ public class EditUserActivity extends BaseActivity {
                 finish();
                 return true;
             case R.id.action_settings:
-                //settings menu option
-//                Intent intent = new Intent(this, PreferencesActivity.class);
-//                startActivity(intent);
+
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
     private void saveProfile() {
         //make sure important fields are filled
         String entry = txtFirstName.getText().toString();
@@ -364,6 +372,7 @@ public class EditUserActivity extends BaseActivity {
     public void ibtnUserPhotoOnClick(View view) {
         dispatchTakePictureIntent();
     }
+
     /**
      * Sends control to a camera app to get a thumbnail.
      */
@@ -393,12 +402,8 @@ public class EditUserActivity extends BaseActivity {
                 ibtnUserPhoto.setScaleType(ImageView.ScaleType.FIT_CENTER);
             }
         } else if (requestCode == Extras.REQUEST_MAJOR && resultCode == RESULT_OK) {
-            //vetId = data.getIntExtra(Extras.VET_ID, -1);
             majorChanged = true;
-        } //else if (requestCode == Extras.REQUEST_CLIENT && resultCode == RESULT_OK) {
-//            clientId = data.getIntExtra(Extras.CLIENT_ID, -1);
-//            clientChanged = true;
-//        }
+        }
     }
 
     /**
@@ -412,13 +417,13 @@ public class EditUserActivity extends BaseActivity {
         majorList = um.getMajors();
         languageList = um.getLanguages();
         courseList = um.getCourses();
-        //
+
         majorAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, majorList);
         spnMajor.setAdapter(majorAdapter);
-        //
+
         languageAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, languageList);
         spnLanguage.setAdapter(languageAdapter);
-        //
+
         courseAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, courseList);
         spnClass1.setAdapter(courseAdapter);
         spnClass2.setAdapter(courseAdapter);
@@ -469,9 +474,6 @@ public class EditUserActivity extends BaseActivity {
                         list.add(friend);
                     }
                     um.setFriendList(list);
-//                    if (thisUser != null && thisUser.getFriendId() >= 0) {
-//                        lbl.setText(dm.getVet(thisPet.getVetId()).toString());
-//                    }
                 }
             }
         };

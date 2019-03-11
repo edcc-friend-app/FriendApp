@@ -6,16 +6,31 @@ import android.content.SharedPreferences;
 
 /**
  * Manages the user preferences for the app.
+ *
+ * @author Anthony Luong
+ * @author Estefano Felipa
+ * @author Jonathan Young
+ * @version 1.0 3/10/19
  */
 public class PreferencesManager {
     static final String CURRENT_FRAGMENT = "currentFragment";
     //fields
     private static PreferencesManager pm;
+    private final SharedPreferences PREFS;
     private boolean sortAZ;
     private boolean warnBeforeDeletingFriend;
     //    private boolean warnBeforeDeleting;
     private String currentFragment;
-    private final SharedPreferences PREFS;
+
+    /**
+     * private constructor
+     */
+    private PreferencesManager(Context ctx) {
+        PREFS = ctx.getSharedPreferences("edcc.friendfinder", Context.MODE_PRIVATE);
+        sortAZ = PREFS.getBoolean("sortAZ", true);
+        warnBeforeDeletingFriend = PREFS.getBoolean("warnBeforeDeletingFriend", true);
+        currentFragment = PREFS.getString(CURRENT_FRAGMENT, "profile");
+    }
 
     /**
      * Singleton pattern preferences manager instance.
@@ -28,40 +43,6 @@ public class PreferencesManager {
         }
         return pm;
     }
-
-    /**
-     * private constructor
-     */
-    private PreferencesManager(Context ctx) {
-        PREFS = ctx.getSharedPreferences("edcc.friendfinder", Context.MODE_PRIVATE);
-//        listBreed = PREFS.getBoolean("listType", true);
-//        User.listType = listFriends;
-        sortAZ = PREFS.getBoolean("sortAZ", true);
-        warnBeforeDeletingFriend = PREFS.getBoolean("warnBeforeDeletingFriend", true);
-//        warnBeforeDeletingVet = PREFS.getBoolean("warnBeforeDeletingVet", true);
-//        warnBeforeDeletingClient = PREFS.getBoolean("warnBeforeDeletingClient", true);
-        currentFragment = PREFS.getString(CURRENT_FRAGMENT, "profile");
-    }
-
-//    /**
-//     * Provides access to the preference to list the breed with the pet name.
-//     *
-//     * @return true if breed should be listed, false if not
-//     */
-//    boolean isListBreed() {
-//        return listBreed;
-//    }
-
-//    /**
-//     * Allows the preference to list the breed with the pet name to be changed.
-//     *
-//     * @param listBreed true if the breed should be listed, false if not
-//     */
-//    void setListBreed(boolean listBreed) {
-//        this.listBreed = listBreed;
-//        PREFS.edit().putBoolean("listType", listBreed).apply();
-//        User.listType = listBreed;
-//    }
 
     /**
      * Provides access to the preference to sort friends A to Z or Z to A.

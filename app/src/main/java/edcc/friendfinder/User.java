@@ -1,12 +1,14 @@
 package edcc.friendfinder;
 
-import android.widget.ArrayAdapter;
-
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 
+/**
+ * @author Anthony Luong
+ * @author Estefano Felipa
+ * @author Jonathan Young
+ * @version 1.0 3/10/19
+ */
 public class User implements Comparable<User> {
     private String firstName;
     private String lastName;
@@ -16,7 +18,6 @@ public class User implements Comparable<User> {
     private String availability;
     private int id = -1;
     private String photo; //base64 encoded byte array
-    private int friendId = -1;
     //tests for match
     private int matchCount;
     private List<Integer> arrMatch = new ArrayList<>();
@@ -39,7 +40,6 @@ public class User implements Comparable<User> {
         this.language = language;
         this.availability = availability;
         matchCount = 0;
-        //arrMatch = new ArrayList<>();
     }
 
     public String getFirstName() {
@@ -58,12 +58,12 @@ public class User implements Comparable<User> {
         this.lastName = lastName;
     }
 
-    public void setAvailability(String availability) {
-        this.availability = availability;
-    }
-
     public String getAvailability() {
         return availability;
+    }
+
+    public void setAvailability(String availability) {
+        this.availability = availability;
     }
 
     public String getMajor() {
@@ -112,14 +112,6 @@ public class User implements Comparable<User> {
 
     public void setArrMatch(List<Integer> arrMatch) {
         this.arrMatch = arrMatch;
-    }
-
-    public int getFriendId() {
-        return friendId;
-    }
-
-    public void setFriendId(int friendId) {
-        this.friendId = friendId;
     }
 
     public int getMatchCount() {

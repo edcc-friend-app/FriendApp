@@ -3,9 +3,14 @@ package edcc.friendfinder;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Anthony Luong
+ * @author Estefano Felipa
+ * @author Jonathan Young
+ * @version 1.0 3/10/19
+ */
 public class DataHandler {
 
-    private ArrayList<User> potFriends;
     User friend1;
     User friend2;
     User friend3;
@@ -16,6 +21,7 @@ public class DataHandler {
     User friend8;
     User friend9;
     User friend10;
+    private ArrayList<User> potFriends;
 
     public DataHandler() {
         potFriends = new ArrayList<>();

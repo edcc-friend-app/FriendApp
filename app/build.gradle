@@ -38,7 +38,6 @@ dependencies {
     // Find the latest Facebook SDK releases here: https://goo.gl/Ce5L94
     //implementation 'com.facebook.android:facebook-android-sdk:4.x
 
-
     // Required only if Twitter login support is required
     // Find the latest Twitter SDK releases here: https://goo.gl/E5wZvQ
     //implementation 'com.twitter.sdk.android:twitter-core:3.x'

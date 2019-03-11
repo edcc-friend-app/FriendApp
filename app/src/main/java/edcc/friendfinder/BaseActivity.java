@@ -3,42 +3,28 @@ package edcc.friendfinder;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.ListenerRegistration;
-import com.google.firebase.firestore.QuerySnapshot;
 
 
 /**
  * @author Anthony Luong
  * @author Estefano Felipa
  * @author Jonathan Young
- * @version 1.0
+ * @version 1.0 3/10/19
  */
 
 public abstract class BaseActivity extends AppCompatActivity {
 
 
+    String userId; //needed in child classes
     //fields
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener authListener;
-    String userId; //needed in child classes
 
     /**
      * Android onCreate method.

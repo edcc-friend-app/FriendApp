@@ -1,5 +1,11 @@
 package edcc.friendfinder;
 
+/**
+ * @author Anthony Luong
+ * @author Estefano Felipa
+ * @author Jonathan Young
+ * @version 1.0 3/10/19
+ */
 class Language implements Comparable<Language> {
 
     private String[] languages = {"Arabic", "Chinese (Cantonese)", "Chinese (Mandarin)", "English",

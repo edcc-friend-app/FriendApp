@@ -1,5 +1,11 @@
 package edcc.friendfinder;
 
+/**
+ * @author Anthony Luong
+ * @author Estefano Felipa
+ * @author Jonathan Young
+ * @version 1.0 3/10/19
+ */
 public class Course implements Comparable<Course> {
     private String name;
     private String instructor;

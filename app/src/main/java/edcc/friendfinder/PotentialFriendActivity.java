@@ -23,6 +23,7 @@ import java.util.ArrayList;
 
 public class PotentialFriendActivity extends BaseActivity {
 
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private String thisUserName;
     private UserManager um;
     private User thisUser;
@@ -34,7 +35,6 @@ public class PotentialFriendActivity extends BaseActivity {
     private TextView lblBio;
     private ImageView imgUser;
     private PreferencesManager pm;
-    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private EventListener<QuerySnapshot> profileDataListener;
     private ListenerRegistration profileReg;
     private EventListener<QuerySnapshot> friendDataListener;
@@ -133,8 +133,7 @@ public class PotentialFriendActivity extends BaseActivity {
                     DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(0);
                     User profile = snapshot.toObject(User.class);
                     um.setThisUser(profile);
-                }
-                else {
+                } else {
                     //((ProfileFragment) fragment).updateData();
                 }
             }

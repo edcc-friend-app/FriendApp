@@ -21,6 +21,11 @@ import com.google.firebase.auth.FirebaseAuth;
 
 /**
  * A simple {@link Fragment} subclass.
+ *
+ * @author Anthony Luong
+ * @author Estefano Felipa
+ * @author Jonathan Young
+ * @version 1.0 3/10/19
  */
 public class ProfileFragment extends Fragment {
 
@@ -41,10 +46,6 @@ public class ProfileFragment extends Fragment {
         // Required empty public constructor
     }
 
-    interface ProfileListener {
-        void editUser(User current);
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -63,7 +64,6 @@ public class ProfileFragment extends Fragment {
         //updateData();
         return rootView;
     }
-
 
     /**
      * Handles the top menu item selection.
@@ -106,7 +106,7 @@ public class ProfileFragment extends Fragment {
         //set UI components
         thisUser = um.getThisUser();
         lblName.setText(thisUser.toString());
-        if(lblName.getText().toString().equals(" ")) {
+        if (lblName.getText().toString().equals(" ")) {
             listener.editUser(um.getThisUser());
         } else {
             lblMajor.setText(thisUser.getMajor());
@@ -124,6 +124,10 @@ public class ProfileFragment extends Fragment {
                 imgUser.setImageBitmap(null);
             }
         }
+    }
+
+    interface ProfileListener {
+        void editUser(User current);
     }
 
 }
