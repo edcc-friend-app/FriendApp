@@ -175,6 +175,7 @@ class DataHandler {
 
     /**
      * Get method for potential friends
+     *
      * @return array list of user objects
      */
     public ArrayList<User> getPotFriends() {
@@ -183,6 +184,7 @@ class DataHandler {
 
     /**
      * Get method for courses
+     *
      * @return array list of string courses
      */
     public List<String> getCourses() {
@@ -191,6 +193,7 @@ class DataHandler {
 
     /**
      * Get method for languages
+     *
      * @return array list of string languages
      */
     public List<String> getLanguages() {
@@ -199,6 +202,7 @@ class DataHandler {
 
     /**
      * Get method for majors
+     *
      * @return array list of string majors
      */
     public List<String> getMajors() {

@@ -16,6 +16,7 @@ import java.util.List;
  * @author Jonathan Young
  * @version 1.0 3/10/19
  */
+@SuppressWarnings("unused")
 public class UserManager {
 
     //fields
@@ -89,9 +90,9 @@ public class UserManager {
         userList = dh.getPotFriends();
         List<User> delete = new ArrayList<>();
         List<User> friends = getFriendList();
-        for(User e: userList) {
-            for (User f: friends) {
-                if(e.equals(f)){
+        for (User e : userList) {
+            for (User f : friends) {
+                if (e.equals(f)) {
                     delete.add(e);
                 }
             }

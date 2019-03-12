@@ -17,20 +17,21 @@ public class UserTest {
 
     @Before
     public void setUp() {
-    user.setFirstName("Freddie");
-    user.setLastName("Wonder");
-    user.setMajor("Biology");
-    user.setLanguage("Vietnamese");
-    user.setAvailability("Free");
-    user.setBio("I like to look at memes");
-    user.setId(29);
-    user.setPhoto("asui324nb12m");
-    list.add(12);
-    list.add(1);
-    list.add(5);
-    user.setArrMatch(list);
+        user.setFirstName("Freddie");
+        user.setLastName("Wonder");
+        user.setMajor("Biology");
+        user.setLanguage("Vietnamese");
+        user.setAvailability("Free");
+        user.setBio("I like to look at memes");
+        user.setId(29);
+        user.setPhoto("asui324nb12m");
+        list.add(12);
+        list.add(1);
+        list.add(5);
+        user.setArrMatch(list);
 
     }
+
     @Test
     public void testGetFirstName() {
         assertEquals("Freddie", user.getFirstName());
@@ -121,7 +122,7 @@ public class UserTest {
 
     @Test
     public void getArrMatch() {
-    List<Integer> list2 = new ArrayList<>();
+        List<Integer> list2 = new ArrayList<>();
         list2.add(12);
         list2.add(1);
         list2.add(5);

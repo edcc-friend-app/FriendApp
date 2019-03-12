@@ -263,7 +263,7 @@ public class User implements Comparable<User> {
      */
     @Override
     public int compareTo(User other) {
-        return  other.matchCount - this.matchCount ;
+        return other.matchCount - this.matchCount;
     }
 
     @Override

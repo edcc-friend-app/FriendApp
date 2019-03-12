@@ -172,18 +172,18 @@ public class FriendDetailsActivity extends BaseActivity {
      */
     private void deleteFriend() {
         new AlertDialog.Builder(this)
-                    .setTitle("Confirm")
-                    .setMessage("Are you sure you want to delete this friend?")
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            um.deleteFriend(id);
-                            finish();
-                        }
-                    })
-                    .setNegativeButton(android.R.string.no, null)
-                    .show();
+                .setTitle("Confirm")
+                .setMessage("Are you sure you want to delete this friend?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        um.deleteFriend(id);
+                        finish();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, null)
+                .show();
     }
 
     /**

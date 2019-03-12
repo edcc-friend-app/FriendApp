@@ -199,6 +199,7 @@ public class PotentialFriendActivity extends BaseActivity {
 
     /**
      * Method to display classes
+     *
      * @param u user being sent to check for matching parameters
      * @return matching class list
      */
