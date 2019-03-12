@@ -293,7 +293,7 @@ public class MainActivity extends BaseActivity
     @Override
     public void viewPotFriendRequested(User friend) {
         Intent intent = new Intent(MainActivity.this, PotentialFriendActivity.class);
-        intent.putExtra(Extras.USER_ID, friend.toString());
+        intent.putExtra(Extras.USER_ID, friend.printName());
         startActivity(intent);
     }
 
