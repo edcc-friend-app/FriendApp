@@ -120,7 +120,9 @@ public class FindFriendsFragment extends Fragment {
      * Updates the potential friend list. This method must be called by the controlling activity
      * whenever this fragment is visible and pet data is altered outside of this fragment.
      */
-    private void updateData() {
+    public void updateData() {
+//        List<User> list = um.getPotentialFriends();
+//        potFriendList.addAll(list);
         potFriendList = um.getPotentialFriends();
         if (isFiltered) {
             filterList();
@@ -193,8 +195,8 @@ public class FindFriendsFragment extends Fragment {
         List<User> filteredList = new ArrayList<>();
         for (User u : potFriendList) {
             if ((u.getFirstName().toLowerCase().contains(filter))
-                    || (u.getMajor().toLowerCase().contains(filter))
-                    || (u.getLanguage().toLowerCase().contains(filter))) {
+                    || (u.getMajor().contains(filter))
+                    || (u.getLanguage().contains(filter))) {
                 filteredList.add(u);
             }
         }
