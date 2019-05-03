@@ -29,6 +29,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * Activity class for potential friends details screen.
  *
@@ -50,7 +52,7 @@ public class PotentialFriendActivity extends BaseActivity {
     private TextView lblLanguage;
     private TextView lblAvailability;
     private TextView lblBio;
-    private ImageView imgUser;
+    private CircleImageView imgUser;
     private EventListener<QuerySnapshot> profileDataListener;
     private ListenerRegistration profileReg;
     private EventListener<QuerySnapshot> friendDataListener;
@@ -85,13 +87,13 @@ public class PotentialFriendActivity extends BaseActivity {
         userID = intent.getStringExtra(Extras.FRIEND_ID);
 
         //find UI components
-        lblName = findViewById(R.id.lblName);
-        lblMajor = findViewById(R.id.lblMajor);
-        lblClasses = findViewById(R.id.lblClasses);
-        lblLanguage = findViewById(R.id.lblLanguage);
-        lblAvailability = findViewById(R.id.txtAvailability);
-        lblBio = findViewById(R.id.txtBio);
-        imgUser = findViewById(R.id.imgFriendPicture);
+        lblName = findViewById(R.id.lblUserName);
+        lblMajor = findViewById(R.id.lblUserMajor);
+        lblClasses = findViewById(R.id.lblUserClasses);
+        lblLanguage = findViewById(R.id.lblUserLanguage);
+        lblAvailability = findViewById(R.id.lblUserAvailability);
+        lblBio = findViewById(R.id.lblUserBio);
+        imgUser = findViewById(R.id.imgUserPicture);
 
     }
 
