@@ -3,6 +3,7 @@ package edcc.friendfinder;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
@@ -11,6 +12,12 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -49,6 +56,11 @@ public class PotentialFriendActivity extends BaseActivity {
     private EventListener<QuerySnapshot> friendDataListener;
     private ListenerRegistration friendReg;
 
+    private FirebaseAuth mAuth;
+    private DatabaseReference usersRef;
+    private String userID;
+    
+
     /**
      * Builds the activity on startup.
      *
@@ -58,6 +70,9 @@ public class PotentialFriendActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_potential_friend);
+
+        usersRef = FirebaseDatabase.getInstance().getReference().child("Users");
+
         //create action bar and back arrow
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -67,7 +82,7 @@ public class PotentialFriendActivity extends BaseActivity {
         }
         //get current user
         Intent intent = getIntent();
-        thisUserName = intent.getStringExtra(Extras.USER_ID);
+        userID = intent.getStringExtra(Extras.FRIEND_ID);
 
         //find UI components
         lblName = findViewById(R.id.lblName);
@@ -102,54 +117,78 @@ public class PotentialFriendActivity extends BaseActivity {
     @Override
     public void setUpDataListeners() {
         um = UserManager.getUserManager(getApplicationContext(), userId);
-        thisUser = um.getUser(thisUserName);
-        lblName.setText(thisUser.printName());
-        lblMajor.setText(thisUser.getMajor());
-        lblClasses.setText(printClasses(thisUser));
-        lblLanguage.setText(thisUser.getLanguage());
-        lblAvailability.setText(thisUser.getAvailability());
-        lblBio.setText(thisUser.getBio());
-        String photoStr = thisUser.getPhoto();
-        imgUser = findViewById(R.id.imgFriendPicture);
-        if (photoStr != null) {
-            byte[] photo = Base64.decode(photoStr, Base64.DEFAULT);
-            imgUser.setImageBitmap(BitmapFactory.decodeByteArray(photo, 0, photo.length));
-            imgUser.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        } else {
-            imgUser.setImageBitmap(null);
-        }
-        //friends listener
-        final CollectionReference friendRef = db.collection("users").document(userId)
-                .collection("friends");
-        friendDataListener = new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
-                if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
-                    ArrayList<User> list = new ArrayList<>();
-                    for (int i = 0; i < documentSnapshots.size(); i++) {
-                        DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
-                        User friend = snapshot.toObject(User.class);
-                        list.add(friend);
-                    }
-                    um.setFriendList(list);
-                }
-            }
-        };
-        friendReg = friendRef.addSnapshotListener(friendDataListener);
+//        thisUser = um.getUser(thisUserName);
+//        lblName.setText(thisUser.printName());
+//        lblMajor.setText(thisUser.getMajor());
+//        lblClasses.setText(printClasses(thisUser));
+//        lblLanguage.setText(thisUser.getLanguage());
+//        lblAvailability.setText(thisUser.getAvailability());
+//        lblBio.setText(thisUser.getBio());
+//        String photoStr = thisUser.getPhoto();
+//        imgUser = findViewById(R.id.imgFriendPicture);
+//        if (photoStr != null) {
+//            byte[] photo = Base64.decode(photoStr, Base64.DEFAULT);
+//            imgUser.setImageBitmap(BitmapFactory.decodeByteArray(photo, 0, photo.length));
+//            imgUser.setScaleType(ImageView.ScaleType.FIT_CENTER);
+//        } else {
+//            imgUser.setImageBitmap(null);
+//        }
+//        //friends listener
+//        final CollectionReference friendRef = db.collection("users").document(userId)
+//                .collection("friends");
+//        friendDataListener = new EventListener<QuerySnapshot>() {
+//            @Override
+//            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+//                if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
+//                    ArrayList<User> list = new ArrayList<>();
+//                    for (int i = 0; i < documentSnapshots.size(); i++) {
+//                        DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(i);
+//                        User friend = snapshot.toObject(User.class);
+//                        list.add(friend);
+//                    }
+//                    um.setFriendList(list);
+//                }
+//            }
+//        };
+//        friendReg = friendRef.addSnapshotListener(friendDataListener);
         //profile listener
-        final CollectionReference ref = db.collection("users").document(userId)
-                .collection("profile");
-        profileDataListener = new EventListener<QuerySnapshot>() {
+//        final CollectionReference ref = db.collection("users").document(userId)
+//                .collection("profile");
+//        profileDataListener = new EventListener<QuerySnapshot>() {
+//            @Override
+//            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+//                if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
+//                    DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(0);
+//                    User profile = snapshot.toObject(User.class);
+//                    um.setThisUser(profile);
+//                }
+//            }
+//        };
+//        profileReg = ref.addSnapshotListener(profileDataListener);
+
+        usersRef.child(userID).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
-                if (documentSnapshots != null && !documentSnapshots.isEmpty()) {
-                    DocumentSnapshot snapshot = documentSnapshots.getDocuments().get(0);
-                    User profile = snapshot.toObject(User.class);
-                    um.setThisUser(profile);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String name = dataSnapshot.child("first_name").getValue() + " " + dataSnapshot.child("last_name").getValue();
+                    String major = dataSnapshot.child("major").getValue().toString();
+                    String language = dataSnapshot.child("language").getValue().toString();
+                    String bio = dataSnapshot.child("bio").getValue().toString();
+                    String availability = dataSnapshot.child("availability").getValue().toString();
+
+                    lblName.setText(name);
+                    lblMajor.setText(major);
+                    lblLanguage.setText(language);
+                    lblBio.setText(bio);
+                    lblAvailability.setText(availability);
                 }
             }
-        };
-        profileReg = ref.addSnapshotListener(profileDataListener);
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     /**

@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +14,11 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -36,6 +42,7 @@ public class FriendDetailsActivity extends BaseActivity {
     //fields
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private int id;
+    private String userID;
     private UserManager um;
     private TextView lblName;
     private TextView lblMajor;
@@ -46,6 +53,8 @@ public class FriendDetailsActivity extends BaseActivity {
     private ImageView imgFriend;
     private EventListener<QuerySnapshot> profileDataListener;
     private ListenerRegistration profileReg;
+
+    private DatabaseReference usersRef;
 
     /**
      * Builds the activity on startup.
@@ -67,6 +76,7 @@ public class FriendDetailsActivity extends BaseActivity {
         //get current friend
         Intent intent = getIntent();
         id = intent.getIntExtra(Extras.FRIEND_ID, -1);
+        userID = getIntent().getStringExtra(Extras.FRIEND_ID);
         if (id < 0) {
             finish();
         }
@@ -78,6 +88,8 @@ public class FriendDetailsActivity extends BaseActivity {
         lblBio = findViewById(R.id.txtBio);
         lblAvailability = findViewById(R.id.txtAvailability);
         imgFriend = findViewById(R.id.imgFriendPicture);
+
+        usersRef = FirebaseDatabase.getInstance().getReference().child("Users");
     }
 
     /**
@@ -130,6 +142,30 @@ public class FriendDetailsActivity extends BaseActivity {
             }
         };
         profileReg = ref.addSnapshotListener(profileDataListener);
+
+//        usersRef.child(userID).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                if (dataSnapshot.exists()) {
+//                    String name = dataSnapshot.child("first_name").getValue() + " " + dataSnapshot.child("last_name");
+//                    String major = dataSnapshot.child("major").getValue().toString();
+//                    String language = dataSnapshot.child("language").getValue().toString();
+//                    String bio = dataSnapshot.child("bio").getValue().toString();
+//                    String availability = dataSnapshot.child("availability").getValue().toString();
+//
+//                    lblName.setText(name);
+//                    lblMajor.setText(major);
+//                    lblLanguage.setText(language);
+//                    lblBio.setText(bio);
+//                    lblAvailability.setText(availability);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
     }
 
     /**

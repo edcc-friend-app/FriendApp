@@ -9,7 +9,7 @@
     tools:showIn="@layout/activity_potential_friend">
 
 
-    <android.support.constraint.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -17,80 +17,39 @@
             android:id="@+id/imgFriendPicture"
             android:layout_width="@dimen/photo_width"
             android:layout_height="@dimen/photo_height"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="8dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
             android:contentDescription="@string/potential_friend_picture"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/lblName"
-            android:layout_width="wrap_content"
+            android:id="@+id/lblUserName"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+            android:layout_below="@+id/imgFriendPicture"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/open_sans_bold"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgFriendPicture"
-            tools:text="Steven Jobs"
-            tools:textColor="@android:color/holo_green_light" />
+            android:textSize="30sp"
+            tools:textColor="@android:color/black"
+            android:text="Profile Name"/>
 
         <TextView
-            android:id="@+id/lblClasses"
-            android:layout_width="0dp"
+            android:id="@+id/lblUserBio"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/lblUserName"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/open_sans"
+            android:textAlignment="center"
+            android:text="Bio"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/colorAccent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblClassesPrompt"
-            tools:text="Your Potential Friend's Classes" />
-
-
-        <!-- Friends Major -->
-        <TextView
-            android:id="@+id/lblMajorPrompt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/major"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblName" />
-
-        <TextView
-            android:id="@+id/lblClassesPrompt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/classes"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblLanguagePrompt" />
-
-        <TextView
-            android:id="@+id/lblMajor"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/colorPrimary"
-            app:layout_constraintBottom_toBottomOf="@+id/lblMajorPrompt"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/lblMajorPrompt"
-            app:layout_constraintTop_toTopOf="@+id/lblMajorPrompt"
-            tools:text="Potential Friends Major" />
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            tools:text="User's bio" />
 
         <TextView
             android:id="@+id/lblLanguagePrompt"
@@ -98,77 +57,98 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_below="@+id/lblUserBio"
+            android:fontFamily="@font/open_sans"
             android:text="@string/language_preferred"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblMajorPrompt" />
+            android:textSize="18sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <TextView
-            android:id="@+id/lblLanguage"
-            android:layout_width="0dp"
+            android:id="@+id/lblUserLanguage"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/lblUserBio"
+            android:layout_toEndOf="@+id/lblLanguagePrompt"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/colorPrimary"
-            app:layout_constraintBottom_toBottomOf="@+id/lblLanguagePrompt"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/lblLanguagePrompt"
-            app:layout_constraintTop_toTopOf="@+id/lblLanguagePrompt"
-            app:layout_constraintVertical_bias="0.0"
+            android:textColor="@android:color/black"
             tools:text="Friends Language" />
 
         <TextView
-            android:id="@+id/lblBioPrompt"
+            android:id="@+id/lblMajorPrompt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/lblLanguagePrompt"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="@string/bio"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtAvailability" />
+            android:fontFamily="@font/open_sans"
+            android:text="@string/major"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <TextView
-            android:id="@+id/txtBio"
-            android:layout_width="0dp"
+            android:id="@+id/lblMajor"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/lblUserLanguage"
+            android:layout_toEndOf="@+id/lblMajorPrompt"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/open_sans"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@android:color/black"
+            tools:text="Potential Friends Major" />
+
+        <TextView
+            android:id="@+id/lblClassesPrompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblMajorPrompt"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/classes"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+        <TextView
+            android:id="@+id/lblClasses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblMajor"
+            android:layout_toEndOf="@+id/lblClassesPrompt"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/colorAccent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblBioPrompt"
-            tools:text="Your Potential Friends Interests" />
+            android:textColor="@android:color/black"
+            tools:text="User's Classes" />
+
 
         <TextView
             android:id="@+id/lblAvailabilityPrompt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/lblClassesPrompt"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/open_sans"
+            android:textSize="18sp"
             android:text="@string/availability"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblClasses" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <TextView
             android:id="@+id/txtAvailability"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/lblClasses"
+            android:layout_toEndOf="@+id/lblAvailabilityPrompt"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/colorAccent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblAvailabilityPrompt"
+            android:textColor="@android:color/black"
             tools:text="Your Potential Friend's availability" />
 
 
-    </android.support.constraint.ConstraintLayout>
+    </RelativeLayout>
 
 </ScrollView>

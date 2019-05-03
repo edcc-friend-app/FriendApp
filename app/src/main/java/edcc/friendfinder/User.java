@@ -21,6 +21,8 @@ public class User implements Comparable<User> {
     private String language;
     private String availability;
     private int id = -1;
+    private int testId = -1;
+    private int nextUserid = -1;
     private String photo; //base64 encoded byte array
     //tests for match
     private int matchCount;
@@ -37,6 +39,9 @@ public class User implements Comparable<User> {
         language = "";
         availability = "";
         arrMatch = new ArrayList<>();
+        arrMatch.add(1);
+        arrMatch.add(13);
+        arrMatch.add(2);
         matchCount = 0;
     }
 
@@ -59,6 +64,21 @@ public class User implements Comparable<User> {
         this.language = language;
         this.availability = availability;
         arrMatch = classes;
+        matchCount = 0;
+    }
+
+    public User(String firstName, String lastName, String major,
+                String bio, String language, String availability) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.major = major;
+        this.bio = bio;
+        this.language = language;
+        this.availability = availability;
+        arrMatch = new ArrayList<>();
+        arrMatch.add(2);
+        arrMatch.add(24);
+        arrMatch.add(5);
         matchCount = 0;
     }
 
@@ -304,5 +324,22 @@ public class User implements Comparable<User> {
                 break;
 
         }
+    }
+
+
+    public int getTestId() {
+        return testId;
+    }
+
+    public void setTestId(int testId) {
+        this.testId = testId;
+    }
+
+    public int getNextUserid() {
+        return nextUserid;
+    }
+
+    public void setNextUserid(int nextUserid) {
+        this.nextUserid = nextUserid;
     }
 }

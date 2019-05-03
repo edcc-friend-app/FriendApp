@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -133,24 +134,39 @@ public class ProfileFragment extends Fragment {
         //set UI components
         User thisUser = um.getThisUser();
         lblName.setText(thisUser.printName());
-        if (lblName.getText().toString().equals(" ")) {
-            listener.editUser(um.getThisUser());
+        lblMajor.setText(thisUser.getMajor());
+        lblLanguage.setText(thisUser.getLanguage());
+        lblClasses.setText(printClasses(thisUser));
+        lblBio.setText(thisUser.getBio());
+        lblAvailability.setText(thisUser.getAvailability());
+        String photoStr = thisUser.getPhoto();
+        if (photoStr != null) {
+            byte[] photo = Base64.decode(photoStr, Base64.DEFAULT);
+            imgUser.setImageBitmap(BitmapFactory.decodeByteArray(photo, 0, photo.length));
+            imgUser.setScaleType(ImageView.ScaleType.FIT_CENTER);
         } else {
-            lblMajor.setText(thisUser.getMajor());
-            lblLanguage.setText(thisUser.getLanguage());
-            lblClasses.setText(printClasses(thisUser));
-            lblBio.setText(thisUser.getBio());
-            lblAvailability.setText(thisUser.getAvailability());
-
-            String photoStr = thisUser.getPhoto();
-            if (photoStr != null) {
-                byte[] photo = Base64.decode(photoStr, Base64.DEFAULT);
-                imgUser.setImageBitmap(BitmapFactory.decodeByteArray(photo, 0, photo.length));
-                imgUser.setScaleType(ImageView.ScaleType.FIT_CENTER);
-            } else {
-                imgUser.setImageBitmap(null);
-            }
+            imgUser.setImageBitmap(null);
+            Picasso.get().load(R.drawable.user_icon).into(imgUser);
         }
+//        lblName.setText(thisUser.printName());
+//        if (lblName.getText().toString().equals(" ")) {
+//            listener.editUser(um.getThisUser());
+//        } else {
+//            lblMajor.setText(thisUser.getMajor());
+//            lblLanguage.setText(thisUser.getLanguage());
+//            lblClasses.setText(printClasses(thisUser));
+//            lblBio.setText(thisUser.getBio());
+//            lblAvailability.setText(thisUser.getAvailability());
+//
+//            String photoStr = thisUser.getPhoto();
+//            if (photoStr != null) {
+//                byte[] photo = Base64.decode(photoStr, Base64.DEFAULT);
+//                imgUser.setImageBitmap(BitmapFactory.decodeByteArray(photo, 0, photo.length));
+//                imgUser.setScaleType(ImageView.ScaleType.FIT_CENTER);
+//            } else {
+//                imgUser.setImageBitmap(null);
+//            }
+//        }
     }
 
     /**

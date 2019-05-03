@@ -1,12 +1,22 @@
 package edcc.friendfinder;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 /**
  * Manage the list of user objects.
@@ -22,14 +32,22 @@ public class UserManager {
     //fields
     private static UserManager um;
     private static String userId;
+    private static Random rand = new Random();
+    private static int myRand = rand.nextInt();
     private List<User> friendList;
     private int nextFriendId;
+    private int nextUserId;
     private List<User> userList;
     private final DataHandler dh;
     private User thisUser;
     private final List<String> courses;
     private final List<String> languages;
     private final List<String> majors;
+
+    private DatabaseReference usersRef;
+    private FirebaseAuth mAuth;
+    private String currentUserID;
+
 
     /**
      * Private constructor.
@@ -42,6 +60,10 @@ public class UserManager {
         courses = dh.getCourses();
         languages = dh.getLanguages();
         majors = dh.getMajors();
+
+        mAuth = FirebaseAuth.getInstance();
+//        currentUserID = mAuth.getCurrentUser().getUid();
+        usersRef = FirebaseDatabase.getInstance().getReference().child("Users");
     }
 
     /**
@@ -230,10 +252,40 @@ public class UserManager {
      */
     public void setThisUser(User thisUser) {
         this.thisUser = thisUser;
-        thisUser.setId(0);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        if (thisUser == null) {
+            return;
+        }
+        thisUser.setTestId(nextUserId);
+        thisUser.setNextUserid(++nextUserId);
+        thisUser.setId(0);
+
         db.collection("users").document(userId).collection("profile")
                 .document(String.valueOf(thisUser.getId())).set(thisUser);
+
+//        Map userMap = new HashMap();
+//
+//        userMap.put("first_name", thisUser.getFirstName());
+//        userMap.put("last_name", thisUser.getLastName());
+//        userMap.put("language", thisUser.getLanguage());
+//        userMap.put("major", thisUser.getMajor());
+//        userMap.put("bio", thisUser.getBio());
+//        userMap.put("availability", thisUser.getAvailability());
+//        userMap.put("photo", thisUser.getPhoto());
+//        userMap.put("uid", currentUserID);
+//
+//
+//        usersRef.child(currentUserID).updateChildren(userMap).addOnCompleteListener(new OnCompleteListener() {
+//            @Override
+//            public void onComplete(@NonNull Task task) {
+//                if (task.isSuccessful()) {
+//                    //Toast.makeText(, "User Correctly Uploaded to Firebase", Toast.LENGTH_SHORT).show();
+//                } else {
+//                }
+//            }
+//        });
+
+
     }
 
     /**

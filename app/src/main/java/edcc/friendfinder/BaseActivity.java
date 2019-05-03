@@ -4,12 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
-
-import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
 
 /**
  * Base activity class used for authentication in all child activity classes.
@@ -21,8 +17,6 @@ import com.google.firebase.auth.FirebaseUser;
  */
 
 public abstract class BaseActivity extends AppCompatActivity {
-
-
     String userId; //needed in child classes
     //fields
     private FirebaseAuth auth;
@@ -46,8 +40,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                     setUpDataListeners();
                 } else {
                     userId = null;
-                    startActivityForResult(AuthUI.getInstance()
-                            .createSignInIntentBuilder().build(), Extras.REQUEST_AUTH);
+                    startActivity(new Intent(BaseActivity.this, LoginActivity.class));
                 }
             }
         };
@@ -86,16 +79,16 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == Extras.REQUEST_AUTH) {
-            if (resultCode == RESULT_OK) {
-                Toast.makeText(this, "Signed in!",
-                        Toast.LENGTH_SHORT).show();
-            } else if (resultCode == RESULT_CANCELED) {
-                Toast.makeText(this, "Sign in canceled",
-                        Toast.LENGTH_SHORT).show();
-                finish();
-            }
-        }
+//        if (requestCode == Extras.REQUEST_AUTH) {
+//            if (resultCode == RESULT_OK) {
+//                Toast.makeText(this, "Signed in!",
+//                        Toast.LENGTH_SHORT).show();
+//            } else if (resultCode == RESULT_CANCELED) {
+//                Toast.makeText(this, "Sign in canceled",
+//                        Toast.LENGTH_SHORT).show();
+//                finish();
+//            }
+//        }
     }
 
     /**
@@ -103,6 +96,8 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     void signOut() {
         auth.signOut();
+        startActivity(new Intent(BaseActivity.this, LoginActivity.class));
+        finish();
     }
 
     /**
@@ -110,5 +105,6 @@ public abstract class BaseActivity extends AppCompatActivity {
      * established. This method must be overridden by all child activities.
      */
     protected abstract void setUpDataListeners();
+
 }
 

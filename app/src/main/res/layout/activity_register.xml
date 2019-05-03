@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    tools:context=".RegisterActivity">
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/lblRegisterTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:fontFamily="@font/roboto_black"
+            android:text="Create your account"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgRegisterPhoto"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_below="@+id/lblRegisterTitle"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="100dp"
+            android:layout_marginLeft="100dp"
+            android:src="@drawable/user_icon" />
+
+        <EditText
+            android:id="@+id/txtRegisterEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/input"
+            android:layout_below="@+id/imgRegisterPhoto"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:fontFamily="@font/open_sans"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:hint="Email" />
+
+        <EditText
+            android:id="@+id/txtRegisterFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/input"
+            android:layout_below="@+id/txtRegisterEmail"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:fontFamily="@font/open_sans"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            android:hint="First Name" />
+
+        <EditText
+            android:id="@+id/txtRegisterLastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/input"
+            android:layout_below="@+id/txtRegisterFirstName"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:fontFamily="@font/open_sans"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            android:hint="Last Name" />
+
+        <EditText
+            android:id="@+id/txtRegisterMajor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/input"
+            android:layout_below="@+id/txtRegisterLastName"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:fontFamily="@font/open_sans"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            android:hint="Major" />
+
+        <EditText
+            android:id="@+id/txtRegisterBio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/input"
+            android:layout_below="@+id/txtRegisterMajor"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:fontFamily="@font/open_sans"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            android:hint="Bio" />
+
+        <EditText
+            android:id="@+id/txtRegisterLanguage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/input"
+            android:layout_below="@+id/txtRegisterBio"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:fontFamily="@font/open_sans"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            android:hint="Language" />
+
+        <EditText
+            android:id="@+id/txtRegisterAvailability"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/input"
+            android:layout_below="@+id/txtRegisterLanguage"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:fontFamily="@font/open_sans"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            android:hint="Availability" />
+
+        <EditText
+            android:id="@+id/txtRegisterPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/input"
+            android:layout_below="@+id/txtRegisterAvailability"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:fontFamily="@font/open_sans"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="Password" />
+
+        <EditText
+            android:id="@+id/txtRegisterConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/input"
+            android:layout_below="@+id/txtRegisterPassword"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:fontFamily="@font/open_sans"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="Confirm Password" />
+
+        <Button
+            android:id="@+id/btnSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button2"
+            android:layout_below="@+id/txtRegisterConfirmPassword"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="40dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:fontFamily="@font/open_sans"
+            android:text="Sign Up"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:textColor="@android:color/background_light"
+            android:textStyle="bold"
+            />
+
+
+    </RelativeLayout>
+</ScrollView>
