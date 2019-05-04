@@ -25,6 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,10 +79,8 @@ public class PotentialFriendActivity extends BaseActivity {
         //create action bar and back arrow
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         //get current user
         Intent intent = getIntent();
         userID = intent.getStringExtra(Extras.FRIEND_ID);
@@ -177,12 +176,14 @@ public class PotentialFriendActivity extends BaseActivity {
                     String language = dataSnapshot.child("language").getValue().toString();
                     String bio = dataSnapshot.child("bio").getValue().toString();
                     String availability = dataSnapshot.child("availability").getValue().toString();
+                    String imgProfile = dataSnapshot.child("profile_image").getValue().toString();
 
                     lblName.setText(name);
                     lblMajor.setText(major);
                     lblLanguage.setText(language);
                     lblBio.setText(bio);
                     lblAvailability.setText(availability);
+                    Picasso.get().load(imgProfile).into(imgUser);
                 }
             }
 

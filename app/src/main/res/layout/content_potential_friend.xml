@@ -55,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_below="@+id/lblUserBio"
             android:fontFamily="@font/open_sans"
             android:text="@string/language_preferred"
@@ -68,7 +68,7 @@
             android:layout_below="@+id/lblUserBio"
             android:layout_toEndOf="@+id/lblLanguagePrompt"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             tools:text="Friends Language" />

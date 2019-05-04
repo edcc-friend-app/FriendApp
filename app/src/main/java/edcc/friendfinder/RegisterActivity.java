@@ -1,7 +1,9 @@
 package edcc.friendfinder;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,10 +16,17 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.util.HashMap;
 
@@ -34,8 +43,15 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference usersRef;
     private StorageReference userProfileImageRef;
+    private StorageReference filePath;
 
     private String currentUserID;
+
+    private Uri resultUri;
+
+    final static int GALLERY_PIC = 1;
+
+
 
     private UserManager um;
 
@@ -51,19 +67,41 @@ public class RegisterActivity extends AppCompatActivity {
 
         initializeComponents();
 
-        imgProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signUp();
             }
         });
+
+        imgProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent galleryIntent = new Intent();
+                galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+                galleryIntent.setType("image/*");
+                startActivityForResult(galleryIntent, GALLERY_PIC);
+            }
+        });
+//        usersRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                if (dataSnapshot.exists()) {
+//                    if (dataSnapshot.hasChild("profile_image")) {
+//                        String image = dataSnapshot.child("profile_image").getValue().toString();
+//                        Picasso.get().load(image).placeholder(R.drawable.user_icon).into(imgProfile);
+//
+//                    } else {
+//                        Toast.makeText(RegisterActivity.this, "Please select profile image first", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
 
     }
 
@@ -107,7 +145,6 @@ public class RegisterActivity extends AppCompatActivity {
                         //Uncomment to add email verification
                         //sendEmailVerificationMessage();
                         //currentUserID = mAuth.getCurrentUser().getUid();
-                        Toast.makeText(RegisterActivity.this, "SUCCESS!!!!!!", Toast.LENGTH_SHORT).show();
                         createUser(firstName, lastName, language, major, bio, availability);
                     } else {
                         String message = task.getException().getMessage();
@@ -115,30 +152,6 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 }
             });
-//            currentUserID = mAuth.getCurrentUser().getUid();
-//
-//            HashMap userMap = new HashMap();
-//            userMap.put("first_name", firstName);
-//            userMap.put("last_name", lastName);
-//            userMap.put("language", language);
-//            userMap.put("major", major);
-//            userMap.put("bio", bio);
-//            userMap.put("availability", availability);
-//            userMap.put("photo", "photo");
-//            userMap.put("uid", currentUserID);
-//            usersRef.child(currentUserID).updateChildren(userMap).addOnCompleteListener(new OnCompleteListener() {
-//                @Override
-//                public void onComplete(@NonNull Task task) {
-//                    if(task.isSuccessful()) {
-//                        sendUserToMainActivity();
-//                        Toast.makeText(RegisterActivity.this, "your account was created!", Toast.LENGTH_SHORT).show();
-//                    } else {
-//                        String message = task.getException().getMessage();
-//                        Toast.makeText(RegisterActivity.this, "Error occurred: " + message, Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            });
-
             //Will test later
             //User thisUser = new User(firstName, lastName, major, bio, language, availability);
             //um.setThisUser(thisUser);
@@ -151,22 +164,44 @@ public class RegisterActivity extends AppCompatActivity {
     private void createUser(String firstName, String lastName, String language, String major, String bio, String availability) {
         mAuth = FirebaseAuth.getInstance();
         currentUserID = mAuth.getCurrentUser().getUid();
+        filePath = userProfileImageRef.child(currentUserID + ".jpg");
+        filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+        @Override
+        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+            if (task.isSuccessful()) {
+                String downloadUrl;
+                Task<Uri> uriTask = task.getResult().getStorage().getDownloadUrl();
+                while (!uriTask.isComplete()) ;
+                downloadUrl = uriTask.getResult().toString();
+                usersRef.child(currentUserID).child("profile_image").setValue(downloadUrl).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
 
-        HashMap userMap = new HashMap();
+                                } else {
+                                    String message = task.getException().getMessage();
+                                    Toast.makeText(RegisterActivity.this, "Error occurred: " + message, Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                }
+            }
+        });
+
+        HashMap userMap = new HashMap<>();
         userMap.put("first_name", firstName);
         userMap.put("last_name", lastName);
         userMap.put("language", language);
         userMap.put("major", major);
         userMap.put("bio", bio);
         userMap.put("availability", availability);
-        userMap.put("photo", "photo");
         userMap.put("uid", currentUserID);
         usersRef.child(currentUserID).updateChildren(userMap).addOnCompleteListener(new OnCompleteListener() {
             @Override
             public void onComplete(@NonNull Task task) {
                 if(task.isSuccessful()) {
                     sendUserToMainActivity();
-                    Toast.makeText(RegisterActivity.this, "your account was created!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Your account was created!", Toast.LENGTH_SHORT).show();
                 } else {
                     String message = task.getException().getMessage();
                     Toast.makeText(RegisterActivity.this, "Error occurred: " + message, Toast.LENGTH_SHORT).show();
@@ -201,4 +236,27 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == GALLERY_PIC && resultCode == RESULT_OK && data != null) {
+            Uri imageUri = data.getData();
+            CropImage.activity().setGuidelines(CropImageView.Guidelines.ON).setAspectRatio(1, 1).start(this);
+        }
+
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK) {
+                resultUri = result.getUri();
+                imgProfile.setImageURI(resultUri);
+            } else {
+                Toast.makeText(RegisterActivity.this, "Error occurred: image can't be cropped, dumbass!", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+    }
+
+
 }

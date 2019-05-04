@@ -104,7 +104,7 @@ public class FindFriendsTestFragment extends Fragment {
             protected void onBindViewHolder(@NonNull UsersViewHolder holder, final int position, @NonNull Users model) {
                 holder.setName(model.getFirst_name() + " " + model.getLast_name());
                 holder.setMajor(model.getMajor());
-                holder.setPhoto(model.getPhoto());
+                holder.setProfile_image(model.getProfile_image());
                 holder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -139,7 +139,7 @@ public class FindFriendsTestFragment extends Fragment {
             lblMajor.setText(major);
         }
 
-        public void setPhoto(String photo) {
+        public void setProfile_image(String photo) {
             CircleImageView imgProfile = mView.findViewById(R.id.all_users_profile_image);
             Picasso.get().load(photo).placeholder(R.drawable.user_icon).into(imgProfile);
         }
