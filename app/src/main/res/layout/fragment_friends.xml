@@ -24,7 +24,7 @@
         android:importantForAutofill="no"
         tools:targetApi="o" />
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/lstFriends"
         android:layout_width="0dp"
         android:layout_height="0dp"

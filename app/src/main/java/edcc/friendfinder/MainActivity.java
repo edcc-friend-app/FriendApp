@@ -176,6 +176,7 @@ public class MainActivity extends BaseActivity
                     }
                 }
             };
+            ((FriendsFragment) fragment).updateData();
             friendReg = ref.addSnapshotListener(friendDataListener);
         }
     }
