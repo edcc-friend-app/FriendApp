@@ -56,7 +56,7 @@ public class FriendsFragment extends Fragment {
     private ArrayAdapter<User> lstAdapter;
     private List<User> friendList = new ArrayList<>();
     private boolean isFiltered;
-    private FriendListener listener;
+    private FriendsFragment.FriendListener listener;
     private UserManager um;
     private View rootView;
 
@@ -260,6 +260,7 @@ public class FriendsFragment extends Fragment {
      */
     interface FriendListener {
         void viewFriendRequested(User friend);
+        void messageFriend(String userID, String fullname);
 
     }
 
@@ -299,36 +300,35 @@ public class FriendsFragment extends Fragment {
                             holder.setFullname(fullname);
                             holder.setProfileimage(profileImage);
 
-//                            holder.mView.setOnClickListener(new View.OnClickListener() {
-//                                @Override
-//                                public void onClick(View v) {
-//                                    CharSequence[] options = new CharSequence[] {
-//                                            fullname + "'s Profile", "Send Message"
-//                                    };
-//
-//                                    AlertDialog.Builder builder = new AlertDialog.Builder(FriendsActivity.this);
-//                                    builder.setTitle("Select Option");
-//
-//                                    builder.setItems(options, new DialogInterface.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(DialogInterface dialog, int which) {
-//                                            if(which == 0) {
+                            holder.mView.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    CharSequence[] options = new CharSequence[] {
+                                            fullname + "'s Profile", "Send Message"
+                                    };
+
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                                    builder.setTitle("Select Option");
+
+                                    builder.setItems(options, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            if(which == 0) {
 //                                                Intent profileIntent = new Intent(FriendsActivity.this, PersonProfileActivity.class);
 //                                                profileIntent.putExtra("friendID", userID);
 //                                                startActivity(profileIntent);
-//
-//                                            } else {
-//                                                Intent chatIntent = new Intent(FriendsActivity.this, ChatActivity.class);
-//                                                chatIntent.putExtra("friendID", userID);
-//                                                chatIntent.putExtra("userName", fullname);
-//                                                startActivity(chatIntent);
-//                                            }
-//                                        }
-//                                    });
-//                                    builder.show();
-//
-//                                }
-//                            });
+
+                                            } else {
+                                                listener.messageFriend(userID, fullname);
+                                            }
+                                        }
+                                    });
+                                    builder.show();
+
+                                }
+                            });
+
+
 
                         }
                     }
