@@ -102,17 +102,17 @@ public class FindFriendsTestFragment extends Fragment {
 
             @Override
             protected void onBindViewHolder(@NonNull UsersViewHolder holder, final int position, @NonNull Users model) {
-                holder.setName(model.getFirst_name() + " " + model.getLast_name());
-                holder.setMajor(model.getMajor());
-                holder.setProfile_image(model.getProfile_image());
-                holder.mView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String friendID = getRef(position).getKey();
-                        listener.viewUser(friendID);
-                    }
-                });
-            }
+                    holder.setName(model.getFirst_name() + " " + model.getLast_name());
+                    holder.setMajor(model.getMajor());
+                    holder.setProfile_image(model.getProfile_image());
+                    holder.mView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            String friendID = getRef(position).getKey();
+                            listener.viewUser(friendID);
+                        }
+                    });
+                }
         };
         lstUsers.setAdapter(adapter);
 

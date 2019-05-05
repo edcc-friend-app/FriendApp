@@ -88,8 +88,8 @@ public class RegisterActivity extends AppCompatActivity {
 //            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 //                if (dataSnapshot.exists()) {
 //                    if (dataSnapshot.hasChild("profile_image")) {
-//                        String image = dataSnapshot.child("profile_image").getValue().toString();
-//                        Picasso.get().load(image).placeholder(R.drawable.user_icon).into(imgProfile);
+//                        //String image = dataSnapshot.child("profile_image").getValue().toString();
+//                        //Picasso.get().load(image).placeholder(R.drawable.user_icon).into(imgProfile);
 //
 //                    } else {
 //                        Toast.makeText(RegisterActivity.this, "Please select profile image first", Toast.LENGTH_SHORT).show();
@@ -137,7 +137,10 @@ public class RegisterActivity extends AppCompatActivity {
             txtConfirmPassword.setError("Please enter your password");
         } else if (!password.equals(confirmPassword)) {
             txtConfirmPassword.setError("Passwords do not match!");
-        } else {
+        } else if(resultUri == null) {
+            Toast.makeText(this, "Please Select an Image first", Toast.LENGTH_SHORT).show();
+        }
+        else {
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
