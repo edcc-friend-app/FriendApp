@@ -102,16 +102,21 @@ public class FindFriendsTestFragment extends Fragment {
 
             @Override
             protected void onBindViewHolder(@NonNull UsersViewHolder holder, final int position, @NonNull Users model) {
-                    holder.setName(model.getFirst_name() + " " + model.getLast_name());
-                    holder.setMajor(model.getMajor());
-                    holder.setProfile_image(model.getProfile_image());
-                    holder.mView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            String friendID = getRef(position).getKey();
-                            listener.viewUser(friendID);
-                        }
-                    });
+                    if (getRef(position).getKey().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                        holder.setInvisible();
+                    } else {
+                        holder.mView.setVisibility(View.VISIBLE);
+                        holder.setName(model.getFirst_name() + " " + model.getLast_name());
+                        holder.setMajor(model.getMajor());
+                        holder.setProfile_image(model.getProfile_image());
+                        holder.mView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                String friendID = getRef(position).getKey();
+                                listener.viewUser(friendID);
+                            }
+                        });
+                    }
                 }
         };
         lstUsers.setAdapter(adapter);
@@ -142,6 +147,10 @@ public class FindFriendsTestFragment extends Fragment {
         public void setProfile_image(String photo) {
             CircleImageView imgProfile = mView.findViewById(R.id.all_users_profile_image);
             Picasso.get().load(photo).placeholder(R.drawable.user_icon).into(imgProfile);
+        }
+
+        public void setInvisible() {
+            mView.setVisibility(View.INVISIBLE);
         }
     }
 
