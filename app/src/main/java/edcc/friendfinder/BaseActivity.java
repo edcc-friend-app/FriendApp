@@ -6,6 +6,13 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Base activity class used for authentication in all child activity classes.
@@ -22,6 +29,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener authListener;
 
+    private DatabaseReference usersRef;
+
     /**
      * Android onCreate method.
      *
@@ -37,6 +46,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     userId = user.getUid();
+                    usersRef = FirebaseDatabase.getInstance().getReference().child("Users");
                     setUpDataListeners();
                 } else {
                     userId = null;
@@ -95,6 +105,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      * Signs out of Firebase.
      */
     void signOut() {
+        updateUserStatus("offline");
         auth.signOut();
         startActivity(new Intent(BaseActivity.this, LoginActivity.class));
         finish();
@@ -105,6 +116,28 @@ public abstract class BaseActivity extends AppCompatActivity {
      * established. This method must be overridden by all child activities.
      */
     protected abstract void setUpDataListeners();
+
+    private void updateUserStatus(String state) {
+        String saveCurrentDate, saveCurrentTime;
+
+        Calendar calendar = Calendar.getInstance();
+
+        SimpleDateFormat currentDate = new SimpleDateFormat("MM/dd/yy");
+        saveCurrentDate = currentDate.format(calendar.getTime());
+
+        SimpleDateFormat currentTime = new SimpleDateFormat("hh:mm a");
+        saveCurrentTime = currentTime.format(calendar.getTime());
+
+        Map currentStateMap = new HashMap();
+
+        currentStateMap.put("time", saveCurrentTime);
+        currentStateMap.put("date", saveCurrentDate);
+        currentStateMap.put("type", state);
+
+        usersRef.child(userId).child("user_state")
+                .updateChildren(currentStateMap);
+
+    }
 
 }
 

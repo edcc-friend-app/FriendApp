@@ -20,6 +20,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -29,9 +31,13 @@ import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Nullable;
 
@@ -62,7 +68,10 @@ public class MainActivity extends BaseActivity
     private EventListener<QuerySnapshot> potentialDataListener;
     private ListenerRegistration potentialReg;
 
+    private DatabaseReference usersRef;
+
     private FirebaseAuth mAuth;
+    private String currentUserID;
 
 
     /**
@@ -76,6 +85,9 @@ public class MainActivity extends BaseActivity
         setContentView(R.layout.activity_main);
 
         mAuth = FirebaseAuth.getInstance();
+        currentUserID = mAuth.getCurrentUser().getUid();
+
+        usersRef = FirebaseDatabase.getInstance().getReference().child("Users");
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -348,5 +360,33 @@ public class MainActivity extends BaseActivity
         Intent intent = new Intent(MainActivity.this, PotentialFriendActivity.class);
         intent.putExtra(Extras.FRIEND_ID, id);
         startActivity(intent);
+    }
+
+    private void updateUserStatus(String state) {
+        String saveCurrentDate, saveCurrentTime;
+
+        Calendar calendar = Calendar.getInstance();
+
+        SimpleDateFormat currentDate = new SimpleDateFormat("MM/dd/yy");
+        saveCurrentDate = currentDate.format(calendar.getTime());
+
+        SimpleDateFormat currentTime = new SimpleDateFormat("hh:mm a");
+        saveCurrentTime = currentTime.format(calendar.getTime());
+
+        Map currentStateMap = new HashMap();
+
+        currentStateMap.put("time", saveCurrentTime);
+        currentStateMap.put("date", saveCurrentDate);
+        currentStateMap.put("type", state);
+
+        usersRef.child(currentUserID).child("user_state")
+                .updateChildren(currentStateMap);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateUserStatus("online");
     }
 }

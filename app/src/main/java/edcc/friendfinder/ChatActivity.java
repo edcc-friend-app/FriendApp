@@ -153,7 +153,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void sendMessage() {
-        //updateUserStatus("online");
+        updateUserStatus("online");
 
         String message = txtUserMessage.getText().toString();
         if (TextUtils.isEmpty(message)) {
@@ -220,7 +220,7 @@ public class ChatActivity extends AppCompatActivity {
         currentStateMap.put("date", saveCurrentDate);
         currentStateMap.put("type", state);
 
-        rootRef.child("Users").child(messageSenderID).child("userstate")
+        rootRef.child("Users").child(messageSenderID).child("user_state")
                 .updateChildren(currentStateMap);
 
     }
@@ -233,15 +233,15 @@ public class ChatActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     String profileImage = dataSnapshot.child("profile_image").getValue().toString();
-                   // String type = dataSnapshot.child("userstate").child("type").getValue().toString();
-                    //String date = dataSnapshot.child("userstate").child("date").getValue().toString();
-                    //String time = dataSnapshot.child("userstate").child("time").getValue().toString();
+                    String type = dataSnapshot.child("user_state").child("type").getValue().toString();
+                    String date = dataSnapshot.child("user_state").child("date").getValue().toString();
+                    String time = dataSnapshot.child("user_state").child("time").getValue().toString();
 
-//                    if (type.equals("online")) {
-//                        userLastSeen.setText("online");
-//                    } else {
-//                        userLastSeen.setText("last seen: " + time + "  " + date);
-//                    }
+                    if (type.equals("online")) {
+                        userLastSeen.setText("online");
+                    } else {
+                        userLastSeen.setText("last seen: " + time + "  " + date);
+                    }
 
 
                     Picasso.get().load(profileImage).placeholder(R.mipmap.ic_launcher_round).into(receiverProfileImage);

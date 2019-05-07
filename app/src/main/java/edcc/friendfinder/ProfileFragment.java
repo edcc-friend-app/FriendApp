@@ -2,8 +2,10 @@ package edcc.friendfinder;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Base64;
@@ -13,13 +15,21 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -40,7 +50,16 @@ public class ProfileFragment extends Fragment {
     private TextView lblBio;
     private TextView lblAvailability;
     private TextView lblLanguage;
-    private ImageView imgUser;
+    private CircleImageView imgUser;
+
+    private DatabaseReference usersRef, friendsRef, postsRef;
+    private FirebaseAuth mAuth;
+
+    private Button btnMyPosts, btnMyFriends;
+
+    private String currentUserID;
+
+    private int countFriends = 0, countPosts = 0;
 
     /**
      * Required default constructor.
@@ -59,19 +78,72 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        mAuth = FirebaseAuth.getInstance();
+        currentUserID = mAuth.getCurrentUser().getUid();
+        usersRef = FirebaseDatabase.getInstance().getReference().child("Users");
+        friendsRef = FirebaseDatabase.getInstance().getReference().child("Friends");
+        postsRef = FirebaseDatabase.getInstance().getReference().child("Posts");
+
         // Inflate the layout for this fragment
         //fields
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
         um = UserManager.getUserManager(getContext(), FirebaseAuth.getInstance().getUid());
         //find UI components
-        lblName = rootView.findViewById(R.id.lblName);
-        lblMajor = rootView.findViewById(R.id.lblMajor);
-        lblLanguage = rootView.findViewById(R.id.lblLanguage);
-        lblClasses = rootView.findViewById(R.id.lblClasses);
-        lblBio = rootView.findViewById(R.id.txtBio);
-        lblAvailability = rootView.findViewById(R.id.txtAvailability);
-        imgUser = rootView.findViewById(R.id.imgUserPhoto);
+        lblName = rootView.findViewById(R.id.lblProfileName);
+        lblMajor = rootView.findViewById(R.id.lblProfileMajor);
+        lblLanguage = rootView.findViewById(R.id.lblProfileLanguage);
+        lblClasses = rootView.findViewById(R.id.lblProfileClasses);
+        lblBio = rootView.findViewById(R.id.lblProfileBio);
+        lblAvailability = rootView.findViewById(R.id.lblProfileAvailability);
+        imgUser = rootView.findViewById(R.id.imgProfilePicture);
+
+        btnMyFriends = rootView.findViewById(R.id.btnProfileFriends);
         //updateData();
+
+        friendsRef.child(currentUserID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    countFriends = (int) dataSnapshot.getChildrenCount();
+                    btnMyFriends.setText(countFriends + " Friends");
+                } else {
+                    btnMyFriends.setText("No Friends, Loser");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        usersRef.child(currentUserID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String myProfileImage = dataSnapshot.child("profile_image").getValue().toString();
+                    String myName = dataSnapshot.child("first_name").getValue() + " " + dataSnapshot.child("last_name").getValue();
+                    String myMajor = dataSnapshot.child("major").getValue().toString();
+                    String myLanguage = dataSnapshot.child("language").getValue().toString();
+                    String myBio = dataSnapshot.child("bio").getValue().toString();
+                    String myAvailability = dataSnapshot.child("availability").getValue().toString();
+
+                    Picasso.get().load(myProfileImage).placeholder(R.drawable.user_icon).into(imgUser);
+                    lblName.setText(myName);
+                    lblMajor.setText(myMajor);
+                    lblLanguage.setText(myLanguage);
+                    lblBio.setText(myBio);
+                    lblAvailability.setText(myAvailability);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         return rootView;
     }
 
@@ -133,21 +205,21 @@ public class ProfileFragment extends Fragment {
     public void updateData() {
         //set UI components
         User thisUser = um.getThisUser();
-        lblName.setText(thisUser.printName());
-        lblMajor.setText(thisUser.getMajor());
-        lblLanguage.setText(thisUser.getLanguage());
+//        lblName.setText(thisUser.printName());
+//        lblMajor.setText(thisUser.getMajor());
+//        lblLanguage.setText(thisUser.getLanguage());
         lblClasses.setText(printClasses(thisUser));
-        lblBio.setText(thisUser.getBio());
-        lblAvailability.setText(thisUser.getAvailability());
-        String photoStr = thisUser.getPhoto();
-        if (photoStr != null) {
-            byte[] photo = Base64.decode(photoStr, Base64.DEFAULT);
-            imgUser.setImageBitmap(BitmapFactory.decodeByteArray(photo, 0, photo.length));
-            imgUser.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        } else {
-            imgUser.setImageBitmap(null);
-            Picasso.get().load(R.drawable.user_icon).into(imgUser);
-        }
+//        lblBio.setText(thisUser.getBio());
+//        lblAvailability.setText(thisUser.getAvailability());
+//        String photoStr = thisUser.getPhoto();
+//        if (photoStr != null) {
+//            byte[] photo = Base64.decode(photoStr, Base64.DEFAULT);
+//            imgUser.setImageBitmap(BitmapFactory.decodeByteArray(photo, 0, photo.length));
+//            imgUser.setScaleType(ImageView.ScaleType.FIT_CENTER);
+//        } else {
+//            imgUser.setImageBitmap(null);
+//            Picasso.get().load(R.drawable.user_icon).into(imgUser);
+//        }
 //        lblName.setText(thisUser.printName());
 //        if (lblName.getText().toString().equals(" ")) {
 //            listener.editUser(um.getThisUser());
@@ -168,6 +240,7 @@ public class ProfileFragment extends Fragment {
 //            }
 //        }
     }
+
 
     /**
      * Interface for an activity to register as a ProfileFragment listener.
