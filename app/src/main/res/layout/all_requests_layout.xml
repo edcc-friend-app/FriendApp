@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgRequestPhoto"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:src="@mipmap/ic_launcher_round" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dp">
+
+            <TextView
+                android:id="@+id/lblRequestName"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:text="user full name"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/lblRequestMajor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="major"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:layout_marginLeft="5dp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+
+            <Button
+                android:id="@+id/btnRequestAccept"
+                android:layout_width="125dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/button2"
+                android:fontFamily="@font/open_sans"
+                android:textColor="@android:color/background_light"
+                android:textAllCaps="false"
+                android:text="Confirm"/>
+
+            <Button
+                android:id="@+id/btnRequestDelete"
+                android:layout_width="125dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/button3"
+                android:fontFamily="@font/open_sans"
+                android:textColor="@android:color/black"
+                android:textAllCaps="false"
+                android:text="Delete"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

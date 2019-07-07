@@ -21,6 +21,10 @@
             android:id="@+id/nav_messages"
             android:icon="@drawable/fui_ic_mail_white_24dp"
             android:title="Messages" />
+        <item
+            android:id="@+id/nav_requests"
+            android:icon="@drawable/friends"
+            android:title="Friend Requests" />
     </group>
 
 </menu>

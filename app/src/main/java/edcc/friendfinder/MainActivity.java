@@ -120,6 +120,12 @@ public class MainActivity extends BaseActivity
                 actionBar.setTitle("Friends");
                 navigationView.getMenu().getItem(2).setChecked(true);
                 break;
+            case "requests":
+                fragment = new FriendRequestsFragment();
+                actionBar.setTitle("Requests");
+                navigationView.getMenu().getItem(4).setChecked(true);
+                break;
+
         }
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frmFragment, fragment);
@@ -281,6 +287,10 @@ public class MainActivity extends BaseActivity
             actionBar.setTitle("Friends");
             fragment = new FriendsFragment();
             currentFragment = "friends";
+        } else if(id == R.id.nav_requests) {
+            actionBar.setTitle("Requests");
+            fragment = new FriendRequestsFragment();
+            currentFragment = "requests";
         }
         //CurrentFragment(currentFragment);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
