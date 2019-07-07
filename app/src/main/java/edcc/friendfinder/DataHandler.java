@@ -13,7 +13,7 @@ import java.util.List;
  */
 class DataHandler {
 
-    private final ArrayList<User> potFriends;
+    private ArrayList<User> potFriends;
     private final List<String> courses;
     private final List<String> languages;
     private final List<String> majors;

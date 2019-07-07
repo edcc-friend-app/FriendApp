@@ -41,6 +41,13 @@ public class FindFriendsFragment extends Fragment {
     private FindFriendsFragment.FriendListener listener;
 
     /**
+     * Interface for an activity to register as a FindFriendsFragment listener.
+     */
+    interface FriendListener {
+        void viewPotFriendRequested(User friend);
+    }
+
+    /**
      * Required default constructor
      */
     public FindFriendsFragment() {
@@ -215,11 +222,5 @@ public class FindFriendsFragment extends Fragment {
         txtFilter.setText("");
     }
 
-    /**
-     * Interface for an activity to register as a FindFriendsFragment listener.
-     */
-    interface FriendListener {
-        void viewPotFriendRequested(User friend);
-    }
 
 }

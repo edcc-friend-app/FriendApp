@@ -38,7 +38,7 @@ public class UserManager {
     private int nextFriendId;
     private int nextUserId;
     private List<User> userList;
-    private final DataHandler dh;
+    private DataHandler dh;
     private User thisUser;
     private final List<String> courses;
     private final List<String> languages;

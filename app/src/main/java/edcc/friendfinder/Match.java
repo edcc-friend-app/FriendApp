@@ -15,7 +15,7 @@ class Match {
 
     //fields
     private final User thisUser;
-    private final List<User> friends;
+    private List<User> friends;
 
     /**
      * Complete constructor.
