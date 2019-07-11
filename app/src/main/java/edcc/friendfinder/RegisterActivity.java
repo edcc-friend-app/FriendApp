@@ -51,6 +51,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     final static int GALLERY_PIC = 1;
 
+    private int confirm = 0;
+
 
 
     private UserManager um;
@@ -155,6 +157,11 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 }
             });
+
+            if (confirm == 1) {
+                sendUserToMainActivity();
+            }
+
             //Will test later
             //User thisUser = new User(firstName, lastName, major, bio, language, availability);
             //um.setThisUser(thisUser);
@@ -167,30 +174,6 @@ public class RegisterActivity extends AppCompatActivity {
     private void createUser(String firstName, String lastName, String language, String major, String bio, String availability) {
         mAuth = FirebaseAuth.getInstance();
         currentUserID = mAuth.getCurrentUser().getUid();
-        filePath = userProfileImageRef.child(currentUserID + ".jpg");
-        filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-        @Override
-        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-            if (task.isSuccessful()) {
-                String downloadUrl;
-                Task<Uri> uriTask = task.getResult().getStorage().getDownloadUrl();
-                while (!uriTask.isComplete()) ;
-                downloadUrl = uriTask.getResult().toString();
-                usersRef.child(currentUserID).child("profile_image").setValue(downloadUrl).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-
-                                } else {
-                                    String message = task.getException().getMessage();
-                                    Toast.makeText(RegisterActivity.this, "Error occurred: " + message, Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-                }
-            }
-        });
-
         HashMap userMap = new HashMap<>();
         userMap.put("first_name", firstName);
         userMap.put("last_name", lastName);
@@ -203,11 +186,43 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task task) {
                 if(task.isSuccessful()) {
-                    sendUserToMainActivity();
+                   // sendUserToMainActivity();
+                    confirm = 1;
                     Toast.makeText(RegisterActivity.this, "Your account was created!", Toast.LENGTH_SHORT).show();
                 } else {
                     String message = task.getException().getMessage();
                     Toast.makeText(RegisterActivity.this, "Error occurred: " + message, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        uploadProfilePicture();
+    }
+
+    private void uploadProfilePicture() {
+        filePath = userProfileImageRef.child(currentUserID + ".jpg");
+        filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                if (task.isSuccessful()) {
+                    String downloadUrl;
+                    Task<Uri> uriTask = task.getResult().getStorage().getDownloadUrl();
+                    while (!uriTask.isComplete()) ;
+                    downloadUrl = uriTask.getResult().toString();
+                    usersRef.child(currentUserID).child("profile_image").setValue(downloadUrl).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                sendUserToMainActivity();
+                                Toast.makeText(RegisterActivity.this, "IT IS WORKING!!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                String message = task.getException().getMessage();
+                                Toast.makeText(RegisterActivity.this, "Error occurred: " + message, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }  else {
+                    Toast.makeText(RegisterActivity.this, "THIS DOES NOT WORK", Toast.LENGTH_SHORT).show();
                 }
             }
         });
