@@ -159,7 +159,7 @@ public class RegisterActivity extends AppCompatActivity {
             });
 
             if (confirm == 1) {
-                sendUserToMainActivity();
+              //  sendUserToMainActivity();
             }
 
             //Will test later

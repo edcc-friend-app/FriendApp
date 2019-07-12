@@ -327,7 +327,7 @@ public class MainActivity extends BaseActivity
         startActivity(intent);
     }
 
-    @Override
+    //@Override
     public void messageFriend(String userID, String fullname) {
         Intent chatIntent = new Intent(MainActivity.this, ChatActivity.class);
         chatIntent.putExtra("friendID", userID);
