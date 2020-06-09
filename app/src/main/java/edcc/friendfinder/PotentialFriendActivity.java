@@ -74,7 +74,7 @@ public class PotentialFriendActivity extends BaseActivity {
     private String userID;
     private String currentState;
     private String saveCurrentDate;
-    
+
 
     /**
      * Builds the activity on startup.
@@ -86,7 +86,7 @@ public class PotentialFriendActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_potential_friend);
 
-        mAuth= FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         currentUserID = mAuth.getCurrentUser().getUid();
         usersRef = FirebaseDatabase.getInstance().getReference().child("Users");
         friendsRef = FirebaseDatabase.getInstance().getReference().child("Friends");
@@ -278,7 +278,7 @@ public class PotentialFriendActivity extends BaseActivity {
                     friendsRef.child(currentUserID).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if(dataSnapshot.hasChild(userID)) {
+                            if (dataSnapshot.hasChild(userID)) {
                                 currentState = "friends";
                                 btnSendFriendRequest.setText("Unfriend");
 
@@ -437,7 +437,6 @@ public class PotentialFriendActivity extends BaseActivity {
                 });
 
 
-
     }
 
     private void unfriend() {
@@ -447,7 +446,7 @@ public class PotentialFriendActivity extends BaseActivity {
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()) {
+                        if (task.isSuccessful()) {
                             friendsRef.child(userID).child(currentUserID)
                                     .removeValue()
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
